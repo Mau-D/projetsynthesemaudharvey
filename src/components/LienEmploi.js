@@ -4,7 +4,7 @@ import { Col, Button } from "react-bootstrap";
 // Hook pour le lien d'un emploi en demande de stage
 function LienEmploi() {
   return (
-    <Col sm={3}>
+    <Col lg={3}>
       <Button variant="link">Developer jobs</Button>
     </Col>
   );

@@ -10,7 +10,7 @@ function PublicationDemandeStage() {
   return (
     <Container fluid className="p-0">
       <Row className="p-0">
-        <Col sm={6} className="p-0 my-auto">
+        <Col lg={6} className="p-0 my-auto">
           <div className="text-left w-50 mx-auto">
             <h1 className="mb-5">
               Trouvez un stage à la hauteur de vos attentes
@@ -27,7 +27,7 @@ function PublicationDemandeStage() {
             <BoutonPublierDemande></BoutonPublierDemande>
           </div>
         </Col>
-        <Col sm={6} className="p-0">
+        <Col lg={6} className="p-0">
           <Image fluid src={publicationDemande} />
         </Col>
       </Row>

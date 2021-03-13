@@ -10,10 +10,10 @@ function PublicationOffreStage() {
   return (
     <Container fluid className="p-0">
       <Row className="p-0">
-        <Col sm={6} className="p-0">
+        <Col lg={6} className="p-0">
           <Image fluid src={publicationOffre} />
         </Col>
-        <Col sm={6} className="p-0 my-auto">
+        <Col lg={6} className="p-0 my-auto">
           <div className="text-left w-50 mx-auto">
             <h1 className="mb-5">Pourquoi publier une offre de stage?</h1>
             <p>

@@ -1,9 +1,14 @@
 import React from "react";
 import "./App.sass";
-import Accueil from "./views/Accueil";
+
+import DemandeStageDetails from "./views/DemandeStageDetails";
 
 function App() {
-  return <Accueil />;
+  return (
+    <>
+      <DemandeStageDetails />
+    </>
+  );
 }
 
 export default App;

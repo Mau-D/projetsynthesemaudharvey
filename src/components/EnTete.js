@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
 
 import logo from "../img/logo.svg";
@@ -10,12 +10,12 @@ import BoutonInscription from "./BoutonInscription";
 import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
 
 // Hook pour la bannière
-function EnTete() {
+function EnTete(props) {
   return (
-    <Container fluid className="banniereAccueil">
+    <>
       {/* Menu avec logo et bouton, navbar collapsible */}
-      <Row>
-        <Navbar className="w-100 mx-5 vh-10" collapseOnSelect expand="lg">
+      <Row className="d-flex">
+        <Navbar className="w-100 mx-5" collapseOnSelect expand="lg">
           <Navbar.Brand href="#home">
             <img src={logo} alt="logo" />
           </Navbar.Brand>
@@ -43,12 +43,17 @@ function EnTete() {
         </Navbar>
       </Row>
       {/* Titre et champs et bouton pour la recherche */}
-      <Row className="hauteur90">
-        <Col sm={12} className="my-auto">
+      <Row className="d-flex">
+        <Col lg={12}>
           <RechercheTrouverVotreStage></RechercheTrouverVotreStage>
         </Col>
       </Row>
-    </Container>
+      <Row className="ml-5 d-flex">
+        <Col lg={12} className="ml-5">
+          <h1 className="text-light">{props.titre}</h1>
+        </Col>
+      </Row>
+    </>
   );
 }
 

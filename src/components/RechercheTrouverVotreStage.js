@@ -7,13 +7,13 @@ function RechercheTrouverVotreStage() {
   return (
     <Container>
       <Row className="mb-5 text-light">
-        <Col sm={12} className="mx-auto text-center">
+        <Col lg={12} className="mx-auto text-center">
           <h1>Trouvez votre stage!</h1>
         </Col>
       </Row>
       {/* Button adons pour la barre de recherche */}
       <Row className="w-50 mx-auto">
-        <Col sm={12}>
+        <Col lg={12}>
           <InputGroup>
             <FormControl
               placeholder="Mot clé"
