@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-import BoutonPostuler from "./BoutonPostuler";
+import BoutonPostuler from "../boutons/BoutonPostuler";
 
 // Hook pour les cards des offres de stage
 function OffreCarte() {

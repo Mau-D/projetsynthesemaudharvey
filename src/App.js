@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.sass";
 
-import DemandeStageDetails from "./views/DemandeStageDetails";
+import Admin from "./views/Admin";
 
 function App() {
   return (
     <>
-      <DemandeStageDetails />
+      <Admin />
     </>
   );
 }

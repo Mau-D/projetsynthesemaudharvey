@@ -1,14 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import DemandesGroupCards from "../components/DemandesGroupCards";
-import EnTete from "../components/EnTete";
-import LiensEmploiListe from "../components/LiensEmploiListe";
-import OffresGroupCards from "../components/OffresGroupCards";
-import PiedDePage from "../components/PiedDePage";
-import PublicationDemandeStage from "../components/PublicationDemandeStage";
-import PublicationOffreStage from "../components/PublicationOffreStage";
-import UtilisationSchema from "../components/UtilisationSchema";
+import DemandesGroupCards from "../components/public/DemandesGroupCards";
+import EnTete from "../components/public/EnTete";
+import LiensEmploiListe from "../components/public/LiensEmploiListe";
+import OffresGroupCards from "../components/public/OffresGroupCards";
+import PiedDePage from "../components/public/PiedDePage";
+import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
+import PublicationOffreStage from "../components/public/PublicationOffreStage";
+import UtilisationSchema from "../components/public/UtilisationSchema";
 // Hook pour la page d'accueil
 function Accueil() {
   return (

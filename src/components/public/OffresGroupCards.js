@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import OffreCarte from "./OffreCarte";
-import BoutonToutesOffres from "./BoutonToutesOffres";
+import BoutonToutesOffres from "../boutons/BoutonToutesOffres";
 
 // Hook pour l'affichage des Offres de stage en vedette
 function OffresGroupCards() {

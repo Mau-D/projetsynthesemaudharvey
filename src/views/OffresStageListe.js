@@ -1,16 +1,16 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import EnTete from "../components/EnTete";
 import LiensEmploiListe from "../components/LiensEmploiListe";
-import OffresGroupCards from "../components/OffresGroupCards";
+import DemandeCarte from "../components/DemandeCarte";
+import DemandesGroupCards from "../components/DemandesGroupCards";
 import PiedDePage from "../components/PiedDePage";
 import PublicationDemandeStage from "../components/PublicationDemandeStage";
 import PublicationOffreStage from "../components/PublicationOffreStage";
 import SecteursActivite from "../components/SecteursActiviteListe";
-import DemandeDetails from "../components/DemandeDetails";
-// Hook pour les détails d'une demande de stage sélectionnée
-function DemandeStageDetails() {
+// Hook pour les offres de stage, liste des offres des entreprises
+function OffresStageListe() {
   return (
     <Container fluid className="h-100">
       {/* Banniere */}
@@ -18,9 +18,9 @@ function DemandeStageDetails() {
         <Col lg={12} className="p-0">
           <Container
             fluid
-            className="d-flex flex-column justify-content-between banniereDemandes"
+            className="d-flex flex-column justify-content-between banniereOffres"
           >
-            <EnTete titre="Candidats"></EnTete>
+            <EnTete titre="Offres de stage"></EnTete>
           </Container>
         </Col>
       </Row>
@@ -28,7 +28,13 @@ function DemandeStageDetails() {
       <Row className="m-5">
         {/* Liste des candidats */}
         <Col lg={8} className="pr-5 text-center">
-          <DemandeDetails></DemandeDetails>
+          <DemandeCarte></DemandeCarte>
+          <DemandeCarte></DemandeCarte>
+          <DemandeCarte></DemandeCarte>
+          <DemandeCarte></DemandeCarte>
+          <Button variant="danger" className="mt-5">
+            Charger plus
+          </Button>
         </Col>
         {/* Liste des secteurs d'activités */}
         <Col lg={4}>
@@ -44,7 +50,7 @@ function DemandeStageDetails() {
       {/* Demande de stage sous forme de cards */}
       <Row className="m-5">
         <Col xs={12}>
-          <OffresGroupCards></OffresGroupCards>
+          <DemandesGroupCards></DemandesGroupCards>
         </Col>
       </Row>
       {/* Publication de demande de stage */}
@@ -75,4 +81,4 @@ function DemandeStageDetails() {
   );
 }
 
-export default DemandeStageDetails;
+export default OffresStageListe;

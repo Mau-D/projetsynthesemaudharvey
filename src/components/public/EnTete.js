@@ -2,12 +2,13 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
 
-import logo from "../img/logo.svg";
-import BoutonTrouverVotreStage from "./BoutonTrouverVotreStage";
-import BoutonTrouverVotreStagiaire from "./BoutonTrouverVotreStagiaire";
-import BoutonConnexion from "./BoutonConnexion";
-import BoutonInscription from "./BoutonInscription";
+import BoutonTrouverVotreStage from "../boutons/BoutonTrouverVotreStage";
+import BoutonTrouverVotreStagiaire from "../boutons/BoutonTrouverVotreStagiaire";
+import BoutonConnexion from "../boutons/BoutonConnexion";
+import BoutonInscription from "../boutons/BoutonInscription";
 import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
+
+import logo from "../../img/logo.svg";
 
 // Hook pour la bannière
 function EnTete(props) {

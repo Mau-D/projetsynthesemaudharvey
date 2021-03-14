@@ -1,8 +1,8 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-import BoutonInscription from "./BoutonInscription";
-import schema from "../img/schema.svg";
+import BoutonInscription from "../boutons/BoutonInscription";
+import schema from "../../img/schema.svg";
 
 // Hook pour le schéma d'utilisation du site web
 function UtilisationSchema() {

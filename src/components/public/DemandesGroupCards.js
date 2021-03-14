@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import BoutonTousCandidats from "./BoutonTousCandidats";
+import BoutonTousCandidats from "../boutons/BoutonTousCandidats";
 import DemandeCarte from "./DemandeCarte";
 
 // Hook pour l'affichage des demandes de stage en vedette

@@ -9,7 +9,7 @@ import PublicationDemandeStage from "../components/PublicationDemandeStage";
 import PublicationOffreStage from "../components/PublicationOffreStage";
 import SecteursActivite from "../components/SecteursActiviteListe";
 import DemandeDetails from "../components/DemandeDetails";
-// Hook pour les détails d'une demande de stage sélectionnée
+// Hook pour les offres de stage, détails de l'offre sélectionné en détail
 function DemandeStageDetails() {
   return (
     <Container fluid className="h-100">
