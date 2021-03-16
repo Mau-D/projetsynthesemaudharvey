@@ -6,21 +6,21 @@ import BoutonDetails from "../boutons/BoutonDetails";
 // Hook pour les informations d'une demande de stage en détails
 function DemandeDetails() {
   return (
-    <Container fluid>
+    <Container fluid className="details">
       {/*En-tête de formation */}
       <Row>
         {/*Logo de l'établissement d'études*/}
-        <Col lg={4} className="my-auto p-5">
+        <Col lg={4} className="p-5 border border-secondary">
           <Image
             fluid
             src="https://upload.wikimedia.org/wikipedia/fr/d/dd/C%C3%A9gep_Trois-Rivi%C3%A8res_Logo.jpg"
           />
-          <p>Formation:</p>
+          <h5>Formation:</h5>
           <p>AEC en Développement Web</p>
         </Col>
         {/*Détails formation */}
-        <Col lg={8} className="my-auto p-5">
-          <Container fluid>
+        <Col lg={8}>
+          <Container fluid className="border border-secondary p-5 h-100">
             <Row>
               <Col lg={12} className="text-left mb-5">
                 <h4>Développeur Front-End</h4>

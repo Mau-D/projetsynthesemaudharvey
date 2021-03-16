@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-// Hook pour le bouton pour contacter le candidat
-function BoutonCandidat() {
+// Hook pour le bouton pour les détails du candidat ou de l'entreprise
+function BoutonDetails() {
   return (
-    <Button size="md" variant="light">
+    <Button size="md" className="details">
       Détails
     </Button>
   );
 }
 
-export default BoutonCandidat;
+export default BoutonDetails;

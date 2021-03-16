@@ -1,14 +1,14 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import EnTete from "../components/EnTete";
-import LiensEmploiListe from "../components/LiensEmploiListe";
-import DemandeCarte from "../components/DemandeCarte";
-import DemandesGroupCards from "../components/DemandesGroupCards";
-import PiedDePage from "../components/PiedDePage";
-import PublicationDemandeStage from "../components/PublicationDemandeStage";
-import PublicationOffreStage from "../components/PublicationOffreStage";
-import SecteursActivite from "../components/SecteursActiviteListe";
+import EnTete from "../components/public/EnTete";
+import LiensEmploiListe from "../components/public/LiensEmploiListe";
+import OffreCarte from "../components/public/OffreCarte";
+import OffresGroupCards from "../components/public/OffresGroupCards";
+import PiedDePage from "../components/public/PiedDePage";
+import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
+import PublicationOffreStage from "../components/public/PublicationOffreStage";
+import SecteursActivite from "../components/public/SecteursActiviteListe";
 // Hook pour les offres de stage, liste des offres des entreprises
 function OffresStageListe() {
   return (
@@ -28,10 +28,10 @@ function OffresStageListe() {
       <Row className="m-5">
         {/* Liste des candidats */}
         <Col lg={8} className="pr-5 text-center">
-          <DemandeCarte></DemandeCarte>
-          <DemandeCarte></DemandeCarte>
-          <DemandeCarte></DemandeCarte>
-          <DemandeCarte></DemandeCarte>
+          <OffreCarte></OffreCarte>
+          <OffreCarte></OffreCarte>
+          <OffreCarte></OffreCarte>
+          <OffreCarte></OffreCarte>
           <Button variant="danger" className="mt-5">
             Charger plus
           </Button>
@@ -50,7 +50,7 @@ function OffresStageListe() {
       {/* Demande de stage sous forme de cards */}
       <Row className="m-5">
         <Col xs={12}>
-          <DemandesGroupCards></DemandesGroupCards>
+          <OffresGroupCards></OffresGroupCards>
         </Col>
       </Row>
       {/* Publication de demande de stage */}

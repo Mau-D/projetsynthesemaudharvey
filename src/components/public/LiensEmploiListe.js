@@ -8,7 +8,7 @@ function LiensEmploiListe() {
   return (
     <Container className="p-5">
       <Row className="mb-3">
-        <h3>Ils sont à la recherche d'un stage :</h3>
+        <h5>Ils sont à la recherche d'un stage :</h5>
       </Row>
       <Row className="mb-5">
         <LienEmploi></LienEmploi>

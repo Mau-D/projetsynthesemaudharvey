@@ -5,7 +5,7 @@ import BoutonPostuler from "../boutons/BoutonPostuler";
 // Hook pour les informations d'une offre de stage en détails
 function OffreDetails() {
   return (
-    <Container fluid>
+    <Container fluid className="details">
       {/*En-tête de formation */}
       <Row>
         {/*Logo de l'entreprise*/}
@@ -14,7 +14,7 @@ function OffreDetails() {
             fluid
             src="https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/03701aaf050c38cc94084ad3e3902de1"
           />
-          <p>Nom de l'entreprise</p>
+          <h5>Nom de l'entreprise</h5>
           <p>Adresse</p>
         </Col>
         {/*Détails formation */}

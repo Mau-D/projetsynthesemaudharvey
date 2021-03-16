@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 import logo from "../img/logo.svg";
+import Validation from "../components/admin/Validation";
 import Details from "../components/admin/Details";
 
 // Hook pour la page d'administration
@@ -24,7 +25,7 @@ function Admin() {
     <Container fluid className="h-100">
       <Row>
         {/*Menu de navigation */}
-        <Col lg={2} className="bg-primary">
+        <Col lg={2} className="fondBleu">
           <Nav variant="tabs" defaultActiveKey="/home" className="flex-column">
             <Navbar.Brand>
               <img fluid src={logo} alt="logo" className="w-100 mb-5" />
@@ -63,8 +64,8 @@ function Admin() {
               </Col>
               <Col lg={3} className="d-flex flex-row text-right">
                 <div>
-                  <h3>Nom complet</h3>
-                  <h5>statut</h5>
+                  <h4>Nom complet</h4>
+                  <h5 className="statut">statut</h5>
                 </div>
                 <div className="mx-2">
                   <Image
@@ -75,12 +76,16 @@ function Admin() {
                   />
                 </div>
                 <div className="my-auto">
-                  <IoIosArrowDown />
+                  <h4>
+                    <IoIosArrowDown />
+                  </h4>
                 </div>
               </Col>
               <Col lg={3} className="text-right">
-                <IoIosNotificationsOutline />
-                <BsBoxArrowRight />
+                <h1>
+                  <IoIosNotificationsOutline className="mx-3" />
+                  <BsBoxArrowRight />
+                </h1>
               </Col>
             </Row>
             {/*affichage dynamique */}

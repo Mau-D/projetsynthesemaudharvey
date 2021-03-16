@@ -1,0 +1,83 @@
+//Contient tout le CSS qui gère la mise en page.
+
+h1, h3, h5, strong
+    @include families($family: "Open_Sans-Bold")
+
+h2, li, .ajoutDemande, .ajoutOffre
+    @include families($family: "Open_Sans-SemiBold")
+
+p, .btn-link, span, a, h4, h6
+    @include families($family: "Open_Sans-Regular")
+
+.details
+    h4
+        @include families($family: "Montserrat-Bold")
+    p
+        @include families($family: "Montserrat-Regular")
+/*background-color*/
+.fondBleu
+    @include couleursBkg($couleurBkg: "bleu")
+
+/*Admin*/
+.validationDemande, .validationOffre
+    box-shadow: 0 4px 8px 0 rgba(63, 54, 42, 0.3), 0 6px 20px 0 rgba(63, 54, 42, 0.3)
+.bordureBleu
+    border-top: 10px solid #307CAF !important
+.bordureVert
+    border-top: 10px solid #72A84A !important
+
+.validationDemande, .validationOffre, .adminDetails
+    @include couleursBkg($couleurBkg: "gris")
+    h3
+        border-bottom: 5px solid black
+
+/*Couleur de texte*/
+.nom, .statut
+    color: #7A7A7A
+.h6
+    color: #307CAF
+
+.vert
+    color: green !important
+.rouge
+    color: red !important
+/**************************************************/
+.banniereAccueil
+    background-image: url(../../img/banniereAccueil.svg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    background-color: white
+    height: 100vh
+
+.banniereAPropos
+    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(../../img/banniereAPropos.svg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    background-color: white
+    height: 50vh
+
+.bannierePub
+    background-image: url(../../img/forcesavenir.svg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    background-color: black
+    height: 20vh
+
+.banniereDemandes
+    background-image: url(../../img/banniereDemandes.svg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    background-color: white
+    height: 50vh
+
+.banniereOffres
+    background-image: url(../../img/banniereOffres.svg)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    background-color: white
+    height: 50vh

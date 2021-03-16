@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-import livre from "../img/livre.svg";
+import livre from "../../img/livre.svg";
 
 // Hook pour la section Pourquoi publier une offre de stage
 function ImageTexte() {
@@ -12,11 +12,11 @@ function ImageTexte() {
           <Image fluid src={livre} />
         </Col>
         <Col lg={6} className="my-auto pmx-auto ">
-          <p className="text-left w-75">
+          <h4 className="text-left w-75 imageText">
             Etiam mattis est in tellus mattis maximus. Etiam non molestie metus.
             Donec quis mauris metus. Cras tempor varius odio, nec varius nisi
             sollicitudin ac. Praesent vitae elementum augue
-          </p>
+          </h4>
         </Col>
       </Row>
     </Container>

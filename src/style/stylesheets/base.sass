@@ -1,0 +1,50 @@
+//Contient tout les fonctions, variables, mixins et classes utiles.
+
+/*Font face*/
+@font-face
+    font-family: "Open_Sans-SemiBold"
+    src: local(Open_Sans-SemiBold), url("../fonts/Open_Sans/OpenSans-SemiBold.ttf") format("truetype")
+@font-face
+    font-family: "Open_Sans-Regular"
+    src: local(Open_Sans-Regular), url("../fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype")
+@font-face
+    font-family: "Open_Sans-Bold"
+    src: local(Open_Sans-Bold), url("../fonts/Open_Sans/OpenSans-Bold.ttf") format("truetype")
+@font-face
+    font-family: "Montserrat-Regular"
+    src: local(Montserrat-Regular), url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype")
+@font-face
+    font-family: "Montserrat-Bold"
+    src: local(Montserrat-Bold), url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype")
+
+@mixin families($family:"")
+    @if $family == "Open_Sans-Bold"
+        font-family: "Open_Sans-Bold", sans-serif
+    @if $family == "Open_Sans-SemiBold"
+        font-family: "Open_Sans-SemiBold", sans-serif
+    @if $family == "Open_Sans-Regular"
+        font-family: "Open_Sans-Regular", sans-serif
+    @if $family == "Montserrat-Bold"
+        font-family: "Montserrat-Bold", sans-serif
+    @if $family == "Montserrat-Regular"
+        font-family: "Montserrat-Regular", sans-serif
+
+/*Couleur de background*/
+@mixin couleursBkg($couleurBkg: "")
+    border-color: #5C4CF9 !important
+    @if $couleurBkg == "mauve"
+        background-color: #5C4CF9 !important
+    @else if $couleurBkg == "linear"
+        background-image: linear-gradient(#5C4CF9,#814CF9)
+    @else if $couleurBkg == "rose"
+        background-color: #FA6980 !important
+        border-color: #FA6980 !important
+    @else if $couleurBkg == "vert"
+        background-color: #72A84A !important
+        border-color: #72A84A !important
+    @else if $couleurBkg == "bleu"
+        background-color: #307CAF !important
+        border-color: #307CAF !important
+    @else if $couleurBkg == "gris"
+        background-color: #EAEFF3 !important
+        border-color: #EAEFF3 !important

@@ -8,7 +8,7 @@ function RechercheTrouverVotreStage() {
     <Container>
       <Row className="mb-5 text-light">
         <Col lg={12} className="mx-auto text-center">
-          <h1>Trouvez votre stage!</h1>
+          <h2>Trouvez votre stage!</h2>
         </Col>
       </Row>
       {/* Button adons pour la barre de recherche */}
@@ -21,7 +21,7 @@ function RechercheTrouverVotreStage() {
               aria-describedby="basic-addon2"
             />
             <InputGroup.Append>
-              <Button>Rechercher</Button>
+              <Button className="recherche">Rechercher</Button>
             </InputGroup.Append>
           </InputGroup>
         </Col>

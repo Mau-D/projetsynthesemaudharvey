@@ -2,7 +2,8 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { BsArrow90DegRight } from "react-icons/bs";
-import ValidationCarte from "./ValidationCarte";
+import ValidationCarteOffre from "./ValidationCarteOffre";
+import ValidationCarteDemande from "./ValidationCarteDemande";
 
 // Hook pour la section de la validation des demandes et offres de la page d'administration
 function Validation() {
@@ -14,29 +15,31 @@ function Validation() {
           <h1>En attente de validation</h1>
         </Col>
         <Col lg={6}>
-          <h2 className="d-inline">Demandes de stage</h2>
-          <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
+          <h3 className="d-inline">
+            Demandes de stage
+            <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
+          </h3>
         </Col>
         <Col lg={6}>
-          <h2 className="d-inline">Offres de stage</h2>
-          <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
+          <h3 className="d-inline">
+            Offres de stage
+            <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
+          </h3>
         </Col>
       </Row>
       {/*affichage dynamique */}
       <Row>
         <Col lg={6}>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
+          <ValidationCarteDemande></ValidationCarteDemande>
+          <ValidationCarteDemande></ValidationCarteDemande>
+          <ValidationCarteDemande></ValidationCarteDemande>
+          <ValidationCarteDemande></ValidationCarteDemande>
         </Col>
         <Col lg={6}>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
-          <ValidationCarte></ValidationCarte>
+          <ValidationCarteOffre></ValidationCarteOffre>
+          <ValidationCarteOffre></ValidationCarteOffre>
+          <ValidationCarteOffre></ValidationCarteOffre>
+          <ValidationCarteOffre></ValidationCarteOffre>
         </Col>
       </Row>
     </Container>

@@ -1,14 +1,16 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import EnTete from "../components/EnTete";
-import LiensEmploiListe from "../components/LiensEmploiListe";
-import DemandeCarte from "../components/DemandeCarte";
-import OffresGroupCards from "../components/OffresGroupCards";
-import PiedDePage from "../components/PiedDePage";
-import PublicationDemandeStage from "../components/PublicationDemandeStage";
-import PublicationOffreStage from "../components/PublicationOffreStage";
-import SecteursActivite from "../components/SecteursActiviteListe";
+import EnTete from "../components/public/EnTete";
+import LiensEmploiListe from "../components/public/LiensEmploiListe";
+import DemandeCarte from "../components/public/DemandeCarte";
+import OffresGroupCards from "../components/public/OffresGroupCards";
+import PiedDePage from "../components/public/PiedDePage";
+import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
+import PublicationOffreStage from "../components/public/PublicationOffreStage";
+import SecteursActivite from "../components/public/SecteursActiviteListe";
+
+import DemandeDetails from "../components/public/DemandeDetails";
 // Hook pour les demandes de stage, liste des candidats
 function DemandesStageListe() {
   return (
@@ -35,6 +37,8 @@ function DemandesStageListe() {
           <Button variant="danger" className="mt-5">
             Charger plus
           </Button>
+          {/*DÉTAILS*/}
+          {/*<DemandeDetails></DemandeDetails>*/}
         </Col>
         {/* Liste des secteurs d'activités */}
         <Col lg={4}>

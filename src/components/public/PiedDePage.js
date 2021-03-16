@@ -10,7 +10,7 @@ function PiedDePage() {
       <Row>
         <Navbar className="w-100">
           <Navbar.Text className="justify-content-start">
-            © 2021 <span>EnStage</span> - Projet éducationnel
+            © 2021 EnStage - Projet éducationnel
           </Navbar.Text>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">

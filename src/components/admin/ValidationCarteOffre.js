@@ -5,11 +5,11 @@ import BoutonDetails from "../boutons/BoutonDetails";
 
 import { FaUserGraduate, FaUserTie } from "react-icons/fa";
 
-// Hook pour les cards des offres et demandes de stage, en attente de validation
-function ValidationCarte() {
+// Hook pour les cards des offres de stage, en attente de validation
+function ValidationCarteOffre() {
   return (
-    <Container fluid>
-      <Row>
+    <Container fluid className="validationOffre my-3">
+      <Row className="p-3 bordureVert">
         <Col lg={12}>
           {" "}
           <FaUserGraduate />
@@ -24,7 +24,7 @@ function ValidationCarte() {
         <Col lg={12}>Ville</Col>
       </Row>
       <Row>
-        <Col lg={12}>École ou entreprise</Col>
+        <Col lg={12}>Entreprise</Col>
       </Row>
       <Row>
         <Col lg={12}>texte</Col>
@@ -36,8 +36,8 @@ function ValidationCarte() {
               <BoutonDetails></BoutonDetails>
             </div>
             <div className="text-right d-inline">
-              <Button className="m-1">Refuser</Button>
-              <Button>Accepter</Button>
+              <Button className="refuser m-2">Refuser</Button>
+              <Button className="accepter m-2">Accepter</Button>
             </div>
           </div>
         </Col>
@@ -46,4 +46,4 @@ function ValidationCarte() {
   );
 }
 
-export default ValidationCarte;
+export default ValidationCarteOffre;

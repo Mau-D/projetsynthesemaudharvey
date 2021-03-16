@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-import EnTete from "../components/EnTete";
-import LiensEmploiListe from "../components/LiensEmploiListe";
-import PiedDePage from "../components/PiedDePage";
-import ImageTexte from "../components/ImageTexte";
+import EnTete from "../components/public/EnTete";
+import LiensEmploiListe from "../components/public/LiensEmploiListe";
+import PiedDePage from "../components/public/PiedDePage";
+import ImageTexte from "../components/public/ImageTexte";
 
 import forcesavenir from "../img/forcesavenir.svg";
 import centraide from "../img/centraide.svg";
@@ -95,10 +95,10 @@ function APropos() {
       {/*Texte*/}
       <Row className="mx-5 mt-5 bg-primary text-light">
         <Col lg={12} className="p-5">
-          <h4 className="px-5">
+          <h3 className="px-5">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </h4>
-          <p className="p-5">
+          </h3>
+          <h4 className="p-5 fondBleu">
             Etiam mattis est in tellus mattis maximus. Etiam non molestie metus.
             Donec quis mauris metus. Cras tempor varius odio, nec varius nisi
             sollicitudin ac. Praesent vitae elementum augue, non suscipit
@@ -106,7 +106,7 @@ function APropos() {
             iaculis at diam in, scelerisque dapibus mauris. Aenean faucibus est
             lectus, elementum pellentesque nisi cursus at. Maecenas nec
             elementum enim, vel egestas nisi.
-          </p>
+          </h4>
         </Col>
       </Row>
       {/* Image et texte */}

@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 // Hook pour le bouton Trouvez votre stagiaire
 function SecteursActivite() {
   return (
-    <>
+    <div className="details">
       <h4>Secteurs d'activité - (voir br)</h4>
       <Table striped bordered hover size="sm">
         <tbody>
@@ -21,7 +21,7 @@ function SecteursActivite() {
           </tr>
         </tbody>
       </Table>
-    </>
+    </div>
   );
 }
 
