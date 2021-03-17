@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import OffreCarte from "./OffreCarte";
-import BoutonToutesOffres from "../boutons/BoutonToutesOffres";
 
 // Hook pour l'affichage des Offres de stage en vedette
 function OffresGroupCards() {
@@ -37,7 +37,11 @@ function OffresGroupCards() {
       {/* Bouton voir toutes les offres de stage */}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <BoutonToutesOffres></BoutonToutesOffres>
+          <NavLink to="offresstage">
+            <Button size="md" variant="danger">
+              Voir toutes les offres de stage
+            </Button>
+          </NavLink>
         </Col>
       </Row>
     </Container>

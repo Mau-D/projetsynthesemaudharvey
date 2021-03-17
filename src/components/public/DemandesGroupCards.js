@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
-import BoutonTousCandidats from "../boutons/BoutonTousCandidats";
 import DemandeCarte from "./DemandeCarte";
 
 // Hook pour l'affichage des demandes de stage en vedette
@@ -35,7 +35,11 @@ function DemandesGroupCards() {
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <BoutonTousCandidats></BoutonTousCandidats>
+          <NavLink to="/demandesstage">
+            <Button size="md" variant="danger">
+              Voir tous les candidats
+            </Button>
+          </NavLink>
         </Col>
       </Row>
     </Container>

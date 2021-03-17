@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 // Hook pour la bannière
 function PiedDePage() {
@@ -13,22 +14,14 @@ function PiedDePage() {
             © 2021 EnStage - Projet éducationnel
           </Navbar.Text>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Nav.Item>
-              <Nav.Link href="/home">Accueil</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#pricing">À propos</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#pricing">Confidentialité</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#pricing">Nous joindre</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#pricing">Partenaires</Nav.Link>
-            </Nav.Item>
+          <Navbar.Collapse>
+            <Nav className="ml-auto">
+              <NavLink to="/">Accueil</NavLink>
+              <NavLink to="/apropos">À propos</NavLink>
+              <NavLink to="/confidentialite">Confidentialité</NavLink>
+              <NavLink to="/contact">Nous joindre</NavLink>
+              <NavLink to="/partenaires">Partenaires</NavLink>
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </Row>

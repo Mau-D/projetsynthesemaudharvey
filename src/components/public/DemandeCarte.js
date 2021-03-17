@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 
-import BoutonPostuler from "../boutons/BoutonPostuler";
+import BoutonContactEntreprise from "../boutons/BoutonContactEntreprise";
 
 // Hook pour les cards des demandes de stage
 function DemandeCarte() {
@@ -20,7 +20,7 @@ function DemandeCarte() {
                 the bulk of the card's content.
               </Card.Text>
               <Card.Link href="#">Détails</Card.Link>
-              <BoutonPostuler></BoutonPostuler>
+              <BoutonContactEntreprise></BoutonContactEntreprise>
             </Card.Body>
           </Col>
           <Col lg={4} className="p-0">

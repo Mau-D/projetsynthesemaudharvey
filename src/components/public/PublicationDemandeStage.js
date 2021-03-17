@@ -1,7 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
-
-import BoutonPublierDemande from "../boutons/BoutonPublierDemande";
+import { NavLink } from "react-router-dom";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 import publicationDemande from "../../img/publicationDemande.svg";
 
@@ -24,7 +23,11 @@ function PublicationDemandeStage() {
               <li>Suspendisse tincidunt vulputate leo in sollicitudin</li>
               <li>Morbi sodales risus quis orci hendrerit semper</li>
             </ul>
-            <BoutonPublierDemande></BoutonPublierDemande>
+            <NavLink to="/accescompte">
+              <Button size="md" className="mt-3 publierDemande">
+                Publier une demande de stage maintenant
+              </Button>
+            </NavLink>
           </div>
         </Col>
         <Col lg={6} className="p-0">

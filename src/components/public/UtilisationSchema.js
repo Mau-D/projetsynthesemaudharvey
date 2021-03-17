@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Col } from "react-bootstrap";
 
 import BoutonInscription from "../boutons/BoutonInscription";
@@ -14,9 +15,11 @@ function UtilisationSchema() {
         et elit aliquet, vitae dignissim ligula sodales.
       </p>
       <img src={schema} alt="logo" className="mb-5" />
-      <BoutonInscription
-        labelBouton={"Inscrivez-vous maintenant"}
-      ></BoutonInscription>
+      <NavLink to="accescompte">
+        <BoutonInscription
+          labelBouton={"Inscrivez-vous maintenant"}
+        ></BoutonInscription>
+      </NavLink>
     </Col>
   );
 }

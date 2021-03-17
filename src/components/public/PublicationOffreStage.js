@@ -1,7 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
-
-import BoutonPublierOffre from "../boutons/BoutonPublierOffre";
+import { NavLink } from "react-router-dom";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 import publicationOffre from "../../img/publicationOffre.svg";
 
@@ -25,7 +24,11 @@ function PublicationOffreStage() {
               <li>Suspendisse tincidunt vulputate leo in sollicitudin</li>
               <li>Morbi sodales risus quis orci hendrerit semper</li>
             </ul>
-            <BoutonPublierOffre></BoutonPublierOffre>
+            <NavLink to="/accescompte">
+              <Button size="md" className="mt-3 publierOffre">
+                Publier une offre de stage maintenant
+              </Button>
+            </NavLink>
           </div>
         </Col>
       </Row>

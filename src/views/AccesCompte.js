@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-import EnTete from "../components/EnTete";
-import LiensEmploiListe from "../components/LiensEmploiListe";
-import PiedDePage from "../components/PiedDePage";
-import ImageTexte from "../components/ImageTexte";
-import FormulaireConnexion from "../components/FormulaireConnexion";
-import FormulaireInscription from "../components/FormulaireInscription";
+import EnTete from "../components/public/EnTete";
+import LiensEmploiListe from "../components/public/LiensEmploiListe";
+import PiedDePage from "../components/public/PiedDePage";
+import ImageTexte from "../components/public/ImageTexte";
+import FormulaireConnexion from "../components/public/FormulaireConnexion";
+import FormulaireInscription from "../components/public/FormulaireInscription";
 
 // Hook pour les formulaires de connexion ou d'inscription à un compte
 function AccesCompte() {
