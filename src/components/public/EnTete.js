@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
 
 import BoutonConnexion from "../boutons/BoutonConnexion";
@@ -16,32 +16,32 @@ function EnTete(props) {
       {/* Menu avec logo et bouton, navbar collapsible */}
       <Row className="d-flex">
         <Navbar className="w-100 mx-5" collapseOnSelect expand="lg">
-          <NavLink to="/">
+          <Link to="/">
             <img src={logo} alt="logo" />
-          </NavLink>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto ml-5">
-              <NavLink to="/offresstage">
-                <Button size="md" variant="success">
-                  Trouvez votre stage
-                </Button>
-              </NavLink>
-              <NavLink to="/demandesstage">
-                <Button size="md" variant="success">
-                  Trouvez votre futur stagiaire
-                </Button>
-              </NavLink>
+              <Link to={"/offresstage/"} size="md" className="btn btn-success">
+                Trouver votre stage
+              </Link>
+              <Link
+                to={"/demandesstage/"}
+                size="md"
+                className="btn btn-success"
+              >
+                Trouvez votre futur stagiaire
+              </Link>
             </Nav>
             <Nav>
-              <NavLink to="/accescompte">
+              <Link to="/accescompte">
                 <BoutonConnexion></BoutonConnexion>
-              </NavLink>
-              <NavLink to="/accescompte">
+              </Link>
+              <Link to="/accescompte">
                 <BoutonInscription
                   labelBouton={"Inscription"}
                 ></BoutonInscription>
-              </NavLink>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

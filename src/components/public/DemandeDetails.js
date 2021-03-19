@@ -1,10 +1,38 @@
-import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-import BoutonDetails from "../boutons/BoutonDetails";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 // Hook pour les informations d'une demande de stage en détails
-function DemandeDetails() {
+function DemandeDetails(props) {
+  //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
+  let location = useLocation(); /*variable de la page où je me trouve */
+  const [objetRecu, setObjetRecu] = useState({});
+  console.log(props.location);
+  //Fonction pour ajuster l'url lors de l'appel à l'API, avec ID pour affichage des détails ou sans Id pour afficher la liste des demandes
+  useEffect(() => {
+    //appelle la fonction getDemandesStage
+    getDetailsDemande();
+  }, []);
+
+  //Fonction pour l'appel à l'API
+  async function getDetailsDemande() {
+    try {
+      const response = await fetch(
+        "http://localhost:3002/demandesstage/" + props.id
+      );
+      const reponseDeApi = await response.json();
+      setObjetRecu(reponseDeApi);
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreur
+      console.log(error);
+    }
+    console.log(props.id);
+  }
   return (
     <Container fluid className="details">
       {/*En-tête de formation */}
@@ -23,7 +51,7 @@ function DemandeDetails() {
           <Container fluid className="border border-secondary p-5 h-100">
             <Row>
               <Col lg={12} className="text-left mb-5">
-                <h4>Développeur Front-End</h4>
+                <h4>{objetRecu.titre}</h4>
               </Col>
             </Row>
             <Row>
@@ -38,7 +66,9 @@ function DemandeDetails() {
             </Row>
             <Row>
               <Col lg={12} className="w-100 mt-5">
-                <BoutonDetails></BoutonDetails>
+                <Button size="md" className="details">
+                  Détails
+                </Button>
               </Col>
             </Row>
           </Container>

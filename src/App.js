@@ -30,6 +30,8 @@ function App() {
         <Route path="/offresstage" component={OffresStageListe} />
         {/*Dans l'entête et dans les sections des offres et demandes récentes, lien pour la page affichant toutes les demandes de stage*/}
         <Route path="/demandesstage" component={DemandesStageListe} />
+        {/*Dans la recherche du stagiaire, le lien détails affiche la section détaillée de la demande de stage au lieu de la liste*/}
+        <Route path="/demandesstage/:candidat" component={DemandesStageListe} />
         {/*Dans l'entête et dans les sections des publications, lien pour la page affichant des formulaires pour la connexion ou l'inscription*/}
         <Route path="/accescompte" component={AccesCompte} />
         {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}

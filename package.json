@@ -1,7 +1,7 @@
 {
   "name": "projetsynthesemaudharvey",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -17,7 +17,10 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p start:dev start:api",
+    "start:dev": "react-scripts start",
+    "prestart:api": "node tools/createMockDb.js",
+    "start:api": "node tools/apiServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -39,5 +42,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "json-server": "^0.15.0",
+    "npm-run-all": "^4.1.5"
   }
 }

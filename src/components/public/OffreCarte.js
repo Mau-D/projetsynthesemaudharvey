@@ -4,21 +4,18 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import BoutonPostuler from "../boutons/BoutonPostuler";
 
 // Hook pour les cards des offres de stage
-function OffreCarte() {
+function OffreCarte(props) {
   return (
     <Card className="w-100 text-justify mb-4" style={{ width: "18rem" }}>
       <Container fluid>
         <Row>
           <Col lg="8">
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
+              <Card.Title>{props.titre}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Card Subtitle
+                {props.entreprise}
               </Card.Subtitle>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
+              <Card.Text>{props.entreprise}</Card.Text>
               <Card.Link href="#">Détails</Card.Link>
               <BoutonPostuler></BoutonPostuler>
             </Card.Body>

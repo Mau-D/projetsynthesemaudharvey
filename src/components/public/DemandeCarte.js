@@ -1,26 +1,24 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
-
-import BoutonContactEntreprise from "../boutons/BoutonContactEntreprise";
+import { Link } from "react-router-dom";
+import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les cards des demandes de stage
-function DemandeCarte() {
+function DemandeCarte(props) {
   return (
     <Card className="w-100 text-justify mb-4" style={{ width: "18rem" }}>
       <Container fluid>
         <Row>
           <Col lg="8">
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
+              <Card.Title>{props.titre}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Card Subtitle
+                {props.formation}
               </Card.Subtitle>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Card.Link href="#">Détails</Card.Link>
-              <BoutonContactEntreprise></BoutonContactEntreprise>
+              <Card.Text>{props.description}</Card.Text>
+              {/*Lien en incluant l'id de la carte sélectionnée pour afficher les détails */}
+              <Link to={"/demandesstage/" + "?id=" + props.id}>Détails</Link>
+              <BoutonContactCandidat></BoutonContactCandidat>
             </Card.Body>
           </Col>
           <Col lg={4} className="p-0">
