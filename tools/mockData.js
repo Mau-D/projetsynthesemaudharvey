@@ -85,28 +85,28 @@ const demandesstage = [
     infosAutres: "",
   },
 ];
-/*
-    offres: [
-      {
-        id: 1,
-        titre: "stagiaire Web Front-End",
-        entreprise: "TLM",
-        secteurActivite: "WEB",
-        ville: "Saguenay",
-        dateDebut: "12 avril 2021",
-        duree: 8,
-        description: "Stage de fin d'études en développement Web Front-End",
-        nbrHeures: 35,
-        competences: ["HTML", "CSS", "JS", "React", "VueJS", "Angular"],
-        remuneration: "oui",
-        possibiliteEmploi: "oui",
-        parution: "17 mars 2021",
-        infosAutres: "",
-      },
-    ],
-  },*/
+
+const offresstage = [
+  {
+    id: "offre1",
+    titre: "stagiaire Web Front-End",
+    entreprise: "TLM",
+    secteurActivite: "WEB",
+    ville: "Saguenay",
+    dateDebut: "12 avril 2021",
+    duree: 8,
+    description: "Stage de fin d'études en développement Web Front-End",
+    nbrHeures: 35,
+    competences: ["HTML", "CSS", "JS", "React", "VueJS", "Angular"],
+    remuneration: "oui",
+    possibiliteEmploi: "oui",
+    parution: "17 mars 2021",
+    infosAutres: "",
+  },
+];
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
   demandesstage,
+  offresstage,
 };

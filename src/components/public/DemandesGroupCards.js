@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import DemandeCarte from "./DemandeCarte";
+import BoutonListeDemandes from "../boutons/BoutonListeDemandes";
 
 // Hook pour l'affichage des demandes de stage en vedette
 function DemandesGroupCards() {
@@ -19,7 +20,7 @@ function DemandesGroupCards() {
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
-      const response = await fetch("http://localhost:3002/demandesstage/");
+      const response = await fetch(process.env.REACT_APP_API + "demandes");
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -61,9 +62,10 @@ function DemandesGroupCards() {
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
           <NavLink to="/demandesstage">
-            <Button size="md" variant="danger">
-              Voir tous les candidats
-            </Button>
+            <BoutonListeDemandes
+              texte="Voir tous les candidats"
+              classStyle="btn btn-danger"
+            ></BoutonListeDemandes>
           </NavLink>
         </Col>
       </Row>

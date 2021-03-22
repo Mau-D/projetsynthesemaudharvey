@@ -7,8 +7,19 @@ import { Container, Row, Col, Image, Button } from "react-bootstrap";
 function DemandeDetails(props) {
   //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
   let location = useLocation(); /*variable de la page où je me trouve */
+  //id choisi lors du clic des détails dans les cartes de demande
+
   const [objetRecu, setObjetRecu] = useState({});
-  console.log(props.location);
+
+  //Fonction pour récupérer l'id
+  function getId() {
+    //Variable pour récupérer l'id dans l'url, avec la propriété search
+    var PropsSearch = location.search; //ex.:?id=60577b93a453cb7841a5ed40
+    var stringId = PropsSearch.replace("?id=", "");
+    console.log("PropsSearch" + PropsSearch);
+    console.log("stringId" + stringId);
+    return stringId;
+  }
   //Fonction pour ajuster l'url lors de l'appel à l'API, avec ID pour affichage des détails ou sans Id pour afficher la liste des demandes
   useEffect(() => {
     //appelle la fonction getDemandesStage
@@ -16,10 +27,13 @@ function DemandeDetails(props) {
   }, []);
 
   //Fonction pour l'appel à l'API
+
   async function getDetailsDemande() {
+    var idChoosen = getId();
+    console.log("search props" + location.search);
     try {
       const response = await fetch(
-        "http://localhost:3002/demandesstage/" + props.id
+        process.env.REACT_APP_API + "demandes/" + idChoosen
       );
       const reponseDeApi = await response.json();
       setObjetRecu(reponseDeApi);
@@ -31,7 +45,6 @@ function DemandeDetails(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(props.id);
   }
   return (
     <Container fluid className="details">
@@ -56,11 +69,11 @@ function DemandeDetails(props) {
             </Row>
             <Row>
               <Col lg={6} className="text-left">
-                <p>Date de début : 2021-05-18</p>
-                <p>Date de fin : 2021-05-18</p>
+                <p>{objetRecu.dateDebut}</p>
+                <p>{objetRecu.dateFin}</p>
               </Col>
               <Col lg={6} className="text-right">
-                <p>Horaire : Temps plein</p>
+                <p>{objetRecu.type}</p>
                 <p>Possibilité d'emploi : 2021-09-11</p>
               </Col>
             </Row>

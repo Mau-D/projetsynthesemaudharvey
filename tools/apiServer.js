@@ -14,7 +14,7 @@ Relevant source code: https://github.com/typicode/json-server/blob/master/src/cl
 const jsonServer = require("json-server");
 const server = jsonServer.create();
 const path = require("path");
-const router = jsonServer.router(path.join(__dirname, "db.json"));
+const router = jsonServer.router(path.join(__dirname, "dbdemandes.json"));
 
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
 const middlewares = jsonServer.defaults({
@@ -33,8 +33,18 @@ server.use(function (req, res, next) {
   setTimeout(next, 0);
 });
 //Pour les demandes de stage
-server.post("/demandesstage/?id", function (req, res, next) {
+server.post("/demandesstage", function (req, res, next) {
   const error = validatedemandesstage(req.body);
+  console.log(req.body);
+  if (error) {
+    res.status(400).send(error);
+  } else {
+    next();
+  }
+});
+//Pour les offres de stage
+server.post("/offresstage", function (req, res, next) {
+  const error = validateoffresstage(req.body);
   console.log(req.body);
   if (error) {
     res.status(400).send(error);
@@ -54,6 +64,10 @@ server.listen(port, () => {
 //Validation
 function validatedemandesstage(demandesstage) {
   if (!demandesstage.titre) return "Le titre du stage est obligatoire";
+  return "";
+}
 
+function validateoffresstage(offresstage) {
+  if (!offresstage.titre) return "Le titre du stage est obligatoire";
   return "";
 }

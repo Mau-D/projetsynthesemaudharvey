@@ -8,7 +8,7 @@ import OffreCarte from "./OffreCarte";
 function OffresGroupCards() {
   //Constante pour les données reçues par l'API
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
-  /*const [donneesRecues, setDonneesRecues] = useState([]);
+  const [donneesRecues, setDonneesRecues] = useState([]);
 
   //Pour le CRUD utiliser useEffect, exécute quelquechose après chaque affichage
   //Remplace la combinaison de componentDidMount, componentDidUpdate, et componentWillUnmount.
@@ -19,7 +19,7 @@ function OffresGroupCards() {
   //Fonction pour l'appel à l'API
   async function getOffresStage() {
     try {
-      const response = await fetch("http://localhost:3002/enstage/");
+      const response = await fetch("http://localhost:3002/offresstage/");
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -31,7 +31,7 @@ function OffresGroupCards() {
       console.log(error);
     }
     console.log(donneesRecues);
-  }*/
+  }
   return (
     <Container fluid className="m-4">
       <Row className="w-50 mx-auto text-center m-2">
@@ -47,7 +47,7 @@ function OffresGroupCards() {
       </Row>
       {/* Cards (4) des offres en vedette */}
       <Row className="m-5 text-center">
-        {/*{Object.keys(donneesRecues[1].offres).map((key) => (
+        {Object.keys(donneesRecues).map((key) => (
           <Col lg={3}>
             <OffreCarte
               id={key.id}
@@ -57,7 +57,7 @@ function OffresGroupCards() {
               description={key.description}
             ></OffreCarte>
           </Col>
-        ))}*/}
+        ))}
       </Row>
       {/* Bouton voir toutes les offres de stage */}
       <Row className="text-center">

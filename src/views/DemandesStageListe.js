@@ -31,7 +31,7 @@ function DemandesStageListe(props) {
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
-      const response = await fetch("http://localhost:3002/demandesstage/");
+      const response = await fetch(process.env.REACT_APP_API + "demandes");
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -63,21 +63,16 @@ function DemandesStageListe(props) {
       <Row className="m-5">
         <Col lg={8} className="pr-5 text-center">
           {props.location.search !== "" ? (
-            <DemandeDetails
-              id={props.location.search.substring(
-                4,
-                props.location.search.length
-              )}
-            ></DemandeDetails>
+            <DemandeDetails id={donneesRecues._id}></DemandeDetails>
           ) : (
             <>
               {donneesRecues.map((key) => (
                 <DemandeCarte
-                  id={key.id}
-                  key={"key" + key.id}
+                  id={key._id}
+                  key={"key" + key._id}
                   titre={key.titre}
-                  formation={key.formation}
-                  description={key.description}
+                  formation={key.programmeSuivi}
+                  description={key.descriptionPosteRecherche}
                 ></DemandeCarte>
               ))}
               <Button variant="danger" className="mt-5">

@@ -6,6 +6,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import BoutonConnexion from "../boutons/BoutonConnexion";
 import BoutonInscription from "../boutons/BoutonInscription";
 import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
+import BoutonListeDemandes from "../boutons/BoutonListeDemandes";
 
 import logo from "../../img/logo.svg";
 
@@ -25,13 +26,10 @@ function EnTete(props) {
               <Link to={"/offresstage/"} size="md" className="btn btn-success">
                 Trouver votre stage
               </Link>
-              <Link
-                to={"/demandesstage/"}
-                size="md"
-                className="btn btn-success"
-              >
-                Trouvez votre futur stagiaire
-              </Link>
+              <BoutonListeDemandes
+                texte="Trouvez votre stagiaire"
+                classStyle="btn btn-success"
+              ></BoutonListeDemandes>
             </Nav>
             <Nav>
               <Link to="/accescompte">

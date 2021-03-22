@@ -1,15 +1,30 @@
 /* eslint-disable no-console */
-const fs = require("fs");
-const path = require("path");
-const mockData = require("./mockData");
+const fsdemande = require("fs");
+const pathdemande = require("path");
+const mockDatademande = require("./mockData");
 //Pour les demandes de stage
-const { demandesstage } = mockData; /*ajouter le nom de la db*/
-const data = JSON.stringify({
+const { demandesstage } = mockDatademande; /*ajouter le nom de la db*/
+const datademande = JSON.stringify({
   demandesstage,
 }); /*ajouter le nom de la db*/
 
-const filepathdemandes = path.join(__dirname, "db.json");
+const filepathdemandes = pathdemande.join(__dirname, "dbDemandes.json");
 
-fs.writeFile(filepathdemandes, data, function (err) {
-  err ? console.log(err) : console.log("Mock DB créé.");
+fsdemande.writeFile(filepathdemandes, datademande, function (err) {
+  err ? console.log(err) : console.log("Mock DB demandes créé.");
+});
+/* eslint-disable no-console */
+const fsoffre = require("fs");
+const pathoffre = require("path");
+const mockDataoffre = require("./mockData");
+//Pour les demandes de stage
+const { offresstage } = mockDataoffre; /*ajouter le nom de la db*/
+const dataoffre = JSON.stringify({
+  offresstage,
+}); /*ajouter le nom de la db*/
+
+const filepathoffres = pathoffre.join(__dirname, "dbOffres.json");
+
+fsoffre.writeFile(filepathoffres, dataoffre, function (err) {
+  err ? console.log(err) : console.log("Mock DB offres créé.");
 });
