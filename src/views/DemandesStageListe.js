@@ -10,28 +10,73 @@ import OffresGroupCards from "../components/public/OffresGroupCards";
 import PiedDePage from "../components/public/PiedDePage";
 import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
 import PublicationOffreStage from "../components/public/PublicationOffreStage";
-import SecteursActivite from "../components/public/SecteursActiviteListe";
+import SecteursActivite from "../components/public/SecteursActivite";
+//import useSecteurRecherche from "../../src/hooksperso/useSecteurRecherche";
 
 // Hook pour les demandes de stage, liste des candidats
 function DemandesStageListe(props) {
+  //Pour la recherche par secteur d'activité
+  const [idSecteur, setIdSecteur] = useState("");
+  var objectIdToTimestamp = require("objectid-to-timestamp");
   //Constante pour les données reçues par l'API
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
   const [donneesRecues, setDonneesRecues] = useState([]);
+  //Variable d'état pour charger toutes la liste des demandes de stage
+  const [chargertout, setChargertout] = useState(false);
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
 
   //Utiliser useEffect, exécute quelquechose après chaque affichage
   //Remplace la combinaison de componentDidMount, componentDidUpdate, et componentWillUnmount.
-  //Pour le CRUD utiliser useEffect
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getDemandesStage();
   }, []);
+  //Fonction pour la recherche par secteur
+  //useEffect(() => {
+  //  function handleSecteur(status) {
+  //    setIdSecteur(status.idSecteur);
+  // }
+  //}, "");
 
+  //Fonction pour l'affichage des demandes
+  function affichageDemandes() {
+    return chargertout
+      ? donneesRecues.reverse().map((item) => (
+          <DemandeCarte
+            date={
+              //Valeur de la date de création, propriété de ObjectId de mongodb
+              new Date(objectIdToTimestamp(item._id))
+            }
+            id={item._id}
+            key={"keyListe" + item._id}
+            titre={item.titre}
+            formation={item.programmeSuivi}
+            description={item.descriptionPosteRecherche}
+          ></DemandeCarte>
+        ))
+      : donneesRecues.reverse().map((item, i) =>
+          i < 4 ? (
+            <DemandeCarte
+              date={
+                //Valeur de la date de création, propriété de ObjectId de mongodb
+                new Date(objectIdToTimestamp(item._id))
+              }
+              id={item._id}
+              key={"keyListe" + item._id}
+              titre={item.titre}
+              formation={item.programmeSuivi}
+              description={item.descriptionPosteRecherche}
+            ></DemandeCarte>
+          ) : null
+        );
+  }
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
-      const response = await fetch(process.env.REACT_APP_API + "demandes");
+      const response = await fetch(
+        process.env.REACT_APP_API + process.env.REACT_APP_DEMANDES
+      );
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -66,27 +111,23 @@ function DemandesStageListe(props) {
             <DemandeDetails id={donneesRecues._id}></DemandeDetails>
           ) : (
             <>
-              {donneesRecues.map((key) => (
-                <DemandeCarte
-                  id={key._id}
-                  key={"key" + key._id}
-                  titre={key.titre}
-                  formation={key.programmeSuivi}
-                  description={key.descriptionPosteRecherche}
-                ></DemandeCarte>
-              ))}
-              <Button variant="danger" className="mt-5">
+              {/*Affichage des 4 demandes les plus récente, renverser le tableau et limiter au nombre de 4 */}
+              {affichageDemandes()}
+
+              <Button
+                variant="danger"
+                className="mt-5"
+                onClick={() => setChargertout(true)}
+              >
                 Charger plus
               </Button>
             </>
           )}
-
-          {/*DÉTAILS*/}
-          {/*<DemandeDetails></DemandeDetails>*/}
         </Col>
         {/* Liste des secteurs d'activités */}
         <Col lg={4}>
           <SecteursActivite></SecteursActivite>
+          <h1>{idSecteur}</h1>
         </Col>
       </Row>
       {/* Publication d'offres de stage */}

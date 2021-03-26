@@ -1,28 +1,45 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // Hook pour le bouton Trouvez votre stage
 function FormulaireConnexion() {
+  //localstorage
+
+  function authentification() {
+    //Déclare une variable pour le local storage
+    var ls = require("local-storage");
+    //Prend les valeurs des inputs et entre les valeurs avec leurs clés dans le local storage
+    const nomUtilisateur = document.getElementById("nom").value;
+    const prenomUtilisateur = document.getElementById("prenom").value;
+    const motDePasse = document.getElementById("password").value;
+    ls.set("nom", nomUtilisateur);
+    ls.set("prenom", prenomUtilisateur);
+    ls.set("password", motDePasse);
+  }
+
   return (
     <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
+      <Form.Group controlId="nom">
+        <Form.Label>Nom</Form.Label>
+        <Form.Control type="text" placeholder="Nom" />
+      </Form.Group>
+      <Form.Group controlId="prenom">
+        <Form.Label>Prénom</Form.Label>
+        <Form.Control type="text" placeholder="Prénom" />
+      </Form.Group>
+      <Form.Group controlId="password">
+        <Form.Label>Mot de Passe</Form.Label>
+        <Form.Control type="text" placeholder="Mot de Passe" />
       </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      <Link
+        to="/utilisateur"
+        className="btn btn-primary"
+        onClick={authentification}
+      >
         Submit
-      </Button>
+      </Link>
     </Form>
   );
 }

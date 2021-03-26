@@ -20,7 +20,9 @@ function DemandesGroupCards() {
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
-      const response = await fetch(process.env.REACT_APP_API + "demandes");
+      const response = await fetch(
+        process.env.REACT_APP_API + process.env.REACT_APP_DEMANDES
+      );
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -44,19 +46,22 @@ function DemandesGroupCards() {
           </p>
         </Col>
       </Row>
-      {/* Cards (4) des offres en vedette */}
+      {/* Cards (4) des demandes en vedette */}
+      {/*Affichage des 4 demandes les plus récente, renverser le tableau et limiter au nombre de 4 */}
       <Row className="m-5 text-center">
-        {donneesRecues.map((key) => (
-          <Col lg={3}>
-            <DemandeCarte
-              id={key.id}
-              key={key.id}
-              titre={key.titre}
-              formation={key.formation}
-              description={key.description}
-            ></DemandeCarte>
-          </Col>
-        ))}
+        {donneesRecues.reverse().map((item, i) =>
+          i < 4 ? (
+            <Col lg={3}>
+              <DemandeCarte
+                id={item._id}
+                key={"keyCard" + item._id}
+                titre={item.titre}
+                formation={item.formation}
+                description={item.description}
+              ></DemandeCarte>
+            </Col>
+          ) : null
+        )}
       </Row>
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">

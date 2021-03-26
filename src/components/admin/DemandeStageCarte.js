@@ -1,14 +1,12 @@
 import React from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
-
-import BoutonDetails from "../boutons/BoutonDetails";
+import { Container, Button, Row, Col, NavItem } from "react-bootstrap";
 
 import { FaUserGraduate, FaUserTie } from "react-icons/fa";
 import { BsPencilSquare } from "react-icons/bs";
 import { TiDelete } from "react-icons/ti";
 
 // Hook pour chacune des demandes de stage
-function DemandeStageCarte() {
+function DemandeStageCarte(props) {
   return (
     <Container fluid>
       <Row>
@@ -19,8 +17,9 @@ function DemandeStageCarte() {
           Profession
         </Col>
       </Row>
+
       <Row>
-        <Col lg={6}>Nom complet</Col>
+        <Col lg={6}>{props.titre}</Col>
         <Col lg={6}>Formation</Col>
       </Row>
       <Row>
@@ -37,9 +36,7 @@ function DemandeStageCarte() {
       <Row>
         <Col lg={12}>
           <div className="w-100 d-flex flex-row justify-content-between">
-            <div>
-              <BoutonDetails></BoutonDetails>
-            </div>
+            <div>{/*Bouton */}</div>
             <div className="text-right d-inline">
               <Button className="m-1">
                 <BsPencilSquare />

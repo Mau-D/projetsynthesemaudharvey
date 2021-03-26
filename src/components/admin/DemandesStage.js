@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { BsArrow90DegRight } from "react-icons/bs";
@@ -6,6 +6,31 @@ import DemandeStageCarte from "./DemandeStageCarte";
 
 // Hook pour la section de la gestion des demandes de stage
 function DemandesStage() {
+  //Constante pour les données reçues par l'API
+  //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
+  const [donneesRecues, setDonneesRecues] = useState([]);
+  useEffect(() => {
+    //appelle la fonction getDemandesStage
+    getDemandesStage();
+  }, donneesRecues);
+  //Fonction pour l'appel à l'API
+  async function getDemandesStage() {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API + process.env.REACT_APP_DEMANDES
+      );
+      const reponseDeApi = await response.json();
+      setDonneesRecues(reponseDeApi);
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreur
+      console.log(error);
+    }
+    console.log(donneesRecues);
+  }
   return (
     <Container fluid className="h-100 mr-5">
       <Row className="mb-5">
@@ -17,9 +42,17 @@ function DemandesStage() {
       </Row>
       {/*affichage dynamique */}
       <Row>
-        <Col lg={12}>
-          <DemandeStageCarte></DemandeStageCarte>
-        </Col>
+        {donneesRecues.reverse().map((item) => (
+          <Col lg={12}>
+            <DemandeStageCarte
+              id={item._id}
+              key={"keyCard" + item.titre}
+              titre={item.titre}
+              formation={item.formation}
+              description={item.description}
+            ></DemandeStageCarte>
+          </Col>
+        ))}
       </Row>
     </Container>
   );

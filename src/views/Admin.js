@@ -16,8 +16,8 @@ import {
 } from "react-icons/fa";
 
 import logo from "../img/logo.svg";
-import Validation from "../components/admin/Validation";
-import Details from "../components/admin/Details";
+//import Validation from "../components/admin/Validation";
+import DemandesStage from "../components/admin/DemandesStage";
 
 // Hook pour la page d'administration
 function Admin() {
@@ -90,7 +90,7 @@ function Admin() {
             </Row>
             {/*affichage dynamique */}
             <Row>
-              <Details></Details>
+              <DemandesStage></DemandesStage>
             </Row>
           </Container>
         </Col>

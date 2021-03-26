@@ -11,8 +11,12 @@ import Partenaires from "./views/Partenaires";
 import OffresStageListe from "./views/OffresStageListe";
 import DemandesStageListe from "./views/DemandesStageListe";
 import AccesCompte from "./views/AccesCompte";
+import Utilisateur from "./components/admin/Utilisateur";
+import Admin from "./views/Admin";
 
 function App() {
+  var ls = require("local-storage");
+  console.log("nomlocalstorage" + ls.get("nom"));
   return (
     <Container fluid>
       <Switch>
@@ -34,6 +38,9 @@ function App() {
         <Route path="/demandesstage/:candidat" component={DemandesStageListe} />
         {/*Dans l'entête et dans les sections des publications, lien pour la page affichant des formulaires pour la connexion ou l'inscription*/}
         <Route path="/accescompte" component={AccesCompte} />
+        {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
+        <Route path="/utilisateur" component={Utilisateur} />
+        <Route path="/admin" component={Admin} />
         {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
         <Redirect to="/" />
       </Switch>

@@ -8,7 +8,7 @@ import OffresGroupCards from "../components/public/OffresGroupCards";
 import PiedDePage from "../components/public/PiedDePage";
 import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
 import PublicationOffreStage from "../components/public/PublicationOffreStage";
-import SecteursActivite from "../components/public/SecteursActiviteListe";
+import SecteursActivite from "../components/public/SecteursActivite";
 // Hook pour les offres de stage, liste des offres des entreprises
 function OffresStageListe() {
   return (
