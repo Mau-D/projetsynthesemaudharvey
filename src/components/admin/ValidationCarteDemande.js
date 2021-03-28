@@ -1,8 +1,6 @@
 import React from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
 
-import BoutonDetails from "../boutons/BoutonDetails";
-
 import { FaUserGraduate, FaUserTie } from "react-icons/fa";
 
 // Hook pour les cards des demandes de stage, en attente de validation
@@ -44,7 +42,7 @@ function ValidationCarteDemande() {
         <Col lg={12}>
           <div className="w-100 d-flex flex-row justify-content-between">
             <div>
-              <BoutonDetails></BoutonDetails>
+              <Button type="button"></Button>
             </div>
             <div className="text-right d-inline">
               <Button className="m-2 refuser">Refuser</Button>

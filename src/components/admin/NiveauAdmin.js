@@ -1,15 +1,10 @@
-/*À supprimer --> Effacer si pas utilisé, ne récupère pas toujours les données de la bd */
+/*Pour remplacer le composant Utilisateurs, Pas besoin --> À supprimer */
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 // Hook pour la gestion de la connexion
-function Utilisateur(props) {
+function NiveauAdmin(props) {
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
-  console.log("lsnom" + ls.get("nom"));
-  console.log("lsprenom" + ls.get("prenom"));
-  console.log("lspassword" + ls.get("password"));
   //Constante pour les données de l'API
   const [donneesRecues, setDonneesRecues] = useState([]);
   //Variable pour mettre un état, pour la validation que l'utilisateur existe
@@ -22,7 +17,7 @@ function Utilisateur(props) {
 
   //Faire un .map de tous les utilisateurs
   function utilisateurRecherche() {
-    return donneesRecues.map((item, i) => {
+    donneesRecues.map((item, i) => {
       console.log(i + "nom" + item.nom);
       console.log(i + "prenom" + item.prenom);
       console.log(i + "password" + item.password);
@@ -45,8 +40,14 @@ function Utilisateur(props) {
       //On gère l'erreur
       console.log(error);
     }
-    utilisateurRecherche();
   }
+  return;
+  donneesRecues.map((item, i) => {
+    console.log(i + "nom" + item.nom);
+    console.log(i + "prenom" + item.prenom);
+    console.log(i + "password" + item.password);
+  });
+  <div>allo</div>;
 }
 
-export default Utilisateur;
+export default NiveauAdmin;

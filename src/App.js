@@ -40,7 +40,7 @@ function App() {
         <Route path="/accescompte" component={AccesCompte} />
         {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
         <Route path="/utilisateur" component={Utilisateur} />
-        <Route path="/admin" component={Admin} />
+        <Route path="/admin/:acces" component={Admin} />
         {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
         <Redirect to="/" />
       </Switch>

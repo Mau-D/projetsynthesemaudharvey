@@ -6,6 +6,8 @@ import DemandeStageCarte from "./DemandeStageCarte";
 
 // Hook pour la section de la gestion des demandes de stage
 function DemandesStage() {
+  //Déclare une variable pour le local storage
+  var ls = require("local-storage");
   //Constante pour les données reçues par l'API
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
   const [donneesRecues, setDonneesRecues] = useState([]);
@@ -31,6 +33,7 @@ function DemandesStage() {
     }
     console.log(donneesRecues);
   }
+
   return (
     <Container fluid className="h-100 mr-5">
       <Row className="mb-5">
@@ -42,17 +45,19 @@ function DemandesStage() {
       </Row>
       {/*affichage dynamique */}
       <Row>
-        {donneesRecues.reverse().map((item) => (
-          <Col lg={12}>
-            <DemandeStageCarte
-              id={item._id}
-              key={"keyCard" + item.titre}
-              titre={item.titre}
-              formation={item.formation}
-              description={item.description}
-            ></DemandeStageCarte>
-          </Col>
-        ))}
+        {donneesRecues.reverse().map((item) =>
+          item.etudiant == ls.get("id") ? (
+            <Col lg={12}>
+              <DemandeStageCarte
+                id={item._id}
+                key={"keyCard" + item.titre}
+                titre={item.titre}
+                formation={item.formation}
+                description={item.description}
+              ></DemandeStageCarte>
+            </Col>
+          ) : null
+        )}
       </Row>
     </Container>
   );
