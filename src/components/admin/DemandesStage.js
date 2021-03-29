@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import DemandeStageCarte from "./DemandeStageCarte";
 
 // Hook pour la section de la gestion des demandes de stage
-function DemandesStage() {
+function DemandesStage(props) {
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
   //Constante pour les données reçues par l'API
@@ -44,9 +45,25 @@ function DemandesStage() {
         </Col>
       </Row>
       {/*affichage dynamique */}
+      {/*Affiche seulement les demandes de l'étudiant*/}
+
       <Row>
         {donneesRecues.reverse().map((item) =>
           item.etudiant == ls.get("id") ? (
+            <Col lg={12}>
+              <DemandeStageCarte
+                id={item._id}
+                key={"keyCard" + item.titre}
+                titre={item.titre}
+                formation={item.formation}
+                description={item.description}
+              ></DemandeStageCarte>
+            </Col>
+          ) : null
+        )}
+        {/*Affiche toutes les demandes pour un administrateur connecté*/}
+        {donneesRecues.reverse().map((item) =>
+          props.acces == 999 ? (
             <Col lg={12}>
               <DemandeStageCarte
                 id={item._id}

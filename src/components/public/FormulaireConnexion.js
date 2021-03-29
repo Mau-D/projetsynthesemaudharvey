@@ -9,6 +9,7 @@ function FormulaireConnexion() {
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
 
+  console.log("connexion" + ls.get("nom"));
   //variable pour les utilisateurs
   const [donneesRecues, setDonneesRecues] = useState([]);
   const [userTrue, setUserTrue] = useState(false);
