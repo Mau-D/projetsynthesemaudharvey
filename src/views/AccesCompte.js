@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+//import { useLocation } from "react-router-dom";
 
 import EnTete from "../components/public/EnTete";
 import LiensEmploiListe from "../components/public/LiensEmploiListe";
@@ -10,6 +11,36 @@ import FormulaireInscription from "../components/public/FormulaireInscription";
 
 // Hook pour les formulaires de connexion ou d'inscription à un compte
 function AccesCompte() {
+  //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
+  //let location = useLocation(); /*variable de la page où je me trouve */
+  //console.log("accesCompte" + location.pathname);
+  function affichageFormulaire() {
+    ////if (location.pathname == "/accescompte/connexion") {
+    //return (
+    ///  <Col lg={8} className="text-left py-auto mx-auto">
+    <FormulaireConnexion></FormulaireConnexion>;
+    // </Col>
+    // );
+    // } else if (location.pathname == "/accescompte/inscription") {
+    // return (
+    //    <Col lg={8} className="text-left my-auto px-5  mx-auto">
+    //      <FormulaireInscription></FormulaireInscription>
+    //    </Col>
+    //  );
+    // } else {
+    return (
+      <>
+        <Col lg={4} className="text-left py-auto mx-auto">
+          <FormulaireConnexion></FormulaireConnexion>
+        </Col>
+
+        <Col lg={8} className="text-left my-auto px-5  mx-auto">
+          <FormulaireInscription></FormulaireInscription>
+        </Col>
+      </>
+    );
+    //}
+  }
   return (
     <Container fluid className="h-100">
       {/* Banniere */}
@@ -24,16 +55,7 @@ function AccesCompte() {
         </Col>
       </Row>
       {/*Formulaires*/}
-      <Row className="m-5">
-        {/*Formulaire de connexion*/}
-        <Col lg={4} className="text-left py-auto">
-          <FormulaireConnexion></FormulaireConnexion>
-        </Col>
-        {/*Formulaire d'inscription*/}
-        <Col lg={8} className="text-left my-auto px-5">
-          <FormulaireInscription></FormulaireInscription>
-        </Col>
-      </Row>
+      <Row className="m-5">{affichageFormulaire()}</Row>
       {/* Image et texte */}
       <Row className="bg-dark mx-5 text-light">
         <Col lg={12} className="p-0">

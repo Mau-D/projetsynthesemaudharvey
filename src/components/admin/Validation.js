@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { BsArrow90DegRight } from "react-icons/bs";
@@ -7,6 +7,30 @@ import ValidationCarteDemande from "./ValidationCarteDemande";
 
 // Hook pour la section de la validation des demandes et offres de la page d'administration
 function Validation() {
+  //Variable pour les données des demandes
+  const [donneesRecues, setDonneesRecues] = useState([]);
+  useEffect(() => {
+    //appelle la fonction getDemandesStage pour l'appel à l'API
+    getDemandesStage();
+  }, donneesRecues);
+  //Fonction pour l'appel à l'API
+  async function getDemandesStage() {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API + process.env.REACT_APP_DEMANDES
+      );
+      const reponseDeApi = await response.json();
+      setDonneesRecues(reponseDeApi);
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreur
+      console.log(error);
+    }
+    console.log(donneesRecues);
+  }
   return (
     <Container fluid className="h-100">
       <Row className="mb-5">
@@ -27,14 +51,26 @@ function Validation() {
           </h3>
         </Col>
       </Row>
-      {/*affichage dynamique */}
+      {/*affichage dynamique, si la demande a un paramètre valide= false et qu'il est toujours actif et pas supprimé */}
+      {/*La demande ou l’offre de stage publiée par un utilisateur sera inactivée et non affichée sur le portail public. Elle sera en attente de validation.  */}
       <Row>
         <Col lg={6}>
-          <ValidationCarteDemande></ValidationCarteDemande>
-          <ValidationCarteDemande></ValidationCarteDemande>
-          <ValidationCarteDemande></ValidationCarteDemande>
-          <ValidationCarteDemande></ValidationCarteDemande>
+          {donneesRecues
+            .filter(
+              (donnee) => !donnee.valide && !donnee.supprime && !donnee.actif
+            )
+            .map((item) => (
+              <ValidationCarteDemande
+                id={item._id}
+                key={"validationDemande" + item._id}
+                titre={item.titre}
+                ville={item.ville}
+                description={item.description}
+                etudiant={item.etudiant}
+              ></ValidationCarteDemande>
+            ))}
         </Col>
+        {/*Pour les offres à valider */}
         <Col lg={6}>
           <ValidationCarteOffre></ValidationCarteOffre>
           <ValidationCarteOffre></ValidationCarteOffre>

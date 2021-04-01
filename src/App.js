@@ -11,7 +11,6 @@ import Partenaires from "./views/Partenaires";
 import OffresStageListe from "./views/OffresStageListe";
 import DemandesStageListe from "./views/DemandesStageListe";
 import AccesCompte from "./views/AccesCompte";
-import Utilisateur from "./components/admin/Utilisateur";
 import Admin from "./views/Admin";
 
 function App() {
@@ -37,9 +36,8 @@ function App() {
         {/*Dans la recherche du stagiaire, le lien détails affiche la section détaillée de la demande de stage au lieu de la liste*/}
         <Route path="/demandesstage/:candidat" component={DemandesStageListe} />
         {/*Dans l'entête et dans les sections des publications, lien pour la page affichant des formulaires pour la connexion ou l'inscription*/}
-        <Route path="/accescompte" component={AccesCompte} />
-        {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
-        <Route path="/utilisateur" component={Utilisateur} />
+        <Route path="/accescompte/" component={AccesCompte} />
+        {/*Lors de la connexion avec le niveau d'acces passé en paramètre*/}
         <Route path="/admin/:acces" component={Admin} />
         {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
         <Redirect to="/" />

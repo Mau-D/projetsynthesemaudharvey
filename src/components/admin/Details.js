@@ -1,31 +1,62 @@
-import React from "react";
-import { Container, Row, Col, Button, Table, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button, Table } from "react-bootstrap";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { TiDelete } from "react-icons/ti";
-import { FaUserGraduate, FaUserTie } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
 
-// Hook pour la fiche détaillée
-function Details() {
+// Hook pour la fiche détaillée du candidat avec le lien profil ou pour les entreprises
+//Pour le lien profil dans admin, props = user
+function Details(props) {
+  //variable pour l'étudiant connecté
+  const [donneesRecues, setDonneesRecues] = useState([]);
+
+  //Fonction éxécuté à chaque appel du composant
+  useEffect(() => {
+    //appelle la fonction pour les données de l'API
+    getUtilisateurs();
+  }, donneesRecues);
+  //Données de la base de donnée de l'étudiant connecté
+  async function getUtilisateurs() {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API +
+          process.env.REACT_APP_UTILISATEURS +
+          "/" +
+          props.user
+      );
+      const reponseDeApi = await response.json();
+      setDonneesRecues(reponseDeApi);
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreurdsas
+      console.log(error);
+    }
+    console.log(donneesRecues);
+  }
   return (
     <Container fluid className="h-100 adminDetails">
       <Row className="mb-5">
         {/*Titre */}
         <Col lg={6}>
-          <h1>Fiche du candidat</h1>
+          <h1>
+            Fiche du candidat: {donneesRecues.prenom} {donneesRecues.nom}
+          </h1>
         </Col>
         <Col lg={6}>
           <h1>
-            {" "}
             <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
           </h1>
         </Col>
       </Row>
       <Row>
-        <Col lg={12}>
+        {/*<Col lg={12}>
           <Button>Retour à la liste</Button>
-        </Col>
+  </Col>*/}
       </Row>
       <Row>
         <Col lg={12} className="text-right">
@@ -42,9 +73,9 @@ function Details() {
       <Row className="bordureBleu p-3">
         <Col lg={12}>
           <h3>
-            <FaUserGraduate />
-            <FaUserTie />
-            Nom complet
+            <FaUserGraduate className="mr-2" />
+            {/*<FaUserTie />*/}
+            {donneesRecues.prenom} {donneesRecues.nom}
           </h3>
         </Col>
       </Row>
@@ -56,37 +87,39 @@ function Details() {
                 <td>
                   <h5>Nom et prénom du stagiaire</h5>
                 </td>
-                <td>Maud Harvey</td>
+                <td>
+                  {donneesRecues.prenom} {donneesRecues.nom}
+                </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Établissement scolaire</h5>
+                  <h5>Adresse</h5>
                 </td>
-                <td>Cégep</td>
+                <td>{donneesRecues.adresse}</td>
               </tr>
               <tr>
                 <td>
-                  <h5>Programme</h5>
+                  <h5>Courriel</h5>
                 </td>
-                <td>DEv web</td>
+                <td>{donneesRecues.courriel}</td>
               </tr>
               <tr>
                 <td>
                   <h5>Téléphone</h5>
                 </td>
-                <td>D32423-23432-324</td>
+                <td>{donneesRecues.telephone}</td>
               </tr>
               <tr>
                 <td>
                   <h5>Ville</h5>
                 </td>
-                <td>Jonquière</td>
+                <td>{donneesRecues.ville}</td>
               </tr>
             </tbody>
           </Table>
         </Col>
       </Row>
-      <Row>
+      {/*<Row>
         <Col lg={12}>
           <Form>
             <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -100,7 +133,7 @@ function Details() {
         <Col lg={12} className="text-right">
           <Button>Envoyer</Button>
         </Col>
-      </Row>
+      </Row>*/}
     </Container>
   );
 }

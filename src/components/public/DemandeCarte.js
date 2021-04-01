@@ -19,7 +19,7 @@ function DemandeCarte(props) {
               </Card.Subtitle>
               <Card.Text>{props.description}</Card.Text>
               {/*Lien en incluant l'id de la carte sélectionnée pour afficher les détails */}
-              <Link to={"demandes/" + "?id=" + props.id}>Détails</Link>
+              <Link to={"demandes/?id=" + props.id}>Détails</Link>
               <BoutonContactCandidat></BoutonContactCandidat>
             </Card.Body>
           </Col>

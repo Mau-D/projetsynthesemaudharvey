@@ -31,7 +31,7 @@ function DemandesStageListe(props) {
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getDemandesStage();
-  }, []);
+  }, donneesRecues);
   //Fonction pour la recherche par secteur
   //useEffect(() => {
   //  function handleSecteur(status) {
@@ -41,35 +41,45 @@ function DemandesStageListe(props) {
 
   //Fonction pour l'affichage des demandes
   function affichageDemandes() {
+    //Trier le tableau de la plus récente à la plus ancienne
+    donneesRecues.sort(function (a, b) {
+      a = new Date(a.dateParution);
+      b = new Date(b.dateParution);
+      return b > a ? -1 : a < b ? 1 : 0;
+    });
     return chargertout
-      ? donneesRecues.reverse().map((item) => (
-          <DemandeCarte
-            date={
-              //Valeur de la date de création, propriété de ObjectId de mongodb
-              new Date(objectIdToTimestamp(item._id))
-            }
-            id={item._id}
-            key={"keyListe" + item._id}
-            titre={item.titre}
-            formation={item.programmeSuivi}
-            description={item.descriptionPosteRecherche}
-          ></DemandeCarte>
-        ))
-      : donneesRecues.reverse().map((item, i) =>
-          i < 4 ? (
+      ? donneesRecues
+          .filter((donnee) => donnee.actif && donnee.valide && !donnee.supprime)
+          .map((item) => (
             <DemandeCarte
               date={
                 //Valeur de la date de création, propriété de ObjectId de mongodb
                 new Date(objectIdToTimestamp(item._id))
               }
               id={item._id}
-              key={"keyListe" + item._id}
+              key={"ToutListe" + item._id}
               titre={item.titre}
               formation={item.programmeSuivi}
               description={item.descriptionPosteRecherche}
             ></DemandeCarte>
-          ) : null
-        );
+          ))
+      : donneesRecues
+          .filter((donnee) => donnee.actif && donnee.valide && !donnee.supprime)
+          .map((item, i) =>
+            i < 4 ? (
+              <DemandeCarte
+                date={
+                  //Valeur de la date de création, propriété de ObjectId de mongodb
+                  new Date(objectIdToTimestamp(item._id))
+                }
+                id={item._id}
+                key={"keyListe" + item._id}
+                titre={item.titre}
+                formation={item.programmeSuivi}
+                description={item.descriptionPosteRecherche}
+              ></DemandeCarte>
+            ) : null
+          );
   }
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
@@ -113,14 +123,15 @@ function DemandesStageListe(props) {
             <>
               {/*Affichage des 4 demandes les plus récente, renverser le tableau et limiter au nombre de 4 */}
               {affichageDemandes()}
-
-              <Button
-                variant="danger"
-                className="mt-5"
-                onClick={() => setChargertout(true)}
-              >
-                Charger plus
-              </Button>
+              {!chargertout ? (
+                <Button
+                  variant="danger"
+                  className="mt-5"
+                  onClick={() => setChargertout(true)}
+                >
+                  Charger plus
+                </Button>
+              ) : null}
             </>
           )}
         </Col>

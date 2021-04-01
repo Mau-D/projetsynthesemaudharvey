@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import DemandesGroupCards from "../components/public/DemandesGroupCards";
 import EnTete from "../components/public/EnTete";
 import LiensEmploiListe from "../components/public/LiensEmploiListe";
-import OffresGroupCards from "../components/public/OffresGroupCards";
+//import OffresGroupCards from "../components/public/OffresGroupCards";
 import PiedDePage from "../components/public/PiedDePage";
 import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
 import PublicationOffreStage from "../components/public/PublicationOffreStage";
@@ -30,7 +30,7 @@ function Accueil() {
       {/* Offres de stage sous forme de cards */}
       <Row>
         <Col lg={12}>
-          <OffresGroupCards></OffresGroupCards>
+          <DemandesGroupCards></DemandesGroupCards>
         </Col>
       </Row>
       {/* Publication d'offres de stage */}

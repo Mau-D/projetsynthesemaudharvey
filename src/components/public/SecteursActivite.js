@@ -42,7 +42,9 @@ function SecteursActivite(props) {
             <tr key={item.nom}>
               <td></td>
               <td className="w-100">
-                <a onClick={() => setSecteurId(item.nom)}>{item.nom}</a>
+                <a href="#" onClick={() => setSecteurId(item.nom)}>
+                  {item.nom}
+                </a>
               </td>
             </tr>
           ))}

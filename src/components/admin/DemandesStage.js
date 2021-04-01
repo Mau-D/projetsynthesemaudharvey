@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import DemandeStageCarte from "./DemandeStageCarte";
@@ -15,7 +14,7 @@ function DemandesStage(props) {
   useEffect(() => {
     //appelle la fonction getDemandesStage
     getDemandesStage();
-  }, donneesRecues);
+  }, []);
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
@@ -49,7 +48,7 @@ function DemandesStage(props) {
 
       <Row>
         {donneesRecues.reverse().map((item) =>
-          item.etudiant == ls.get("id") ? (
+          item.etudiant === ls.get("id") ? (
             <Col lg={12}>
               <DemandeStageCarte
                 id={item._id}
@@ -63,7 +62,7 @@ function DemandesStage(props) {
         )}
         {/*Affiche toutes les demandes pour un administrateur connecté*/}
         {donneesRecues.reverse().map((item) =>
-          props.acces == 999 ? (
+          props.acces === 999 ? (
             <Col lg={12}>
               <DemandeStageCarte
                 id={item._id}

@@ -63,7 +63,7 @@ function FormulaireConnexion() {
         utilisateurExistant = true;
         //Local storage pour le niveau d'acces et l'identifiant
         ls.set("niveau", item.niveau);
-        ls.set("id", item.identifiant);
+        ls.set("id", item._id);
         login();
       }
     });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
 import DemandeCarte from "./DemandeCarte";
@@ -16,7 +16,7 @@ function DemandesGroupCards() {
   useEffect(() => {
     //appelle la fonction getDemandesStage
     getDemandesStage();
-  }, donneesRecues);
+  }, []);
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {
@@ -49,29 +49,37 @@ function DemandesGroupCards() {
       {/* Cards (4) des demandes en vedette */}
       {/*Affichage des 4 demandes les plus récente, renverser le tableau et limiter au nombre de 4 */}
       <Row className="m-5 text-center">
-        {donneesRecues.reverse().map((item, i) =>
-          i < 4 ? (
-            <Col lg={3}>
-              <DemandeCarte
-                id={item._id}
-                key={"keyCard" + item._id}
-                titre={item.titre}
-                formation={item.formation}
-                description={item.description}
-              ></DemandeCarte>
-            </Col>
-          ) : null
-        )}
+        {/*Filtre pour afficher seulement les demandes avec le paramèetre vedette = true */}
+        {donneesRecues
+          .filter(
+            (donnee) =>
+              donnee.vedette &&
+              donnee.valide &&
+              donnee.actif &&
+              !donnee.supprime
+          )
+          .map((item, i) =>
+            i < 4 ? (
+              <Col lg={3} key={"demandeCard" + item._id}>
+                <DemandeCarte
+                  id={item._id}
+                  titre={item.titre}
+                  formation={item.formation}
+                  description={item.description}
+                ></DemandeCarte>
+              </Col>
+            ) : null
+          )}
       </Row>
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <NavLink to="/demandesstage">
+          <Link to="/demandesstage">
             <BoutonListeDemandes
               texte="Voir tous les candidats"
               classStyle="btn btn-danger"
             ></BoutonListeDemandes>
-          </NavLink>
+          </Link>
         </Col>
       </Row>
     </Container>

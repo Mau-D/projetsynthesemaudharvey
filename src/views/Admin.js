@@ -7,7 +7,7 @@ import { logout } from "../utils/index";
 import BoutonAjoutDemande from "../components/boutons/BoutonAjoutDemande";
 import BoutonAjoutOffre from "../components/boutons/BoutonAjoutOffre";
 
-import { IoIosArrowDown, IoIosNotificationsOutline } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { BsBoxArrowRight } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import {
@@ -129,7 +129,7 @@ function Admin(props) {
               <img src={logo} alt="logo" className="w-100 mb-5" />
             </Link>
             {/*Le menu du dashboard s'affiche seulement pour l'administrateur */}
-            {niveauAcces == 999 ? (
+            {niveauAcces === "999" ? (
               <div>
                 <Nav.Link
                   className="text-light"
@@ -192,12 +192,12 @@ function Admin(props) {
             {/*en-tête de la page */}
             <Row className="py-3">
               {renderSwitchBouton()}
-              {niveauAcces == 111 ? (
+              {niveauAcces === 111 ? (
                 <Col lg={2}>
                   <BoutonAjoutDemande></BoutonAjoutDemande>
                 </Col>
               ) : null}
-              {niveauAcces == 333 ? (
+              {niveauAcces === 333 ? (
                 <Col lg={2}>
                   <BoutonAjoutOffre></BoutonAjoutOffre>
                 </Col>
@@ -218,7 +218,7 @@ function Admin(props) {
                 </div>
                 {/*DropDown, liste des demandes et profil */}
 
-                {niveauAcces != 999 ? (
+                {niveauAcces !== 999 ? (
                   <div className="my-auto mx-1">
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic" variant="light">
@@ -240,6 +240,7 @@ function Admin(props) {
                   </div>
                 ) : null}
               </Col>
+              {/*Déconnexion */}
               <Col lg={3} className="text-right">
                 <Link
                   to="/"
