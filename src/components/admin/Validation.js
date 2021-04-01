@@ -61,12 +61,25 @@ function Validation() {
             )
             .map((item) => (
               <ValidationCarteDemande
-                id={item._id}
                 key={"validationDemande" + item._id}
+                id={item._id}
                 titre={item.titre}
+                secteurActivite={item.secteurActivite}
                 ville={item.ville}
+                dateDebut={item.dateDebut}
+                dateFin={item.dateFin}
+                duree={item.duree}
                 description={item.description}
+                nbHeuresSemaine={item.nbHeuresSemaine}
+                autresInformations={item.autresInformations}
+                programmeSuivi={item.programmeSuivi}
+                autresFormations={item.autresFormations}
+                competences={item.competences}
+                typestage={item.typestage}
+                remunere={item.remunere}
+                dateParution={item.dateParution}
                 etudiant={item.etudiant}
+                vedette={item.vedette}
               ></ValidationCarteDemande>
             ))}
         </Col>
