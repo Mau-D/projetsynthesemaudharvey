@@ -77,7 +77,6 @@ function Validation() {
                 competences={item.competences}
                 typestage={item.typestage}
                 remunere={item.remunere}
-                dateParution={item.dateParution}
                 etudiant={item.etudiant}
                 vedette={item.vedette}
               ></ValidationCarteDemande>

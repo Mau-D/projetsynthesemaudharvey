@@ -44,17 +44,9 @@ function ValidationCarteDemande(props) {
         props.etudiant
     );
   }
-  //Pour afficher le toast
-  function toastFonction() {
-    toast.dark(
-      "Demande de " +
-        objetEtudiant.prenom +
-        " " +
-        objetEtudiant.nom +
-        " validée!"
-    );
-  }
+
   //Fonction pour accepter la validation, changer le paramètre valide et actif à true
+  //Changer la date de parution à celle d'aujourd'hui = moment de la validation
   async function accepterValidation() {
     console.log("je valide");
     try {
@@ -87,7 +79,7 @@ function ValidationCarteDemande(props) {
             competences: props.competences,
             typestage: props.typestage,
             remunere: props.remunere,
-            dateParution: props.dateParution,
+            dateParution: new Date(),
             etudiant: props.etudiant,
             actif: true,
             valide: true,

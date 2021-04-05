@@ -70,7 +70,7 @@ function Admin(props) {
       case "demandes":
         return <DemandesStage user={ls.get("id")} />;
       case "profil":
-        return <Details user={ls.get("id")} />;
+        return <Details user={ls.get("id")} acces={niveauAcces} />;
       default:
         return <DemandesStage user={ls.get("id")} />;
     }

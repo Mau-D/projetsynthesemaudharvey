@@ -45,31 +45,40 @@ function DemandesStage(props) {
       </Row>
       {/*affichage dynamique */}
       {/*Affiche seulement les demandes de l'étudiant*/}
-
       <Row>
-        {donneesRecues.reverse().map((item) =>
-          item.etudiant === ls.get("id") ? (
+        {donneesRecues.map((item) =>
+          props.acces === "111" && item.etudiant === ls.get("id") ? (
             <Col lg={12}>
               <DemandeStageCarte
+                key={"keyCardDemandeEtudiant" + item._id}
                 id={item._id}
-                key={"keyCard" + item.titre}
                 titre={item.titre}
-                formation={item.formation}
+                ville={item.ville}
+                formation={item.programmeSuivi}
+                dateDebut={item.dateDebut}
+                dateFin={item.dateFin}
                 description={item.description}
+                dateParution={item.dateParution}
+                etudiant={item.etudiant}
               ></DemandeStageCarte>
             </Col>
           ) : null
         )}
         {/*Affiche toutes les demandes pour un administrateur connecté*/}
-        {donneesRecues.reverse().map((item) =>
-          props.acces === 999 ? (
+        {donneesRecues.map((item) =>
+          props.acces === "999" ? (
             <Col lg={12}>
               <DemandeStageCarte
+                key={"keyCardDemandeAdmin" + item._id}
                 id={item._id}
-                key={"keyCard" + item.titre}
                 titre={item.titre}
-                formation={item.formation}
+                ville={item.ville}
+                formation={item.programmeSuivi}
+                dateDebut={item.dateDebut}
+                dateFin={item.dateFin}
                 description={item.description}
+                dateParution={item.dateParution}
+                etudiant={item.etudiant}
               ></DemandeStageCarte>
             </Col>
           ) : null
