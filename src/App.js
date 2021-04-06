@@ -17,6 +17,7 @@ import DemandesStageListe from "./views/DemandesStageListe";
 import AccesCompte from "./views/AccesCompte";
 import Admin from "./views/Admin";
 import FormEditDemande from "./components/admin/FormEditDemande";
+import FormAjoutDemande from "./components/admin/FormAjoutDemande";
 
 function App() {
   var ls = require("local-storage");
@@ -59,10 +60,16 @@ function App() {
           />
           {/*Dans l'entête et dans les sections des publications, lien pour la page affichant des formulaires pour la connexion ou l'inscription*/}
           <Route path="/accescompte/" component={AccesCompte} />
-          {/*Lors de la connexion avec le niveau d'acces passé en paramètre*/}
+          {/*Formulaire d'édition d'une demande avec l'id de la demande en paramètre*/}
           <Route path="/admin/edition/:demandeId" component={FormEditDemande} />
+          {/*Formulaire d'ajout d'une demande, id de l'utilisateur en paramètre*/}
+          <Route
+            path="/admin/ajout/:utilisateurId"
+            component={FormAjoutDemande}
+          />
           {/*Lors de la connexion avec le niveau d'acces passé en paramètre*/}
           <Route path="/admin/:acces" component={Admin} />
+
           {/*En cas d'erreur dans l'url on retourne à la page d'accueil*/}
           <Redirect to="/" />
         </Switch>

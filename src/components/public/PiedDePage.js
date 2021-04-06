@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import { Nav, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // Hook pour la bannière
 function PiedDePage() {
@@ -16,11 +16,27 @@ function PiedDePage() {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="ml-auto">
-              <NavLink to="/">Accueil</NavLink>
-              <NavLink to="/apropos">À propos</NavLink>
-              <NavLink to="/confidentialite">Confidentialité</NavLink>
-              <NavLink to="/contact">Nous joindre</NavLink>
-              <NavLink to="/partenaires">Partenaires</NavLink>
+              <NavItem>
+                {" "}
+                <Link to="/">Accueil</Link>
+              </NavItem>
+
+              <NavItem>
+                <Link to="/apropos">À propos</Link>
+              </NavItem>
+
+              <NavItem>
+                <Link to="/confidentialite">Confidentialité</Link>
+              </NavItem>
+
+              <NavItem>
+                {" "}
+                <Link to="/contact">Nous joindre</Link>
+              </NavItem>
+
+              <NavItem>
+                <Link to="/partenaires">Partenaires</Link>
+              </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

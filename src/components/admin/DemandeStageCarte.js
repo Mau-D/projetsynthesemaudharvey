@@ -4,7 +4,8 @@ import { useLocation, Link } from "react-router-dom";
 
 import { FaUserGraduate } from "react-icons/fa";
 import { BsPencilSquare } from "react-icons/bs";
-import { TiDelete } from "react-icons/ti";
+
+import BoutonRemoveDemande from "../boutons/BoutonRemoveDemande";
 
 // Hook pour chacune des demandes de stage
 function DemandeStageCarte(props) {
@@ -106,10 +107,7 @@ function DemandeStageCarte(props) {
                 <BsPencilSquare />
                 Modifier
               </Link>
-              <Button>
-                <TiDelete />
-                Supprimer
-              </Button>
+              <BoutonRemoveDemande demandeID={props.id}></BoutonRemoveDemande>
             </div>
           </div>
         </Col>

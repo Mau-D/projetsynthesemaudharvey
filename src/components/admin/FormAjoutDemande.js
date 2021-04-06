@@ -10,76 +10,26 @@ import { registerLocale, setDefaultLocale } from "react-datepicker";
 import fr from "date-fns/locale/fr-CA";
 registerLocale("fr", fr);
 /*Fonction pour l'édition d'une demande de stage*/
-function FormEditDemande() {
+function FormAjoutDemande() {
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
   //Variable pour récupérer l'id dans l'url, avec la propriété search
   var stringId = location.search.replace("?id=", "");
-  //useEffect, Obtenir les demandes de stage et la liste des secteurs d'activité
-  useEffect(() => {
-    getDemande();
-  }, {});
+  //useEffect, Obtenir les secteurs d'activité pour le menu déroulant
   useEffect(() => {
     getSecteurs();
   }, []);
   useEffect(() => {
-    setAutresFormationsEdit(objetDemande.autresFormations);
-    setCompetences(objetDemande.competences);
     setChange(false);
   });
-  //On récupère les infos de la bd de la demande sélectionnée
-  async function getDemande() {
-    //Variable pour les données de la demande sélectionnée
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API +
-          process.env.REACT_APP_DEMANDES +
-          "/" +
-          stringId
-      );
-      const reponseDeApi = await response.json();
-      setObjetDemande(reponseDeApi);
-      if (!response.ok) {
-        //Permet d'attraper l'erreur 500 et l'erreur 400
-        throw Error(response.statusText);
-      }
-    } catch (error) {
-      //On gère l'erreur
-      console.log(error);
-    }
-  }
-  //Variable des informations de la demande sélectionnée
-  const [objetDemande, setObjetDemande] = useState({
-    titre: "",
-    secteurActivite: "",
-    ville: "",
-    dateDebut: new Date(),
-    dateFin: new Date(),
-    duree: null,
-    description: "",
-    nbHeuresSemaine: null,
-    autresInformations: "",
-    programmeSuivi: "",
-    autresFormations: [],
-    competences: [],
-    typestage: "",
-    remunere: "",
-    dateParution: new Date(),
-    etudiant: "",
-    actif: null,
-    valide: null,
-    supprime: null,
-    vedette: null,
-  });
-
   //Variables pour les informations du formulaire
   let [secteurs, setSecteurs] = useState([]);
   let [secteurChoisi, setSecteurChoisi] = useState("");
-  let [dateDebutEdit, setDateDebutEdit] = useState(new Date());
-  let [dateFinEdit, setDateFinEdit] = useState(new Date());
+  let [dateDebutAdd, setDateDebutAdd] = useState(new Date());
+  let [dateFinAdd, setDateFinAdd] = useState(new Date());
   let [change, setChange] = useState(false);
 
-  let [autresFormationsEdit, setAutresFormationsEdit] = useState([]);
+  let [autresFormationsAdd, setAutresFormationsAdd] = useState([]);
   let [competences, setCompetences] = useState([]);
   let [typeStage, setTypeStage] = useState("");
 
@@ -103,7 +53,7 @@ function FormEditDemande() {
   }
 
   //Méthode pour modifier la bd avec le formulaire, semblable à l'ajout ajouter l'id à l'URL et changer la methode pour PUT
-  async function editDemande(
+  async function AddDemande(
     titre,
     ville,
     duree,
@@ -116,13 +66,10 @@ function FormEditDemande() {
   ) {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API +
-          process.env.REACT_APP_DEMANDES +
-          "/" +
-          stringId,
+        process.env.REACT_APP_API + process.env.REACT_APP_DEMANDES,
         {
           /*Pour un ajout utiliser la méthode POST */
-          method: "PUT",
+          method: "POST",
           /*Pour un ajout ajouter un headers */
           headers: {
             "Content-Type": "application/json",
@@ -132,24 +79,23 @@ function FormEditDemande() {
             titre: titre,
             secteurActivite: secteurChoisi,
             ville: ville,
-            dateDebut: dateDebutEdit,
-            dateFin: dateFinEdit,
+            dateDebut: dateDebutAdd,
+            dateFin: dateFinAdd,
             duree: duree,
             description: description,
             nbHeuresSemaine: nbHeuresSemaine,
             autresInformations: autresInfos,
             programmeSuivi: programmeSuivi,
-            autresFormations: autresFormationsEdit,
+            autresFormations: autresFormationsAdd,
             competences: competences,
             typestage: type,
             remunere: remuneration,
-            dateParution: objetDemande.dateParution,
-            etudiant: objetDemande.etudiant,
-            //Pas nécessaire de modifier les paramètres (actif, valide et supprime), cette étape se fait lors de la validation ou le bouton supprimer
+            dateParution: new Date(),
+            etudiant: stringId,
             actif: true,
             valide: true,
             supprime: false,
-            vedette: objetDemande.vedette,
+            vedette: true,
           }),
         }
       );
@@ -167,32 +113,33 @@ function FormEditDemande() {
     }
   }
   /* Va chercher les infos des inputs du formulaire */
-  function handleEdit(event) {
+  function handleAdd(event) {
     event.preventDefault(); /*Empêche de rafraîchir la page, car le bouton est de type submit*/
 
     /*variables des infos entrées dans le formulaire*/
-    const titreEdit = document.getElementById("titreId").value;
-    const villeEdit = document.getElementById("villeId").value;
-    const dureeEdit = document.getElementById("dureeId").value;
-    const descriptionEdit = document.getElementById("descriptionId").value;
-    const heuresSemaineEdit = document.getElementById("heuresSemaineId").value;
-    const autresInfosEdit = document.getElementById("autresInfosId").value;
-    const programmeSuiviEdit = document.getElementById("programmeSuiviId")
+    const titreAdd = document.getElementById("titreAddId").value;
+    const villeAdd = document.getElementById("villeAddId").value;
+    const dureeAdd = document.getElementById("dureeAddId").value;
+    const descriptionAdd = document.getElementById("descriptionAddId").value;
+    const heuresSemaineAdd = document.getElementById("heuresSemaineAddId")
       .value;
-    const typeStageEdit = document.getElementById("typeStageId").value;
-    const remunerationEdit = document.getElementById("remunereId").value;
+    const autresInfosAdd = document.getElementById("autresInfosAddId").value;
+    const programmeSuiviAdd = document.getElementById("programmeSuiviAddId")
+      .value;
+    const typeStageAdd = document.getElementById("typeStageAddId").value;
+    const remunerationAdd = document.getElementById("remunereAddId").value;
     /*Fonction pour entrer les infos dans la bd */
     /*Ajouter les compétences et autres Formations provenant d'une variable tableau */
-    editDemande(
-      titreEdit,
-      villeEdit,
-      dureeEdit,
-      descriptionEdit,
-      heuresSemaineEdit,
-      autresInfosEdit,
-      programmeSuiviEdit,
-      typeStageEdit,
-      remunerationEdit
+    AddDemande(
+      titreAdd,
+      villeAdd,
+      dureeAdd,
+      descriptionAdd,
+      heuresSemaineAdd,
+      autresInfosAdd,
+      programmeSuiviAdd,
+      typeStageAdd,
+      remunerationAdd
     );
   }
 
@@ -205,9 +152,9 @@ function FormEditDemande() {
   //Fonctions lors d'un changement dans les autres formations
   //Si la valeur du checked est true ajouter la valeur au tableau, sinon effacer à partir de l'index
   function handleChangeFormations(i) {
-    let tabFormations = autresFormationsEdit;
+    let tabFormations = autresFormationsAdd;
     tabFormations.splice(i, 1);
-    setAutresFormationsEdit(tabFormations);
+    setAutresFormationsAdd(tabFormations);
     setChange(true);
   }
   //Fonctions lors d'un changement dans les autres formations
@@ -220,21 +167,21 @@ function FormEditDemande() {
     setChange(true);
   }
 
-  console.log("dateDebut " + dateDebutEdit);
+  console.log("dateDebut " + dateDebutAdd);
   //Fonction pour ajouter une formation supplémentaire
   function handleClickAjoutFormation() {
-    console.log("fonction ajout formation" + autresFormationsEdit);
-    let tabformations = autresFormationsEdit;
-    let formationAjoutee = document.getElementById("formationId").value;
+    console.log("fonction ajout formation" + autresFormationsAdd);
+    let tabformations = autresFormationsAdd;
+    let formationAjoutee = document.getElementById("formationAddId").value;
     tabformations.push(formationAjoutee);
-    setAutresFormationsEdit(tabformations);
+    setAutresFormationsAdd(tabformations);
     setChange(true);
   }
   //Fonction pour ajouter une compétence supplémentaire
   function handleClickAjoutCompetence() {
     console.log("fonction ajout formation" + competences);
     let tabcompetences = competences;
-    let competenceAjoutee = document.getElementById("competenceId").value;
+    let competenceAjoutee = document.getElementById("competenceAddId").value;
     tabcompetences.push(competenceAjoutee);
     setCompetences(tabcompetences);
     setChange(true);
@@ -242,43 +189,36 @@ function FormEditDemande() {
 
   console.log("type de stage" + typeStage);
   return (
-    <Container fluid id="formEdit">
+    <Container fluid id="formAdd">
       <Container>
         <Row>
           <Col xs={12}>
             <h1 className="my-5 text-center font-large">
-              Modifier la demande {objetDemande._id}
+              Ajouter une demande de stage
             </h1>
           </Col>
         </Row>
         <Row className="fondGris">
           <Col xs={12}>
             <Form className="py-5">
-              <Form.Group controlId="titreId">
+              <Form.Group controlId="titreAddId">
                 <Form.Label>Titre de la demande</Form.Label>
-                <Form.Control type="text" defaultValue={objetDemande.titre} />
+                <Form.Control type="text" />
               </Form.Group>
               <Form.Group>
-                <select id="selectSecteur" onChange={handleChangeSecteur}>
+                <select id="selectSecteurAdd" onChange={handleChangeSecteur}>
                   {secteurs.map((item) => (
-                    <option
-                      selected={item._id === objetDemande.secteurActivite}
-                      key={item.nom}
-                      value={item.nom}
-                    >
+                    <option key={item.nom} value={item.nom}>
                       {item.nom}
                     </option>
                   ))}
                 </select>
               </Form.Group>
-              <Form.Group controlId="villeId">
+              <Form.Group controlId="villeAddId">
                 <Form.Label>Ville</Form.Label>
-                <Form.Control type="text" defaultValue={objetDemande.ville} />
+                <Form.Control type="text" />
               </Form.Group>
-              <p>
-                *****Il faudra ajouter la valeur par défaut des
-                datepickers*******
-              </p>
+
               <label className="d-block">Date du début du stage</label>
               {/*Faire des datepickers pour les dates  selected={Moment(objetDemande.dateDebut).format("DD/MM/YYYY")}*/}
               {/*moment().format("ddd, MMM DD YYYY, hh:mm:ss");  */}
@@ -286,8 +226,8 @@ function FormEditDemande() {
                 utcOffset
                 locale="fr"
                 dateFormat="MM/dd/yyyy"
-                onChange={(evt) => setDateDebutEdit(Moment(evt).toDate())}
-                selected={Moment(dateDebutEdit).toDate()}
+                onChange={(evt) => setDateDebutAdd(Moment(evt).toDate())}
+                selected={Moment(dateDebutAdd).toDate()}
               />
               <label className="d-block">Date de fin du stage</label>
               {/*Faire des datepickers pour les dates  selected={Moment(objetDemande.dateDebut).format("DD/MM/YYYY")}*/}
@@ -296,63 +236,41 @@ function FormEditDemande() {
                 utcOffset
                 locale="fr"
                 dateFormat="MM/dd/yyyy"
-                onChange={(evt) => setDateFinEdit(Moment(evt).toDate())}
-                selected={Moment(dateFinEdit).toDate()}
+                onChange={(evt) => setDateFinAdd(Moment(evt).toDate())}
+                selected={Moment(dateFinAdd).toDate()}
               />
               <Form.Group>
                 <Form.Label className="mr-2">
                   Durée en nombre de semaines
                 </Form.Label>
-                <input
-                  id="dureeId"
-                  type="number"
-                  defaultValue={objetDemande.duree}
-                />
+                <input id="dureeAddId" type="number" />
               </Form.Group>
-              <Form.Group controlId="descriptionId">
+              <Form.Group controlId="descriptionAddId">
                 <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={8}
-                  defaultValue={objetDemande.description}
-                />
+                <Form.Control as="textarea" rows={8} />
               </Form.Group>
               <Form.Group>
                 <Form.Label className="mr-2">
                   Nombre d'heures/semaine
                 </Form.Label>
-                <input
-                  id="heuresSemaineId"
-                  type="number"
-                  defaultValue={objetDemande.nbHeuresSemaine}
-                />
+                <input id="heuresSemaineAddId" type="number" />
               </Form.Group>
               {/*Changer pour un textarea */}
-              <Form.Group controlId="autresInfosId">
+              <Form.Group controlId="autresInfosAddId">
                 <Form.Label>Informations supplémentaires</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={8}
-                  defaultValue={objetDemande.autresInformations}
-                />
+                <Form.Control as="textarea" rows={8} />
               </Form.Group>
-              <Form.Group controlId="programmeSuiviId">
+              <Form.Group controlId="programmeSuiviAddId">
                 <Form.Label>Programme suivi</Form.Label>
-                <Form.Control
-                  type="text"
-                  defaultValue={objetDemande.programmeSuivi}
-                />
+                <Form.Control type="text" />
               </Form.Group>
               {/*Les autres formations et les compétences sont affichées avec des checkbox*/}
               <h3>Formations supplémentaires</h3>
-              {autresFormationsEdit.map((item, i) => {
-                console.log("item" + item);
-                console.log("À l'affichage" + autresFormationsEdit);
-
+              {autresFormationsAdd.map((item, i) => {
                 return (
                   <div>
                     <input
-                      id={item}
+                      key={item + i}
                       type="checkbox"
                       value={item}
                       checked
@@ -364,7 +282,7 @@ function FormEditDemande() {
                   </div>
                 );
               })}
-              <input type="text" className="mr-2" id="formationId"></input>
+              <input type="text" className="mr-2" id="formationAddId"></input>
               <Button type="button" onClick={handleClickAjoutFormation}>
                 <IoMdAdd onClick={() => handleClickAjoutFormation} />
               </Button>
@@ -387,7 +305,11 @@ function FormEditDemande() {
                     </div>
                   );
                 })}
-                <input type="text" className="mr-2" id="competenceId"></input>
+                <input
+                  type="text"
+                  className="mr-2"
+                  id="competenceAddId"
+                ></input>
                 <Button type="button" onClick={handleClickAjoutCompetence}>
                   <IoMdAdd onClick={() => handleClickAjoutCompetence} />
                 </Button>
@@ -395,9 +317,7 @@ function FormEditDemande() {
               {/*Ajouter un label,  Voir pour changer pour des boutons radio*/}
               <Form.Group>
                 <h6>Type de stage</h6>
-                <select id="typeStageId">
-                  {/*pour garder la valeur dans le formulaire */}
-                  <option selected>{objetDemande.typestage}</option>
+                <select id="typeStageAddId">
                   <option value="Temps plein">Temps plein</option>
                   <option value="Temps partiel">Temps partiel</option>
                   <option value="Alternance travail étude">
@@ -408,9 +328,7 @@ function FormEditDemande() {
               {/*Ajouter un label,  Voir pour changer pour des boutons radio*/}
               <Form.Group>
                 <h6>Rémunération</h6>
-                <select id="remunereId">
-                  {/*pour garder la valeur dans le formulaire */}
-                  <option selected>{objetDemande.remunere}</option>
+                <select id="remunereAddId">
                   <option value="OUI">OUI</option>
                   <option value="NON">NON</option>
                   <option value="À la discrétion de l'entreprise">
@@ -420,32 +338,24 @@ function FormEditDemande() {
               </Form.Group>
               {/*ID de l'étudiant */}
               {/* Pour l'administrateur l'id est entré, pour l'étudiant la variable local ou le props */}
-              <Form.Group controlId="etudiantId">
+              <Form.Group controlId="etudiantAddId">
                 <Form.Label>ID de l'étudiant</Form.Label>
-                <Form.Control
-                  disabled
-                  type="text"
-                  defaultValue={objetDemande.etudiant}
-                />
+                <Form.Control type="text" disabled />
               </Form.Group>
               {/*Changer pour un checkbox */}
-              <Form.Group controlId="vedetteId">
+              <Form.Group controlId="vedetteAddId">
                 <Form.Label>Demande vedette</Form.Label>
-                <Form.Control
-                  disabled
-                  type="text"
-                  defaultValue={objetDemande.vedette}
-                />
+                <Form.Control type="text" />
               </Form.Group>
             </Form>
             <Button
-              id="enregistrer"
+              id="enregistrerAdd"
               className="my-5"
               variant="primary"
               type="submit"
-              onClick={handleEdit}
+              onClick={handleAdd}
             >
-              Enregistrer
+              Ajouter
             </Button>
           </Col>
         </Row>
@@ -454,4 +364,4 @@ function FormEditDemande() {
   );
 }
 
-export default FormEditDemande;
+export default FormAjoutDemande;

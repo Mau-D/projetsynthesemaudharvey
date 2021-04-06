@@ -74,12 +74,12 @@ function DemandesGroupCards() {
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <Link to="/demandesstage">
-            <BoutonListeDemandes
-              texte="Voir tous les candidats"
-              classStyle="btn btn-danger"
-            ></BoutonListeDemandes>
-          </Link>
+          <BoutonListeDemandes
+            texte="Voir tous les candidats"
+            classStyle="btn btn-danger"
+          >
+            <Link to="/demandesstage"></Link>
+          </BoutonListeDemandes>
         </Col>
       </Row>
     </Container>

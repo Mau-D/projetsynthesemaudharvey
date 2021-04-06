@@ -12,7 +12,7 @@ function Validation() {
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getDemandesStage();
-  }, donneesRecues);
+  }, []);
   //Fonction pour l'appel à l'API
   async function getDemandesStage() {
     try {

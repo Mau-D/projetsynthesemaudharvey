@@ -24,7 +24,7 @@ function DemandeDetails(props) {
   useEffect(() => {
     //appelle la fonction getDemandesStage
     getDetailsDemande();
-  }, objetRecu);
+  }, {});
 
   //Fonction pour l'appel à l'API
 
