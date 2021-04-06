@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { FaUserGraduate, FaUserTie } from "react-icons/fa";
 
@@ -31,7 +32,11 @@ function ValidationCarteOffre() {
         <Col lg={12}>
           <div className="w-100 d-flex flex-row justify-content-between">
             <div>
-              <Button type="button"></Button>
+              <div>
+                <Link to="" className="btn btn-primary">
+                  Détails
+                </Link>
+              </div>
             </div>
             <div className="text-right d-inline">
               <Button className="refuser m-2">Refuser</Button>

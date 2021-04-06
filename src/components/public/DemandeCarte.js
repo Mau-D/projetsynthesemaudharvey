@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les cards des demandes de stage

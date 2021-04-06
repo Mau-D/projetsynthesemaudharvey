@@ -8,7 +8,7 @@ import { FaUserGraduate } from "react-icons/fa";
 
 // Hook pour la fiche détaillée du candidat avec le lien profil ou pour les entreprises
 //Pour le lien profil dans admin, props = user
-function Details(props) {
+function DetailsUtilisateur(props) {
   //variable pour l'étudiant connecté
   const [donneesRecues, setDonneesRecues] = useState([]);
 
@@ -16,7 +16,7 @@ function Details(props) {
   useEffect(() => {
     //appelle la fonction pour les données de l'API
     getUtilisateurs();
-  }, donneesRecues);
+  }, []);
   //Données de la base de donnée de l'étudiant connecté
   async function getUtilisateurs() {
     try {
@@ -37,6 +37,7 @@ function Details(props) {
       console.log(error);
     }
     console.log(donneesRecues);
+    console.log("utilisateur" + props.user);
   }
   return (
     <Container fluid className="h-100 adminDetails">
@@ -138,4 +139,4 @@ function Details(props) {
   );
 }
 
-export default Details;
+export default DetailsUtilisateur;

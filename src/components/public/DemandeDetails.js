@@ -4,10 +4,9 @@ import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 // Hook pour les informations d'une demande de stage en détails
-function DemandeDetails(props) {
+function DemandeDetails() {
   //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
   let location = useLocation(); /*variable de la page où je me trouve */
-  //id choisi lors du clic des détails dans les cartes de demande
 
   const [objetRecu, setObjetRecu] = useState({});
 
@@ -33,7 +32,10 @@ function DemandeDetails(props) {
     console.log("search props" + location.search);
     try {
       const response = await fetch(
-        process.env.REACT_APP_API + "demandes/" + idChoosen
+        process.env.REACT_APP_API +
+          process.env.REACT_APP_DEMANDES +
+          "/" +
+          idChoosen
       );
       const reponseDeApi = await response.json();
       setObjetRecu(reponseDeApi);

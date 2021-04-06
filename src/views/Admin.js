@@ -19,10 +19,11 @@ import {
 
 import logo from "../img/logo.svg";
 
-import Details from "../components/admin/Details";
+import DetailsUtilisateur from "../components/admin/DetailsUtilisateur";
 import DemandesStage from "../components/admin/DemandesStage";
 import Validation from "../components/admin/Validation";
 import CandidatsListe from "../components/admin/CandidatsListe";
+import DemandeDetails from "../components/public/DemandeDetails";
 
 // Hook pour la page d'administration
 function Admin(props) {
@@ -32,11 +33,16 @@ function Admin(props) {
   let location = useLocation();
   console.log("validation path" + location.search);
   //Variable pour récupérer le code du niveau d'accès
-  const niveauAcces = props.location.search.substring(
+  const searchString = props.location.search.substring(
     8,
     props.location.search.length
   );
-  console.log("récupération du code = " + niveauAcces);
+  const searchStringDetails = props.location.search.substring(
+    4,
+    props.location.search.length
+  );
+
+  console.log("récupération du code = " + searchString);
   //Variable pour afficher les différentes sections de l'administrateur avec le menu de gauche
 
   const [adminSection, setAdminSection] = useState([]);
@@ -44,7 +50,7 @@ function Admin(props) {
   const [etudiantSection, setEtudiantSection] = useState([]);
   //Fonction pour afficher le statut
   function renderSwitchStatut() {
-    switch (niveauAcces) {
+    switch (searchString) {
       case "999":
         return "administrateur";
       case "333":
@@ -55,7 +61,7 @@ function Admin(props) {
   }
   //Fonction pour afficher le contenu principal
   function renderSwitchMain() {
-    switch (niveauAcces) {
+    switch (searchString) {
       case "999":
         return renderSwitchAdmin();
       case "111":
@@ -68,11 +74,11 @@ function Admin(props) {
   function renderSwitchEtudiant() {
     switch (etudiantSection) {
       case "demandes":
-        return <DemandesStage user={ls.get("id")} />;
+        return <DemandesStage user={ls.get("id")} acces={searchString} />;
       case "profil":
-        return <Details user={ls.get("id")} acces={niveauAcces} />;
+        return <DetailsUtilisateur user={ls.get("id")} acces={searchString} />;
       default:
-        return <DemandesStage user={ls.get("id")} />;
+        return <DemandesStage user={ls.get("id")} acces={searchString} />;
     }
   }
   //Fonction pour afficher le contenu principal
@@ -82,9 +88,13 @@ function Admin(props) {
       case "validation":
         return <Validation />;
       case "demandes":
-        return <DemandesStage acces={niveauAcces} />;
+        return <DemandesStage acces={searchString} />;
       case "candidats":
         return <CandidatsListe />;
+      case "details":
+        return <DemandeDetails />;
+      case "profil":
+        return <DetailsUtilisateur user={ls.get("id")} acces={searchString} />;
       //Ajouter pour les offres des entreprises
       default:
         return <Validation />;
@@ -92,7 +102,7 @@ function Admin(props) {
   }
   //Fonction pour afficher le contenu principal
   function renderSwitchBouton() {
-    switch (niveauAcces) {
+    switch (searchString) {
       case "111":
         return (
           <Col lg={3}>
@@ -118,7 +128,8 @@ function Admin(props) {
         );
     }
   }
-
+  console.log("search" + location.search);
+  console.log("path" + location.pathname);
   return (
     <Container fluid className="h-100">
       <Row>
@@ -129,7 +140,7 @@ function Admin(props) {
               <img src={logo} alt="logo" className="w-100 mb-5" />
             </Link>
             {/*Le menu du dashboard s'affiche seulement pour l'administrateur */}
-            {niveauAcces === "999" ? (
+            {searchString === "999" ? (
               <div>
                 <Nav.Link
                   className="text-light"
@@ -192,18 +203,18 @@ function Admin(props) {
             {/*en-tête de la page */}
             <Row className="py-3">
               {renderSwitchBouton()}
-              {niveauAcces === 111 ? (
+              {searchString === 111 ? (
                 <Col lg={2}>
                   <BoutonAjoutDemande></BoutonAjoutDemande>
                 </Col>
               ) : null}
-              {niveauAcces === 333 ? (
+              {searchString === 333 ? (
                 <Col lg={2}>
                   <BoutonAjoutOffre></BoutonAjoutOffre>
                 </Col>
               ) : null}
 
-              <Col lg={3} className="d-flex flex-row text-right">
+              <Col lg={5} className="d-flex flex-row text-right">
                 <div>
                   <h4>{ls.get("prenom") + " " + ls.get("nom")}</h4>
 
@@ -218,7 +229,7 @@ function Admin(props) {
                 </div>
                 {/*DropDown, liste des demandes et profil */}
 
-                {niveauAcces !== 999 ? (
+                {searchString == 111 || searchString == 333 ? (
                   <div className="my-auto mx-1">
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic" variant="light">
@@ -238,10 +249,25 @@ function Admin(props) {
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                ) : null}
+                ) : (
+                  <div className="my-auto mx-1">
+                    <Dropdown>
+                      <Dropdown.Toggle id="dropdown-basic" variant="light">
+                        <IoIosArrowDown />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => setAdminSection("profil")}
+                        >
+                          Mon profil
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
+                )}
               </Col>
               {/*Déconnexion */}
-              <Col lg={3} className="text-right">
+              <Col lg={1} className="text-right">
                 <Link
                   to="/"
                   onClick={function () {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import BoutonPostuler from "../boutons/BoutonPostuler";
 
@@ -15,8 +16,9 @@ function OffreCarte(props) {
               <Card.Subtitle className="mb-2 text-muted">
                 {props.entreprise}
               </Card.Subtitle>
-              <Card.Text>{props.entreprise}</Card.Text>
-              <Card.Link href="#">Détails</Card.Link>
+              <Card.Text>{props.description}</Card.Text>
+              {/*Lien en incluant l'id de la carte sélectionnée pour afficher les détails */}
+              <Link to={"offresstage/?id=" + props.id}>Détails</Link>
               <BoutonPostuler></BoutonPostuler>
             </Card.Body>
           </Col>

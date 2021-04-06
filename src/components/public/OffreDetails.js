@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import BoutonPostuler from "../boutons/BoutonPostuler";
 // Hook pour les informations d'une offre de stage en détails
 function OffreDetails() {
+  //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
+  let location = useLocation(); /*variable de la page où je me trouve */
+  const [objetRecu, setObjetRecu] = useState({});
+  //Fonction pour récupérer l'id
+  function getId() {
+    //Variable pour récupérer l'id dans l'url, avec la propriété search
+    var PropsSearch = location.search; //ex.:?id=60577b93a453cb7841a5ed40
+    var stringId = PropsSearch.replace("?id=", "");
+    console.log("PropsSearch" + PropsSearch);
+    console.log("stringId" + stringId);
+    return stringId;
+  }
+  //Fonction pour ajuster l'url lors de l'appel à l'API, avec ID pour affichage des détails ou sans Id pour afficher la liste des demandes
+  useEffect(() => {
+    //appelle la fonction getDemandesStage
+    getDetailsOffre();
+  }, {});
+  //Fonction pour l'appel à l'API
+
+  async function getDetailsOffre() {
+    var idChoosen = getId();
+    console.log("search props" + location.search);
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API +
+          process.env.REACT_APP_OFFRES +
+          "/" +
+          idChoosen
+      );
+      const reponseDeApi = await response.json();
+      setObjetRecu(reponseDeApi);
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreur
+      console.log(error);
+    }
+  }
   return (
     <Container fluid className="details">
       {/*En-tête de formation */}
@@ -22,7 +64,7 @@ function OffreDetails() {
           <Container fluid>
             <Row>
               <Col lg={12} className="text-left mb-5">
-                <h4>Nom du type de travail</h4>
+                <h4>{objetRecu.titre}</h4>
               </Col>
             </Row>
             <Row>

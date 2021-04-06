@@ -42,12 +42,7 @@ function EnTete(props) {
             {ls.get("nom") ? (
               <>
                 <Link
-                  to={
-                    "admin/" +
-                    ls.get("nom") +
-                    "?niveau=" +
-                    ls.get("niveau").toString()
-                  }
+                  to={"admin/" + ls.get("nom") + "?niveau=" + ls.get("niveau")}
                   className="text-light my-auto"
                 >
                   <h4>

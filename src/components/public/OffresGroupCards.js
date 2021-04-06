@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 import OffreCarte from "./OffreCarte";
@@ -19,7 +19,9 @@ function OffresGroupCards() {
   //Fonction pour l'appel à l'API
   async function getOffresStage() {
     try {
-      const response = await fetch("http://localhost:3002/offresstage/");
+      const response = await fetch(
+        process.env.REACT_APP_API + process.env.REACT_APP_OFFRES
+      );
       const reponseDeApi = await response.json();
       setDonneesRecues(reponseDeApi);
       if (!response.ok) {
@@ -47,14 +49,14 @@ function OffresGroupCards() {
       </Row>
       {/* Cards (4) des offres en vedette */}
       <Row className="m-5 text-center">
-        {Object.keys(donneesRecues).map((key) => (
+        {donneesRecues.map((item) => (
           <Col lg={3}>
             <OffreCarte
-              id={key.id}
-              key={key.id}
-              titre={key.titre}
-              entreprise={key.entreprise}
-              description={key.description}
+              id={item._id}
+              key={"keyOffre" + item._id}
+              titre={item.titre}
+              entreprise={item.entreprise}
+              description={item.description}
             ></OffreCarte>
           </Col>
         ))}
@@ -62,11 +64,11 @@ function OffresGroupCards() {
       {/* Bouton voir toutes les offres de stage */}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <NavLink to="offresstage">
-            <Button size="md" variant="danger">
+          <Button texte="Voir tous les candidats" className="btn btn-danger">
+            <Link to="/offresstage" className="text-light">
               Voir toutes les offres de stage
-            </Button>
-          </NavLink>
+            </Link>
+          </Button>
         </Col>
       </Row>
     </Container>

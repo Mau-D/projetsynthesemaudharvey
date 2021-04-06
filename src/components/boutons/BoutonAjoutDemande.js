@@ -14,7 +14,7 @@ function BoutonAjoutDemande() {
       to={
         "ajout/" + ls.get("nom").toString() + "?id=" + ls.get("id").toString()
       }
-      className="btn-md btn-light ajoutDemande"
+      className="btn btn-light ajoutDemande p-2"
     >
       <IoMdAdd /> Ajouter une demande de stage
     </Link>

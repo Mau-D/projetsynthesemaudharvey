@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import DemandesGroupCards from "../components/public/DemandesGroupCards";
+import OffresGroupCards from "../components/public/OffresGroupCards";
 import EnTete from "../components/public/EnTete";
 import LiensEmploiListe from "../components/public/LiensEmploiListe";
 //import OffresGroupCards from "../components/public/OffresGroupCards";
@@ -42,7 +43,7 @@ function Accueil() {
       {/* Demande de stage sous forme de cards */}
       <Row className="m-5">
         <Col lg={12}>
-          <DemandesGroupCards></DemandesGroupCards>
+          <OffresGroupCards></OffresGroupCards>
         </Col>
       </Row>
       {/* Publication de demande de stage */}

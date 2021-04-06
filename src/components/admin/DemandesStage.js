@@ -33,7 +33,7 @@ function DemandesStage(props) {
     }
     console.log(donneesRecues);
   }
-
+  console.log("idetudiant" + ls.get("id"));
   return (
     <Container fluid className="h-100 mr-5">
       <Row className="mb-5">
@@ -47,7 +47,7 @@ function DemandesStage(props) {
       {/*Affiche seulement les demandes de l'étudiant*/}
       <Row>
         {donneesRecues.map((item) =>
-          props.acces === "111" && item.etudiant === ls.get("id") ? (
+          item.etudiant === ls.get("id") ? (
             <Col lg={12}>
               <DemandeStageCarte
                 key={"keyCardDemandeEtudiant" + item._id}

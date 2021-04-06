@@ -31,7 +31,7 @@ function DemandesStageListe(props) {
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getDemandesStage();
-  }, donneesRecues);
+  }, []);
   //Fonction pour la recherche par secteur
   //useEffect(() => {
   //  function handleSecteur(status) {
@@ -45,7 +45,7 @@ function DemandesStageListe(props) {
     donneesRecues.sort(function (a, b) {
       a = new Date(a.dateParution);
       b = new Date(b.dateParution);
-      return b > a ? -1 : a < b ? 1 : 0;
+      return b < a ? -1 : a > b ? 1 : 0;
     });
     return chargertout
       ? donneesRecues

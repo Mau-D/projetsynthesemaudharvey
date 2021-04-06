@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Redirect } from "react-router";
 //Pour le jeton de session
-import { login } from "../../utils/index";
+import { login, logout } from "../../utils/index";
 
 // Hook pour le bouton Trouvez votre stage
 function FormulaireConnexion() {
@@ -62,15 +62,17 @@ function FormulaireConnexion() {
         console.log("L'utilisateur existe");
         utilisateurExistant = true;
         //Local storage pour le niveau d'acces et l'identifiant
-        ls.set("niveau", item.niveau);
+        ls.set("niveau", item.niveau.toString());
         ls.set("id", item._id);
       }
     });
     if (utilisateurExistant) {
       setUserTrue("true");
       console.log("niveau " + ls.get("niveau"));
+      login();
     } else {
       alert("L'utilisateur n'existe pas");
+      logout();
     }
   }
 
