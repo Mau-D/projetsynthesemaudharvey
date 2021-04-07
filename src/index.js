@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css"; //Dépendance ajouté pour l'int�
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
+  <Router basename="/projetsynthesemaudharvey/build">
     <App />
   </Router>,
   document.getElementById("root")

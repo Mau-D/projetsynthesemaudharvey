@@ -22,7 +22,9 @@ function PiedDePage() {
               </NavItem>
 
               <NavItem>
-                <Link to="/apropos">À propos</Link>
+                <Link to="/apropos" className="apropos">
+                  À propos
+                </Link>
               </NavItem>
 
               <NavItem>

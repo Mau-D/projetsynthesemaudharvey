@@ -14,6 +14,7 @@ Array [
         variant="light"
       >
         <Link
+          className="accueil"
           to="/"
         >
           <img

@@ -22,7 +22,7 @@ function EnTete(props) {
       {/* Menu avec logo et bouton, navbar collapsible */}
       <Row className="d-flex">
         <Navbar className="w-100 mx-5" collapseOnSelect expand="lg">
-          <Link to="/">
+          <Link to="/" className="accueil">
             <img src={logo} alt="logo" />
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
