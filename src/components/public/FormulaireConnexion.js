@@ -97,11 +97,7 @@ function FormulaireConnexion() {
       </Form>
 
       {userTrue ? (
-        <Redirect
-          to={
-            "admin/" + ls.get("nom") + "?niveau=" + ls.get("niveau").toString()
-          }
-        />
+        <Redirect to={"admin/?niveau=" + ls.get("niveau").toString()} />
       ) : (
         <Redirect to="/accescompte" />
       )}

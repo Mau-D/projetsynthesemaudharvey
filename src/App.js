@@ -61,7 +61,7 @@ function App() {
           {/*Dans la recherche du stage, le lien détails affiche la section détaillée de l'offre de stage au lieu de la liste*/}
           <Route path="/offresstage/:entreprise" component={OffresStageListe} />
           {/*Dans l'entête et dans les sections des publications, lien pour la page affichant des formulaires pour la connexion ou l'inscription*/}
-          <Route path="/accescompte/" component={AccesCompte} />
+          <Route path="/accescompte" component={AccesCompte} />
           {/*Formulaire d'édition d'une demande avec l'id de la demande en paramètre*/}
           <Route path="/admin/edition/:demandeId" component={FormEditDemande} />
           {/*Formulaire d'ajout d'une demande, id de l'utilisateur en paramètre*/}
