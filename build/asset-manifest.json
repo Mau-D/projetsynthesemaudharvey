@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/projetsynthesemaudharvey/build/static/css/main.3417dabf.chunk.css",
+    "main.js": "/projetsynthesemaudharvey/build/static/js/main.e55658aa.chunk.js",
+    "main.js.map": "/projetsynthesemaudharvey/build/static/js/main.e55658aa.chunk.js.map",
+    "runtime-main.js": "/projetsynthesemaudharvey/build/static/js/runtime-main.d6c75f13.js",
+    "runtime-main.js.map": "/projetsynthesemaudharvey/build/static/js/runtime-main.d6c75f13.js.map",
+    "static/css/2.0f8c0539.chunk.css": "/projetsynthesemaudharvey/build/static/css/2.0f8c0539.chunk.css",
+    "static/js/2.4d99ac1f.chunk.js": "/projetsynthesemaudharvey/build/static/js/2.4d99ac1f.chunk.js",
+    "static/js/2.4d99ac1f.chunk.js.map": "/projetsynthesemaudharvey/build/static/js/2.4d99ac1f.chunk.js.map",
+    "static/js/3.b4db19e3.chunk.js": "/projetsynthesemaudharvey/build/static/js/3.b4db19e3.chunk.js",
+    "static/js/3.b4db19e3.chunk.js.map": "/projetsynthesemaudharvey/build/static/js/3.b4db19e3.chunk.js.map",
+    "index.html": "/projetsynthesemaudharvey/build/index.html",
+    "static/css/2.0f8c0539.chunk.css.map": "/projetsynthesemaudharvey/build/static/css/2.0f8c0539.chunk.css.map",
+    "static/css/main.3417dabf.chunk.css.map": "/projetsynthesemaudharvey/build/static/css/main.3417dabf.chunk.css.map",
+    "static/js/2.4d99ac1f.chunk.js.LICENSE.txt": "/projetsynthesemaudharvey/build/static/js/2.4d99ac1f.chunk.js.LICENSE.txt",
+    "static/media/main.sass": "/projetsynthesemaudharvey/build/static/media/forcesavenir.c91338d4.svg",
+    "static/media/centraide.51a82720.svg": "/projetsynthesemaudharvey/build/static/media/centraide.51a82720.svg",
+    "static/media/livre.c41f717c.svg": "/projetsynthesemaudharvey/build/static/media/livre.c41f717c.svg",
+    "static/media/logo.aba72659.svg": "/projetsynthesemaudharvey/build/static/media/logo.aba72659.svg",
+    "static/media/logoNoir.07aadfe1.svg": "/projetsynthesemaudharvey/build/static/media/logoNoir.07aadfe1.svg",
+    "static/media/publicationDemande.ac333dac.svg": "/projetsynthesemaudharvey/build/static/media/publicationDemande.ac333dac.svg",
+    "static/media/publicationOffre.60176320.svg": "/projetsynthesemaudharvey/build/static/media/publicationOffre.60176320.svg",
+    "static/media/renojouets.0cfe85bd.svg": "/projetsynthesemaudharvey/build/static/media/renojouets.0cfe85bd.svg",
+    "static/media/schema.9f724492.svg": "/projetsynthesemaudharvey/build/static/media/schema.9f724492.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6c75f13.js",
+    "static/css/2.0f8c0539.chunk.css",
+    "static/js/2.4d99ac1f.chunk.js",
+    "static/css/main.3417dabf.chunk.css",
+    "static/js/main.e55658aa.chunk.js"
+  ]
+}
