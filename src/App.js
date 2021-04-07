@@ -21,7 +21,7 @@ import FormAjoutDemande from "./components/admin/FormAjoutDemande";
 
 function App() {
   var ls = require("local-storage");
-  console.log("nomlocalstorage" + ls.get("nom"));
+
   return (
     <>
       <ToastContainer

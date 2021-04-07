@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Entete should render my component 1`] = `
+Array [
+  <React.Fragment>
+    <Row
+      className="d-flex"
+      noGutters={false}
+    >
+      <Navbar
+        className="w-100 mx-5"
+        collapseOnSelect={true}
+        expand="lg"
+        variant="light"
+      >
+        <Link
+          to="/"
+        >
+          <img
+            alt="logo"
+            src="logo.svg"
+          />
+        </Link>
+        <NavbarToggle
+          aria-controls="responsive-navbar-nav"
+          label="Toggle navigation"
+        />
+        <NavbarCollapse
+          id="responsive-navbar-nav"
+        >
+          <Nav
+            className="mr-auto ml-5"
+            fill={false}
+            justify={false}
+          >
+            <BoutonListeDemandes
+              classStyle="btn btn-success"
+              texte="Trouvez votre stage"
+            />
+            <BoutonListeDemandes
+              classStyle="btn btn-success"
+              texte="Trouvez votre stagiaire"
+            />
+          </Nav>
+          <Nav
+            fill={false}
+            justify={false}
+          >
+            <Link
+              to="/accescompte/connexion"
+            >
+              <BoutonConnexion />
+            </Link>
+            <Link
+              to="/accescompte/inscription"
+            >
+              <BoutonInscription
+                labelBouton="Inscription"
+              />
+            </Link>
+          </Nav>
+        </NavbarCollapse>
+      </Navbar>
+    </Row>
+    <Row
+      className="d-flex"
+      noGutters={false}
+    >
+      <Col
+        lg={12}
+      >
+        <RechercheTrouverVotreStage />
+      </Col>
+    </Row>
+    <Row
+      className="ml-5 d-flex"
+      noGutters={false}
+    >
+      <Col
+        className="ml-5"
+        lg={12}
+      >
+        <h1
+          className="text-light"
+        />
+      </Col>
+    </Row>
+  </React.Fragment>,
+]
+`;
