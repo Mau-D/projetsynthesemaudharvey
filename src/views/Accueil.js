@@ -14,7 +14,6 @@ import UtilisationSchema from "../components/public/UtilisationSchema";
 function Accueil() {
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
-  console.log("accueil" + ls.get("nom"));
   return (
     <Container fluid className="h-100">
       {/* Banniere */}

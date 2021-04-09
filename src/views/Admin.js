@@ -137,7 +137,7 @@ function Admin(props) {
         <Col lg={2} className="fondBleu">
           <Nav variant="tabs" className="flex-column">
             <Link to="/">
-              <img src={logo} alt="logo" className="w-100 mb-5" />
+              <img src={logo} alt="logo" className="w-100 mb-5 logo" />
             </Link>
             {/*Le menu du dashboard s'affiche seulement pour l'administrateur */}
             {searchString === "999" ? (

@@ -21,7 +21,6 @@ describe("PiedDePage", () => {
     });
     const link = pageFooter.find(".apropos");
 
-    //cas erreur, vérifie que le lien ne conduit pas à la page d'accueil
     expect(link.prop("to")).not.toBe("/apropos");
   });
 });

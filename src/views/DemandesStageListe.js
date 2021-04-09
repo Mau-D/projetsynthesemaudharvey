@@ -126,7 +126,7 @@ function DemandesStageListe(props) {
               {!chargertout ? (
                 <Button
                   variant="danger"
-                  className="mt-5"
+                  className="mt-5 boutonCharger"
                   onClick={() => setChargertout(true)}
                 >
                   Charger plus

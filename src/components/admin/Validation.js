@@ -40,7 +40,7 @@ function Validation() {
       <Row className="mb-5">
         {/*Titre */}
         <Col lg={12}>
-          <h1>En attente de validation</h1>
+          <h1 className="titre">En attente de validation</h1>
         </Col>
         <Col lg={6}>
           <h3 className="d-inline">

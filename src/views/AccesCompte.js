@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-//import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import EnTete from "../components/public/EnTete";
 import LiensEmploiListe from "../components/public/LiensEmploiListe";
@@ -11,36 +11,19 @@ import FormulaireInscription from "../components/public/FormulaireInscription";
 
 // Hook pour les formulaires de connexion ou d'inscription à un compte
 function AccesCompte() {
+  //Variable pour le choix de l'affichage du formulaire
+  const [formulaire, setFormulaire] = useState("");
   //Variable pour connaître à quelle endroit nous sommes, pour aller chercher des informations dans l'url
-  //let location = useLocation(); /*variable de la page où je me trouve */
-  //console.log("accesCompte" + location.pathname);
-  function affichageFormulaire() {
-    ////if (location.pathname == "/accescompte/connexion") {
-    //return (
-    ///  <Col lg={8} className="text-left py-auto mx-auto">
-    <FormulaireConnexion></FormulaireConnexion>;
-    // </Col>
-    // );
-    // } else if (location.pathname == "/accescompte/inscription") {
-    // return (
-    //    <Col lg={8} className="text-left my-auto px-5  mx-auto">
-    //      <FormulaireInscription></FormulaireInscription>
-    //    </Col>
-    //  );
-    // } else {
-    return (
-      <>
-        <Col lg={4} className="text-left py-auto mx-auto">
-          <FormulaireConnexion></FormulaireConnexion>
-        </Col>
+  let location = useLocation(); /*variable de la page où je me trouve */
+  console.log("accesCompte= " + location.pathname);
+  useEffect(() => {
+    if (location.pathname == "/accescompte/connexion") {
+      setFormulaire("connexion");
+    } else if (location.pathname == "/accescompte/inscription") {
+      setFormulaire("inscription");
+    }
+  });
 
-        <Col lg={8} className="text-left my-auto px-5  mx-auto">
-          <FormulaireInscription></FormulaireInscription>
-        </Col>
-      </>
-    );
-    //}
-  }
   return (
     <Container fluid className="h-100">
       {/* Banniere */}
@@ -50,12 +33,21 @@ function AccesCompte() {
             fluid
             className="h-100 d-flex flex-column justify-content-between bannierePropos"
           >
-            <EnTete titre="Accéder à votre compte"></EnTete>
+            <EnTete
+              titre="Accéder à votre compte"
+              formulaire={formulaire}
+            ></EnTete>
           </Container>
         </Col>
       </Row>
-      {/*Formulaires*/}
-      <Row className="m-5">{affichageFormulaire()}</Row>
+      {/*Formulaire*/}
+      <Row className="m-5">
+        {formulaire == "connexion" ? (
+          <FormulaireConnexion />
+        ) : (
+          <FormulaireInscription />
+        )}
+      </Row>
       {/* Image et texte */}
       <Row className="bg-dark mx-5 text-light">
         <Col lg={12} className="p-0">

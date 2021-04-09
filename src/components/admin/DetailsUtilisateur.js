@@ -65,10 +65,6 @@ function DetailsUtilisateur(props) {
             <BsPencilSquare className="vert mx-1" />
             Modifier
           </Button>
-          <Button variant="light" className="m-2">
-            <TiDelete className="rouge mx-1" />
-            Supprimer
-          </Button>
         </Col>
       </Row>
       <Row className="bordureBleu p-3">

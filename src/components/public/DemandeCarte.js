@@ -6,8 +6,6 @@ import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les cards des demandes de stage
 function DemandeCarte(props) {
-  console.log("date de parution= " + props.date);
-
   return (
     <Card className="w-100 text-justify mb-4" style={{ width: "18rem" }}>
       <Container fluid>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
 import { logout } from "../../utils/index";
+import { useLocation } from "react-router-dom";
 
-import BoutonConnexion from "../boutons/BoutonConnexion";
 import BoutonInscription from "../boutons/BoutonInscription";
 import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
 import BoutonListeDemandes from "../boutons/BoutonListeDemandes";
@@ -15,8 +15,13 @@ import { BsBoxArrowRight } from "react-icons/bs";
 
 // Hook pour la bannière
 function EnTete(props) {
+  const [formulaire, setFormulaire] = useState("");
+  let location = useLocation(); /*variable de la page où je me trouve */
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
+  useEffect(() => {
+    setFormulaire(props.formulaire);
+  });
   return (
     <>
       {/* Menu avec logo et bouton, navbar collapsible */}
@@ -62,10 +67,12 @@ function EnTete(props) {
                   </h1>
                 </Link>
               </>
-            ) : (
+            ) : formulaire !== "connexion" && formulaire !== "inscription" ? (
               <Nav>
                 <Link to="/accescompte/connexion">
-                  <BoutonConnexion></BoutonConnexion>
+                  <Button size="md" variant="light">
+                    Connexion
+                  </Button>
                 </Link>
                 <Link to="/accescompte/inscription">
                   <BoutonInscription
@@ -73,7 +80,7 @@ function EnTete(props) {
                   ></BoutonInscription>
                 </Link>
               </Nav>
-            )}
+            ) : null}
           </Navbar.Collapse>
         </Navbar>
       </Row>
