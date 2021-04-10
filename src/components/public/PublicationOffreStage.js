@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 
 import publicationOffre from "../../img/publicationOffre.svg";
 
@@ -9,11 +8,11 @@ function PublicationOffreStage() {
   return (
     <Container fluid className="p-0">
       <Row className="p-0">
-        <Col lg={6} className="p-0">
+        <Col xs={12} md={6} className="p-0">
           <Image fluid src={publicationOffre} />
         </Col>
-        <Col lg={6} className="p-0 my-auto">
-          <div className="text-left w-50 mx-auto">
+        <Col xs={12} md={6} className="p-0 my-auto">
+          <div className="text-left p-2  w-md-50  mx-auto">
             <h1 className="mb-5">Pourquoi publier une offre de stage?</h1>
             <p>
               Pellentesque vehicula fermentum turpis eu cursus. Cras convallis

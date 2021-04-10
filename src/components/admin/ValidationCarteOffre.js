@@ -29,20 +29,9 @@ function ValidationCarteOffre() {
         <Col lg={12}>texte</Col>
       </Row>
       <Row>
-        <Col lg={12}>
-          <div className="w-100 d-flex flex-row justify-content-between">
-            <div>
-              <div>
-                <Link to="" className="btn btn-primary">
-                  Détails
-                </Link>
-              </div>
-            </div>
-            <div className="text-right d-inline">
-              <Button className="refuser m-2">Refuser</Button>
-              <Button className="accepter m-2">Accepter</Button>
-            </div>
-          </div>
+        <Col lg={12} className="text-right d-inline">
+          <Button className="refuser m-2">Refuser</Button>
+          <Button className="accepter m-2">Accepter</Button>
         </Col>
       </Row>
     </Container>

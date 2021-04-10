@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Moment from "moment";
 
 import DemandeCarte from "./DemandeCarte";
 import BoutonListe from "../boutons/BoutonListe";
@@ -36,8 +37,8 @@ function DemandesGroupCards() {
   }
   return (
     <Container fluid className="m-4">
-      <Row className="w-50 mx-auto text-center m-2">
-        <Col lg={12}>
+      <Row className="w-md-50 mx-auto text-center m-2">
+        <Col sm={12}>
           <h2 className="mb-5">Votre futur stagiaire se trouve ici.</h2>
           <p>
             Pellentesque vehicula fermentum turpis eu cursus. Cras convallis
@@ -47,7 +48,7 @@ function DemandesGroupCards() {
       </Row>
       {/* Cards  des demandes en vedette */}
 
-      <Row className="m-5 text-center">
+      <Row className="m-1 text-center">
         {/*Filtre pour afficher seulement les demandes avec le paramètre vedette = true */}
         {donneesRecues
           .filter(
@@ -58,20 +59,22 @@ function DemandesGroupCards() {
               !donnee.supprime
           )
           .map((item) => (
-            <Col lg={3} key={"demandeCard" + item._id}>
+            <Col xs={12} md={6} lg={4} className="mt-2">
               <DemandeCarte
+                key={"demandeCard" + item._id}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}
                 formation={item.programmeSuivi}
                 description={item.description}
+                dateParution={Moment(item.dateParution).format("DD-MM-YYYY")}
               ></DemandeCarte>
             </Col>
           ))}
       </Row>
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">
-        <Col lg={12} className="mx-auto">
+        <Col sm={12} className="mx-auto">
           <BoutonListe
             texte="Voir tous les candidats"
             classStyle="btn btn-danger"

@@ -12,8 +12,8 @@ function RechercheTrouverVotreStage() {
         </Col>
       </Row>
       {/* Button adons pour la barre de recherche */}
-      <Row className="w-50 mx-auto">
-        <Col lg={12}>
+      <Row className="mx-auto">
+        <Col sm={12} md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
           <InputGroup>
             <FormControl
               placeholder="Mot clé"

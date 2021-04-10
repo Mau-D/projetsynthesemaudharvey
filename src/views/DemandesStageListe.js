@@ -17,7 +17,6 @@ import SecteursActivite from "../components/public/SecteursActivite";
 function DemandesStageListe(props) {
   //Pour la recherche par secteur d'activité
   const [idSecteur, setIdSecteur] = useState("");
-  var objectIdToTimestamp = require("objectid-to-timestamp");
   //Constante pour les données reçues par l'API
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
   const [donneesRecues, setDonneesRecues] = useState([]);
@@ -98,7 +97,7 @@ function DemandesStageListe(props) {
     <Container fluid className="h-100">
       {/* Banniere */}
       <Row className="mb-5">
-        <Col lg={12} className="p-0">
+        <Col xs={12} className="p-0">
           <Container
             fluid
             className="d-flex flex-column justify-content-between banniereDemandes"
@@ -110,7 +109,11 @@ function DemandesStageListe(props) {
       {/* Liste des candidats */}
       {/*Un affichage conditionnel, si l'url contient un search (?id=) afficher la section détails de la carte sélectionné sinon afficher la liste des cartes*/}
       <Row className="m-5">
-        <Col lg={8} className="pr-5 text-center">
+        <Col
+          xs={{ span: 12, order: 2 }}
+          md={{ span: 8, order: 1 }}
+          className="pr-5 text-center"
+        >
           {props.location.search !== "" ? (
             <DemandeDetails id={donneesRecues._id}></DemandeDetails>
           ) : (
@@ -130,7 +133,7 @@ function DemandesStageListe(props) {
           )}
         </Col>
         {/* Liste des secteurs d'activités */}
-        <Col lg={4}>
+        <Col xs={{ span: 12, order: 1 }} md={{ spna: 4, order: 2 }}>
           <SecteursActivite></SecteursActivite>
           <h1>{idSecteur}</h1>
         </Col>
@@ -155,19 +158,19 @@ function DemandesStageListe(props) {
       </Row>
       {/* bannière publicitaire */}
       <Row className="m-5 bkg-dark bannierePub">
-        <Col lg={12} className="m-5">
-          {/***************background d'une image de publicité, voir si ajouter le lien pour postuler */}
+        <Col xs={12} className="m-5">
+          {/*background d'une image de publicité, voir si ajouter le lien pour postuler */}
         </Col>
       </Row>
-      {/* Liens des demandes par titre d'emploi */}
+      {/* Liens des demandes par titre d'emploi
       <Row>
         <Col xs={12} className="p-0">
           <LiensEmploiListe></LiensEmploiListe>
         </Col>
-      </Row>
+      </Row> */}
       {/* Pied de page*/}
-      <Row className="p-5">
-        <Col xs={12} className="p-5">
+      <Row className="text-center">
+        <Col xs={12} className="pb-5">
           <PiedDePage></PiedDePage>
         </Col>
       </Row>

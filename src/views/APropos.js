@@ -17,7 +17,7 @@ function APropos() {
     <Container fluid className="h-100">
       {/* Banniere */}
       <Row className="mb-5">
-        <Col lg={12} className="p-0 banniereAPropos">
+        <Col xs={12} className="p-0 banniereAPropos">
           {/*Trouver un moyen de changer le background image */}
           <Container
             fluid
@@ -28,11 +28,11 @@ function APropos() {
         </Col>
       </Row>
       {/*Texte de présentation avec logo*/}
-      <Row className="m-5">
-        <Col lg={6} className="text-center py-auto">
-          <img src={logoNoir} alt="logo" />
+      <Row className="mx-auto">
+        <Col xs={12} md={6} className="text-center py-auto">
+          <Image fluid src={logoNoir} alt="logo" />
         </Col>
-        <Col lg={6} className="my-auto px-5">
+        <Col xs={12} md={6} className="my-auto">
           <p className="pt-5">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
             bibendum ex in ante condimentum, ac pellentesque elit condimentum.
@@ -48,13 +48,13 @@ function APropos() {
         </Col>
       </Row>
       {/* Valeurs*/}
-      <Row className="m-5">
-        <Col lg={12} className="p-0">
+      <Row className="mx-auto">
+        <Col xs={12} className="p-0">
           <Container fluid>
             <Row className="text-center">
-              <Col lg={4}>
+              <Col xs={12} md={4}>
                 <Image fluid src={forcesavenir} />
-                <h4 className="m-4">FORCES AVENIR</h4>
+                <h4 className="m-lg-4">FORCES AVENIR</h4>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                   bibendum ex in ante condimentum, ac pellentesque elit
@@ -64,9 +64,9 @@ function APropos() {
                   vitae quis lorem.
                 </p>
               </Col>
-              <Col lg={4}>
+              <Col xs={12} md={4}>
                 <Image fluid src={centraide} />
-                <h4 className="m-4">CENTRAIDE</h4>
+                <h4 className="m-lg-4">CENTRAIDE</h4>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                   bibendum ex in ante condimentum, ac pellentesque elit
@@ -76,9 +76,9 @@ function APropos() {
                   vitae quis lorem.
                 </p>
               </Col>
-              <Col lg={4}>
+              <Col xs={12} md={4}>
                 <Image fluid src={renojouets} />
-                <h4 className="m-4">FONDATION RÉNO-JOUETS</h4>
+                <h4 className="m-lg-4">FONDATION RÉNO-JOUETS</h4>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                   bibendum ex in ante condimentum, ac pellentesque elit
@@ -93,12 +93,12 @@ function APropos() {
         </Col>
       </Row>
       {/*Texte*/}
-      <Row className="mx-5 mt-5 text-light  fondBleu">
+      <Row className="mx-auto mt-5 text-light fondBleu">
         <Col lg={12} className="p-5">
-          <h3 className="px-5">
+          <h3 className="p-md-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </h3>
-          <h4 className="p-5">
+          <h4 className=" p-md-auto">
             Etiam mattis est in tellus mattis maximus. Etiam non molestie metus.
             Donec quis mauris metus. Cras tempor varius odio, nec varius nisi
             sollicitudin ac. Praesent vitae elementum augue, non suscipit
@@ -110,23 +110,23 @@ function APropos() {
         </Col>
       </Row>
       {/* Image et texte */}
-      <Row className="bg-dark mx-5 text-light">
-        <Col lg={12} className="p-0">
+      <Row className="bg-dark mx-auto text-light">
+        <Col xs={12} className="p-0">
           <ImageTexte></ImageTexte>
         </Col>
       </Row>
       {/* bannière publicitaire */}
       <Row className="m-5 bkg-dark bannierePub">
-        <Col lg={12} className="m-5">
+        <Col xs={12} className="m-5">
           {/***************background d'une image de publicité, voir si ajouter le lien pour postuler */}
         </Col>
       </Row>
-      {/* Liens des demandes par titre d'emploi */}
+      {/* Liens des demandes par titre d'emploi
       <Row>
         <Col lg={12} className="p-0">
           <LiensEmploiListe></LiensEmploiListe>
         </Col>
-      </Row>
+      </Row> */}
       {/* Pied de page*/}
       <Row className="p-5">
         <Col lg={12} className="p-5">

@@ -82,7 +82,7 @@ function OffresStageListe(props) {
     <Container fluid className="h-100">
       {/* Banniere */}
       <Row className="mb-5">
-        <Col lg={12} className="p-0">
+        <Col xs={12} className="p-0">
           <Container
             fluid
             className="d-flex flex-column justify-content-between banniereDemandes"
@@ -93,7 +93,11 @@ function OffresStageListe(props) {
       </Row>
       {/* Liste des entreprises */}
       <Row className="mb-5">
-        <Col lg={8} className="pr-5 text-center">
+        <Col
+          xs={{ span: 12, order: 2 }}
+          md={{ span: 8, order: 1 }}
+          className="pr-5 text-center"
+        >
           {props.location.search !== "" ? (
             <OffreDetails id={donneesRecues._id}></OffreDetails>
           ) : (
@@ -114,7 +118,7 @@ function OffresStageListe(props) {
         </Col>
 
         {/* Liste des secteurs d'activités */}
-        <Col lg={4}>
+        <Col xs={{ span: 12, order: 1 }} md={{ spna: 4, order: 2 }}>
           <SecteursActivite></SecteursActivite>
         </Col>
       </Row>
@@ -139,18 +143,18 @@ function OffresStageListe(props) {
       {/* bannière publicitaire */}
       <Row className="m-5 bkg-dark bannierePub">
         <Col lg={12} className="m-5">
-          {/***************background d'une image de publicité, voir si ajouter le lien pour postuler */}
+          {/*background d'une image de publicité, voir si ajouter le lien pour postuler */}
         </Col>
       </Row>
-      {/* Liens des demandes par titre d'emploi */}
+      {/* Liens des demandes par titre d'emploi 
       <Row>
         <Col xs={12} className="p-0">
           <LiensEmploiListe></LiensEmploiListe>
         </Col>
-      </Row>
+      </Row>*/}
       {/* Pied de page*/}
-      <Row className="p-5">
-        <Col xs={12} className="p-5">
+      <Row className="text-center">
+        <Col xs={12} className="pb-5">
           <PiedDePage></PiedDePage>
         </Col>
       </Row>

@@ -36,7 +36,7 @@ function OffresGroupCards() {
   }
   return (
     <Container fluid className="m-4">
-      <Row className="w-50 mx-auto text-center m-2">
+      <Row className="w-md-50 mx-auto text-center m-2">
         <Col lg={12}>
           <h2 className="mb-5">
             Tu es à la recherche de ton stage de fin d'études?
@@ -48,13 +48,13 @@ function OffresGroupCards() {
         </Col>
       </Row>
       {/* Cards des offres en vedette */}
-      <Row className="m-5 text-center">
+      <Row className="m-1 text-center">
         {/*Filtre pour afficher seulement les offres avec le paramètre vedette = true */}
 
         {donneesRecues
           .filter((donnee) => donnee.vedette && donnee.verifie && donnee.actif)
           .map((item) => (
-            <Col lg={3}>
+            <Col xs={12} md={6} lg={4} className="mt-2">
               <OffreCarte
                 id={item._id}
                 key={"keyOffre" + item._id}

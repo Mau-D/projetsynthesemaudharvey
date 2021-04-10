@@ -221,21 +221,14 @@ function ValidationCarteDemande(props) {
           </Col>
         </Row>
         <Row>
-          <Col lg={12}>
-            <div className="w-100 d-flex flex-row justify-content-between">
-              <div>
-                <Link to="" className="btn btn-primary">
-                  Détails
-                </Link>
-              </div>
-              <div className="text-right d-inline">
-                <Button className="m-2 refuser" onClick={refuserValidation}>
-                  Refuser
-                </Button>
-                <Button className="m-2 accepter" onClick={accepterValidation}>
-                  Accepter
-                </Button>
-              </div>
+          <Col lg={12} className="text-right d-inline">
+            <div>
+              <Button className="m-2 refuser" onClick={refuserValidation}>
+                Refuser
+              </Button>
+              <Button className="m-2 accepter" onClick={accepterValidation}>
+                Accepter
+              </Button>
             </div>
           </Col>
         </Row>

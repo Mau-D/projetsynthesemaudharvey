@@ -25,12 +25,12 @@ function EnTete(props) {
   return (
     <>
       {/* Menu avec logo et bouton, navbar collapsible */}
-      <Row className="d-flex">
-        <Navbar className="w-100 mx-5" collapseOnSelect expand="lg">
+      <Row className="d-flex ">
+        <Navbar className="w-100 mx-5 navbar-dark" collapseOnSelect expand="lg">
           <Link to="/" className="accueil">
             <img src={logo} alt="logo" />
           </Link>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav " />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto ml-5">
               <BoutonListe
@@ -86,14 +86,14 @@ function EnTete(props) {
           </Navbar.Collapse>
         </Navbar>
       </Row>
-      {/* Titre et champs et bouton pour la recherche */}
+      {/* Titre et champs et bouton pour la recherche 
       <Row className="d-flex">
-        <Col lg={12}>
+        <Col xs={12}>
           <RechercheTrouverVotreStage></RechercheTrouverVotreStage>
         </Col>
-      </Row>
+      </Row>*/}
       <Row className="ml-5 d-flex">
-        <Col lg={12} className="ml-5">
+        <Col xs={12} className="ml-5">
           <h1 className="text-light">{props.titre}</h1>
         </Col>
       </Row>

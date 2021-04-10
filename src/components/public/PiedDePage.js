@@ -17,7 +17,6 @@ function PiedDePage() {
           <Navbar.Collapse>
             <Nav className="ml-auto">
               <NavItem>
-                {" "}
                 <Link to="/">Accueil</Link>
               </NavItem>
 
@@ -32,7 +31,6 @@ function PiedDePage() {
               </NavItem>
 
               <NavItem>
-                {" "}
                 <Link to="/contact">Nous joindre</Link>
               </NavItem>
 

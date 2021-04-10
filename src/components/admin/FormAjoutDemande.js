@@ -10,7 +10,9 @@ import { registerLocale, setDefaultLocale } from "react-datepicker";
 import fr from "date-fns/locale/fr-CA";
 registerLocale("fr", fr);
 /*Fonction pour l'édition d'une demande de stage*/
-function FormAjoutDemande() {
+function FormAjoutDemande(props) {
+  //Déclare une variable pour le local storage
+  var ls = require("local-storage");
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
   //Variable pour récupérer l'id dans l'url, avec la propriété search
@@ -101,9 +103,9 @@ function FormAjoutDemande() {
       );
       if (response.ok) {
         //const jsonResponse = await response.json();
-        // props.history.push(
-        //   "/trip/" + donneesRecues.nom + "?id=" + donneesRecues._id
-        //  ); //Retour à la page d'accueil
+        props.history.push(
+          "/admin/" + ls.get("nom") + "?niveau=" + ls.get("niveau")
+        ); //Retour à la page d'accueil
 
         return response;
       }
@@ -208,7 +210,7 @@ function FormAjoutDemande() {
               <Form.Group>
                 <select id="selectSecteurAdd" onChange={handleChangeSecteur}>
                   {secteurs.map((item) => (
-                    <option key={item.nom} value={item.nom}>
+                    <option key={item.nom} value={item._id}>
                       {item.nom}
                     </option>
                   ))}
@@ -336,16 +338,20 @@ function FormAjoutDemande() {
                   </option>
                 </select>
               </Form.Group>
+              <p className="mt-5">Pour l'administrateur</p>
               {/*ID de l'étudiant */}
               {/* Pour l'administrateur l'id est entré, pour l'étudiant la variable local ou le props */}
               <Form.Group controlId="etudiantAddId">
                 <Form.Label>ID de l'étudiant</Form.Label>
                 <Form.Control type="text" disabled />
               </Form.Group>
-              {/*Changer pour un checkbox */}
+              {/*accessible par l'administrateur*/}
               <Form.Group controlId="vedetteAddId">
-                <Form.Label>Demande vedette</Form.Label>
-                <Form.Control type="text" />
+                <Form.Check
+                  disabled
+                  type="checkbox"
+                  label="Demande en vedette"
+                />
               </Form.Group>
             </Form>
             <Button
@@ -363,5 +369,5 @@ function FormAjoutDemande() {
     </Container>
   );
 }
-
+FormAjoutDemande.defaultProps = { history: "/" };
 export default FormAjoutDemande;
