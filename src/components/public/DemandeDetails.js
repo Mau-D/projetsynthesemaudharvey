@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import Moment from "moment";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les informations d'une demande de stage en détails
 function DemandeDetails() {
@@ -53,7 +54,7 @@ function DemandeDetails() {
       {/*En-tête de formation */}
       <Row>
         {/*Logo de l'établissement d'études*/}
-        <Col lg={4} className="p-5 border border-secondary">
+        <Col lg={4} className="p-5">
           <Image
             fluid
             src="https://upload.wikimedia.org/wikipedia/fr/d/dd/C%C3%A9gep_Trois-Rivi%C3%A8res_Logo.jpg"
@@ -71,19 +72,16 @@ function DemandeDetails() {
             </Row>
             <Row>
               <Col lg={6} className="text-left">
-                <p>{objetRecu.dateDebut}</p>
-                <p>{objetRecu.dateFin}</p>
+                <p>{Moment(objetRecu.dateDebut).format("DD-MM-YYYY")}</p>
+                <p>{Moment(objetRecu.dateFin).format("DD-MM-YYYY")}</p>
               </Col>
               <Col lg={6} className="text-right">
                 <p>{objetRecu.type}</p>
-                <p>Possibilité d'emploi : 2021-09-11</p>
               </Col>
             </Row>
             <Row>
               <Col lg={12} className="w-100 mt-5">
-                <Button size="md" className="details">
-                  Détails
-                </Button>
+                <BoutonContactCandidat></BoutonContactCandidat>
               </Col>
             </Row>
           </Container>

@@ -93,12 +93,12 @@ function APropos() {
         </Col>
       </Row>
       {/*Texte*/}
-      <Row className="mx-5 mt-5 bg-primary text-light">
+      <Row className="mx-5 mt-5 text-light  fondBleu">
         <Col lg={12} className="p-5">
           <h3 className="px-5">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </h3>
-          <h4 className="p-5 fondBleu">
+          <h4 className="p-5">
             Etiam mattis est in tellus mattis maximus. Etiam non molestie metus.
             Donec quis mauris metus. Cras tempor varius odio, nec varius nisi
             sollicitudin ac. Praesent vitae elementum augue, non suscipit

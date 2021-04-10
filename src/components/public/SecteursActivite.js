@@ -34,15 +34,19 @@ function SecteursActivite(props) {
     console.log("secteurs" + donneesRecues);
   }
   return (
-    <div className="details">
-      <h4>Secteurs d'activité - (voir br)</h4>
+    <div className="details fondBleu">
+      <h4 className="text-light text-center">Secteurs d'activité </h4>
       <Table striped bordered hover size="sm">
         <tbody>
           {donneesRecues.map((item) => (
             <tr key={item.nom}>
               <td></td>
-              <td className="w-100">
-                <a href="#" onClick={() => setSecteurId(item.nom)}>
+              <td className="w-100 text-light">
+                <a
+                  className="text-light"
+                  href="#"
+                  onClick={() => setSecteurId(item.nom)}
+                >
                   {item.nom}
                 </a>
               </td>

@@ -23,11 +23,11 @@ function PublicationDemandeStage() {
               <li>Suspendisse tincidunt vulputate leo in sollicitudin</li>
               <li>Morbi sodales risus quis orci hendrerit semper</li>
             </ul>
-            <NavLink to="/accescompte">
+            {/*<NavLink to="/accescompte">
               <Button size="md" className="mt-3 publierDemande">
                 Publier une demande de stage maintenant
               </Button>
-            </NavLink>
+            </NavLink>*/}
           </div>
         </Col>
         <Col lg={6} className="p-0">

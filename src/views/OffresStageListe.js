@@ -87,7 +87,7 @@ function OffresStageListe(props) {
             fluid
             className="d-flex flex-column justify-content-between banniereDemandes"
           >
-            <EnTete titre="Candidats"></EnTete>
+            <EnTete titre="Offres de stage"></EnTete>
           </Container>
         </Col>
       </Row>

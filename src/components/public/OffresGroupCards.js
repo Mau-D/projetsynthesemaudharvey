@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import BoutonListe from "../boutons/BoutonListe";
+import { Container, Row, Col } from "react-bootstrap";
 
 import OffreCarte from "./OffreCarte";
 
@@ -47,28 +47,32 @@ function OffresGroupCards() {
           </p>
         </Col>
       </Row>
-      {/* Cards (4) des offres en vedette */}
+      {/* Cards des offres en vedette */}
       <Row className="m-5 text-center">
-        {donneesRecues.map((item) => (
-          <Col lg={3}>
-            <OffreCarte
-              id={item._id}
-              key={"keyOffre" + item._id}
-              titre={item.titre}
-              entreprise={item.entreprise}
-              description={item.description}
-            ></OffreCarte>
-          </Col>
-        ))}
+        {/*Filtre pour afficher seulement les offres avec le paramètre vedette = true */}
+
+        {donneesRecues
+          .filter((donnee) => donnee.vedette && donnee.verifie && donnee.actif)
+          .map((item) => (
+            <Col lg={3}>
+              <OffreCarte
+                id={item._id}
+                key={"keyOffre" + item._id}
+                titre={item.titre}
+                entreprise={item.entreprise}
+                description={item.description}
+              ></OffreCarte>
+            </Col>
+          ))}
       </Row>
       {/* Bouton voir toutes les offres de stage */}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <Button texte="Voir tous les candidats" className="btn btn-danger">
-            <Link to="/offresstage" className="text-light">
-              Voir toutes les offres de stage
-            </Link>
-          </Button>
+          <BoutonListe
+            texte="Voir toutes les offres"
+            classStyle="btn btn-danger"
+            lien="/offresstage"
+          ></BoutonListe>
         </Col>
       </Row>
     </Container>

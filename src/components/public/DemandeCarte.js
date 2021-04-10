@@ -10,16 +10,19 @@ function DemandeCarte(props) {
     <Card className="w-100 text-justify mb-4" style={{ width: "18rem" }}>
       <Container fluid>
         <Row>
-          <Col lg="8">
+          <Col lg={8}>
             <Card.Body>
               <Card.Title>{props.titre}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                {props.formation}
+                {props.ville}
               </Card.Subtitle>
+              <Card.Text>{props.formation}</Card.Text>
               <Card.Text>{props.description}</Card.Text>
               {/*Lien en incluant l'id de la carte sélectionnée pour afficher les détails */}
               <Link to={"/demandesstage/?id=" + props.id}>Détails</Link>
-              <BoutonContactCandidat></BoutonContactCandidat>
+              <BoutonContactCandidat
+                courriel={props.courriel}
+              ></BoutonContactCandidat>
             </Card.Body>
           </Col>
           <Col lg={4} className="p-0">

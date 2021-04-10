@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
 import DemandeCarte from "./DemandeCarte";
-import BoutonListeDemandes from "../boutons/BoutonListeDemandes";
+import BoutonListe from "../boutons/BoutonListe";
 
 // Hook pour l'affichage des demandes de stage en vedette
 function DemandesGroupCards() {
@@ -46,10 +45,10 @@ function DemandesGroupCards() {
           </p>
         </Col>
       </Row>
-      {/* Cards (4) des demandes en vedette */}
-      {/*Affichage des 4 demandes les plus récente, renverser le tableau et limiter au nombre de 4 */}
+      {/* Cards  des demandes en vedette */}
+
       <Row className="m-5 text-center">
-        {/*Filtre pour afficher seulement les demandes avec le paramèetre vedette = true */}
+        {/*Filtre pour afficher seulement les demandes avec le paramètre vedette = true */}
         {donneesRecues
           .filter(
             (donnee) =>
@@ -58,28 +57,26 @@ function DemandesGroupCards() {
               donnee.actif &&
               !donnee.supprime
           )
-          .map((item, i) =>
-            i < 4 ? (
-              <Col lg={3} key={"demandeCard" + item._id}>
-                <DemandeCarte
-                  id={item._id}
-                  titre={item.titre}
-                  formation={item.formation}
-                  description={item.description}
-                ></DemandeCarte>
-              </Col>
-            ) : null
-          )}
+          .map((item) => (
+            <Col lg={3} key={"demandeCard" + item._id}>
+              <DemandeCarte
+                id={item._id}
+                titre={item.titre}
+                ville={item.ville}
+                formation={item.programmeSuivi}
+                description={item.description}
+              ></DemandeCarte>
+            </Col>
+          ))}
       </Row>
       {/* Bouton voir tous les candidats*/}
       <Row className="text-center">
         <Col lg={12} className="mx-auto">
-          <BoutonListeDemandes
+          <BoutonListe
             texte="Voir tous les candidats"
             classStyle="btn btn-danger"
-          >
-            <Link to="/demandesstage"></Link>
-          </BoutonListeDemandes>
+            lien="/demandesstage"
+          ></BoutonListe>
         </Col>
       </Row>
     </Container>

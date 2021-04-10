@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Hook pour le bouton pour afficher la liste des demandes de stage
-function BoutonListeDemandes(props) {
+function BoutonListe(props) {
   return (
     <>
-      <Link exact to={"/demandesstage"} size="md" className={props.classStyle}>
+      <Link exact to={props.lien} size="md" className={props.classStyle}>
         {props.texte}
       </Link>
     </>
   );
 }
-export default BoutonListeDemandes;
+export default BoutonListe;

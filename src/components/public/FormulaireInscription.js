@@ -7,6 +7,8 @@ function FormulaireInscription() {
   const [errors, setErrors] = useState({});
   //Variable pour la valeur du statut de l'utilisateur false=entreprise et true=étudiant
   const [statut, setStatut] = useState(null);
+  const [validEmail, setValidEmail] = useState(null);
+
   //Fonction pour vérifier si le formulaire est valide
   function formulaireEstValide(
     nom,
@@ -26,10 +28,17 @@ function FormulaireInscription() {
     if (!nom) _errors.nom = "Le nom est obligatoire";
     if (!prenom) _errors.prenom = "Le prenom est obligatoire";
     if (!email) _errors.email = "L'adresse courriel est obligatoire";
+    if (!validEmail) {
+      _errors.checkEmail =
+        "Le format du courriel n'est pas valide. Utiliser le format (abc@abc.com)";
+    }
     if (!password) _errors.password = "Le mot de passe est obligatoire";
     if (!confirmationPassword)
       _errors.confirmationPassword =
         "La confirmation du mot de passe est obligatoire";
+    if (password != confirmationPassword)
+      _errors.samePassword =
+        "La confirmation du mot de passe est différent du mot de passe";
     if (niveau == null)
       _errors.niveau = "Choisir votre statut: entreprise ou étudiant";
     if (!institution)
@@ -42,10 +51,15 @@ function FormulaireInscription() {
       _errors.telephone = "Le numéro de téléphone est obligatoire";
 
     setErrors(_errors);
-    console.log("NiveauErreur= " + errors.niveau);
-    console.log("NiveauBoolean= " + niveau);
+    console.log(errors.checkEmail);
     //Retourne true si la longueur de l'objet contenat les erreurs = 0
     return Object.keys(_errors).length === 0;
+  }
+  //Fonction pour vérifier le format du courriel retourne true si le format est correct
+  function checkEmail(email) {
+    const re = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    const reValid = re.test(email);
+    setValidEmail(reValid);
   }
   //Fonction qui récupère les valeurs entrées dans les input
   function handleAdd(event) {
@@ -54,6 +68,7 @@ function FormulaireInscription() {
     const nom = document.getElementById("nomId").value;
     const prenom = document.getElementById("prenomId").value;
     const email = document.getElementById("emailId").value;
+    checkEmail(email);
     const password = document.getElementById("passwordId").value;
     const confirmationPassword = document.getElementById(
       "confirmationPasswordId"
@@ -88,10 +103,10 @@ function FormulaireInscription() {
   }
   //Fonction pour l'ajout d'un nouvel utilisateur après validation des champs du formulaire
   function addUtilisateur() {
-    console.log("ajout de l'utilisateur réussi");
+    console.log("ajout réussi");
   }
   return (
-    <Form>
+    <Form onSubmit={handleAdd} className="formInscription">
       {/*Utiliser isInvalid props pour afficher les erreurs*/}
       <Form.Group controlId="nomId">
         <Form.Label>Nom</Form.Label>
@@ -116,10 +131,13 @@ function FormulaireInscription() {
         <Form.Control
           type="email"
           placeholder="name@example.com"
-          isInvalid={!!errors.email}
+          isInvalid={!!errors.email || !!errors.checkEmail}
         />
         <Form.Control.Feedback type="invalid">
           {errors.email}
+        </Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {errors.checkEmail}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="passwordId">
@@ -138,10 +156,13 @@ function FormulaireInscription() {
         <Form.Control
           type="password"
           placeholder="Mot de Passe"
-          isInvalid={!!errors.confirmationPassword}
+          isInvalid={!!errors.confirmationPassword || !!errors.samePassword}
         />
         <Form.Control.Feedback type="invalid">
           {errors.confirmationPassword}
+        </Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {errors.samePassword}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="statutId">
@@ -204,9 +225,7 @@ function FormulaireInscription() {
         <Form.Label>Site web</Form.Label>
         <Form.Control type="text" />
       </Form.Group>
-      <Button type="submit" onClick={handleAdd}>
-        Soumettre
-      </Button>
+      <Button type="submit">Soumettre</Button>
     </Form>
   );
 }

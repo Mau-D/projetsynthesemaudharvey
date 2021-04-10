@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 
 import BoutonInscription from "../boutons/BoutonInscription";
 import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
-import BoutonListeDemandes from "../boutons/BoutonListeDemandes";
+import BoutonListe from "../boutons/BoutonListe";
 
 import logo from "../../img/logo.svg";
 
@@ -33,15 +33,17 @@ function EnTete(props) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto ml-5">
-              <BoutonListeDemandes
+              <BoutonListe
                 texte="Trouvez votre stage"
+                lien="/offresstage"
                 classStyle="btn btn-success"
-              ></BoutonListeDemandes>
+              ></BoutonListe>
 
-              <BoutonListeDemandes
+              <BoutonListe
+                lien="/demandesstage"
                 texte="Trouvez votre stagiaire"
                 classStyle="btn btn-success"
-              ></BoutonListeDemandes>
+              ></BoutonListe>
             </Nav>
             {/*Affichage du nom de l'utilisateur connecté, lien pour l'acces à sa section admin */}
             {ls.get("nom") ? (

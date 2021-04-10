@@ -52,15 +52,12 @@ function DemandesStageListe(props) {
           .filter((donnee) => donnee.actif && donnee.valide && !donnee.supprime)
           .map((item) => (
             <DemandeCarte
-              date={
-                //Valeur de la date de création, propriété de ObjectId de mongodb
-                new Date(objectIdToTimestamp(item._id))
-              }
               id={item._id}
               key={"ToutListe" + item._id}
               titre={item.titre}
+              ville={item.ville}
               formation={item.programmeSuivi}
-              description={item.descriptionPosteRecherche}
+              description={item.description}
             ></DemandeCarte>
           ))
       : donneesRecues
@@ -68,15 +65,12 @@ function DemandesStageListe(props) {
           .map((item, i) =>
             i < 4 ? (
               <DemandeCarte
-                date={
-                  //Valeur de la date de création, propriété de ObjectId de mongodb
-                  new Date(objectIdToTimestamp(item._id))
-                }
                 id={item._id}
                 key={"keyListe" + item._id}
                 titre={item.titre}
+                ville={item.ville}
                 formation={item.programmeSuivi}
-                description={item.descriptionPosteRecherche}
+                description={item.description}
               ></DemandeCarte>
             ) : null
           );
