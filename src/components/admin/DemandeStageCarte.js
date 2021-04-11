@@ -51,52 +51,52 @@ function DemandeStageCarte(props) {
   return (
     <Container fluid>
       <Row className="my-2">
-        <Col lg={8}>
+        <Col xs={12} md={6}>
           <h3>
             <FaUserGraduate className="mx-2" />
             <strong>{props.titre}</strong>
           </h3>
         </Col>
-        <Col lg={4}>
+        <Col xs={12} md={6}>
           <p className="text-right d-inline">Publié le: {props.dateParution}</p>
         </Col>
       </Row>
       <Row className="my-2">
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           {objetEtudiant.prenom} {objetEtudiant.nom}
         </Col>
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           <strong>Formation: </strong>
           <p className="d-inline">{props.formation}</p>
         </Col>
       </Row>
       <Row className="my-2">
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           <strong>Ville: </strong>
           <p className="d-inline">{props.ville}</p>
         </Col>
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           <strong>Début: </strong>
           <p className="d-inline">{props.dateDebut}</p>
         </Col>
       </Row>
       <Row className="my-2">
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           <strong>Établissement scolaire: </strong>
           <p className="d-inline">{objetEtudiant.nomEcole}</p>
         </Col>
-        <Col lg={6}>
+        <Col xs={12} md={6}>
           <strong>Fin: </strong>
           <p className="d-inline">{props.dateFin}</p>
         </Col>
       </Row>
       <Row className="my-2">
-        <Col lg={12}>
+        <Col xs={12}>
           <p>{props.description}</p>
         </Col>
       </Row>
       <Row>
-        <Col lg={12}>
+        <Col xs={12} className="p-0">
           <div className="w-100 d-flex flex-row justify-content-between">
             <div>{/*Bouton */}</div>
             <div className="text-right d-inline">

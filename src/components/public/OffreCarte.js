@@ -26,6 +26,7 @@ function OffreCarte(props) {
               <Row>
                 <Col xs={12}>
                   <Card.Text>{props.description}</Card.Text>
+                  <p>{props.dateParution}</p>
                 </Col>
               </Row>
             </Card.Body>

@@ -6,6 +6,7 @@ import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les cards des demandes de stage
 function DemandeCarte(props) {
+  console.log(props.dateParution);
   return (
     <Card className="w-100 text-left mb-1 pb-2" style={{ width: "25rem" }}>
       <Container fluid className="h-100">
@@ -14,6 +15,7 @@ function DemandeCarte(props) {
             <Card.Body>
               <Row>
                 <Col xs={8}>
+                  <p>{props.dateParution}</p>
                   <Card.Title>{props.titre}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {props.ville}
@@ -27,7 +29,6 @@ function DemandeCarte(props) {
                 <Col xs={12}>
                   <Card.Text>{props.formation}</Card.Text>
                   <Card.Text>{props.description}</Card.Text>
-                  <p>{props.dateParution}</p>
                 </Col>
               </Row>
             </Card.Body>

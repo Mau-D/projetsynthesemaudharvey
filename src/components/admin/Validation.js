@@ -39,26 +39,26 @@ function Validation() {
     <Container fluid className="h-100">
       <Row className="mb-5">
         {/*Titre */}
-        <Col lg={12}>
+        <Col xs={12}>
           <h1 className="titre">En attente de validation</h1>
         </Col>
-        <Col lg={6}>
+        <Col xs={{ span: 12, order: 1 }} lg={{ span: 6, order: 1 }}>
           <h3 className="d-inline">
             Demandes de stage
             <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
           </h3>
         </Col>
-        <Col lg={6}>
+        <Col xs={{ span: 12, order: 3 }} lg={{ span: 6, order: 2 }}>
           <h3 className="d-inline">
             Offres de stage
             <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
           </h3>
         </Col>
-      </Row>
-      {/*affichage dynamique, si la demande a un paramètre valide= false et qu'il est toujours actif et pas supprimé */}
-      {/*La demande ou l’offre de stage publiée par un utilisateur sera inactivée et non affichée sur le portail public. Elle sera en attente de validation.  */}
-      <Row>
-        <Col lg={6}>
+
+        {/*affichage dynamique, si la demande a un paramètre valide= false et qu'il est toujours actif et pas supprimé */}
+        {/*La demande ou l’offre de stage publiée par un utilisateur sera inactivée et non affichée sur le portail public. Elle sera en attente de validation.  */}
+
+        <Col xs={{ span: 12, order: 2 }} lg={{ span: 6, order: 3 }}>
           {donneesRecues
             .filter(
               (donnee) => !donnee.valide && !donnee.supprime && !donnee.actif
@@ -87,7 +87,7 @@ function Validation() {
             ))}
         </Col>
         {/*Pour les offres à valider */}
-        <Col lg={6}>
+        <Col xs={{ span: 12, order: 4 }} lg={{ span: 6, order: 4 }}>
           <ValidationCarteOffre></ValidationCarteOffre>
           <ValidationCarteOffre></ValidationCarteOffre>
           <ValidationCarteOffre></ValidationCarteOffre>

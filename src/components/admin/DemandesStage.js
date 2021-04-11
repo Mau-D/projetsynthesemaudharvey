@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Moment from "moment";
+import "moment/locale/fr";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import DemandeStageCarte from "./DemandeStageCarte";
@@ -31,14 +33,18 @@ function DemandesStage(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
   }
-  console.log("idetudiant" + ls.get("id"));
+  function formatDate(d) {
+    console.log("donnesDAteCarte=" + d);
+    var dateMoment = Moment(d);
+    dateMoment.locale("fr");
+    return dateMoment.format("Do MMMM YYYY");
+  }
   return (
-    <Container fluid className="h-100 mr-5">
+    <Container fluid className="h-100 mr-2">
       <Row className="mb-5">
         {/*Titre */}
-        <Col lg={12}>
+        <Col xs={12}>
           <h2 className="d-inline">Demandes de stage</h2>
           <BsArrow90DegRight style={{ transform: "rotate(90deg)" }} />
         </Col>
@@ -46,19 +52,19 @@ function DemandesStage(props) {
       {/*affichage dynamique */}
       {/*Affiche seulement les demandes de l'étudiant*/}
       <Row>
-        {donneesRecues.map((item) =>
+        {donneesRecues.map((item, key) =>
           item.etudiant === ls.get("id") ? (
-            <Col lg={12}>
+            <Col xs={12}>
               <DemandeStageCarte
-                key={"keyCardDemandeEtudiant" + item._id}
+                key={key}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}
                 formation={item.programmeSuivi}
-                dateDebut={item.dateDebut}
-                dateFin={item.dateFin}
+                dateDebut={formatDate(item.dateDebut)}
+                dateFin={formatDate(item.dateFin)}
                 description={item.description}
-                dateParution={item.dateParution}
+                dateParution={formatDate(item.dateParution)}
                 etudiant={item.etudiant}
               ></DemandeStageCarte>
             </Col>
@@ -67,17 +73,17 @@ function DemandesStage(props) {
         {/*Affiche toutes les demandes pour un administrateur connecté*/}
         {donneesRecues.map((item) =>
           props.acces === "999" ? (
-            <Col lg={12}>
+            <Col xs={12}>
               <DemandeStageCarte
                 key={"keyCardDemandeAdmin" + item._id}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}
                 formation={item.programmeSuivi}
-                dateDebut={item.dateDebut}
-                dateFin={item.dateFin}
+                dateDebut={formatDate(item.dateDebut)}
+                dateFin={formatDate(item.dateFin)}
                 description={item.description}
-                dateParution={item.dateParution}
+                dateParution={formatDate(item.dateParution)}
                 etudiant={item.etudiant}
               ></DemandeStageCarte>
             </Col>

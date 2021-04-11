@@ -31,16 +31,16 @@ function Admin(props) {
   var ls = require("local-storage");
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
-  console.log("validation path" + location.search);
+
   //Variable pour récupérer le code du niveau d'accès
   const searchString = props.location.search.substring(
     8,
     props.location.search.length
   );
-  const searchStringDetails = props.location.search.substring(
-    4,
-    props.location.search.length
-  );
+  // const searchStringDetails = props.location.search.substring(
+  //   4,
+  //   props.location.search.length
+  // );
 
   console.log("récupération du code = " + searchString);
   //Variable pour afficher les différentes sections de l'administrateur avec le menu de gauche
@@ -105,23 +105,23 @@ function Admin(props) {
     switch (searchString) {
       case "111":
         return (
-          <Col lg={3}>
+          <Col xs={12} md={6} lg={3}>
             <BoutonAjoutDemande></BoutonAjoutDemande>
           </Col>
         );
       case "333":
         return (
-          <Col lg={3}>
+          <Col xs={12} md={6} lg={3}>
             <BoutonAjoutOffre></BoutonAjoutOffre>
           </Col>
         );
       case "999":
         return (
           <>
-            <Col lg={3}>
+            <Col xs={12} md={6} lg={3}>
               <BoutonAjoutDemande></BoutonAjoutDemande>
             </Col>
-            <Col lg={3}>
+            <Col xs={12} md={6} lg={3}>
               <BoutonAjoutOffre></BoutonAjoutOffre>
             </Col>
           </>
@@ -134,7 +134,7 @@ function Admin(props) {
     <Container fluid className="h-100">
       <Row>
         {/*Menu de navigation */}
-        <Col lg={2} className="fondBleu">
+        <Col xs={4} md={2} className="fondBleu p-0">
           <Nav variant="tabs" className="flex-column">
             <Link to="/">
               <img src={logo} alt="logo" className="w-100 mb-5 logo" />
@@ -198,23 +198,13 @@ function Admin(props) {
           </Nav>
         </Col>
         {/*affichage de la page */}
-        <Col lg={10}>
+        <Col xs={8} md={10}>
           <Container fluid>
             {/*en-tête de la page */}
             <Row className="py-3">
               {renderSwitchBouton()}
-              {searchString === 111 ? (
-                <Col lg={2}>
-                  <BoutonAjoutDemande></BoutonAjoutDemande>
-                </Col>
-              ) : null}
-              {searchString === 333 ? (
-                <Col lg={2}>
-                  <BoutonAjoutOffre></BoutonAjoutOffre>
-                </Col>
-              ) : null}
 
-              <Col lg={5} className="d-flex flex-row text-right">
+              <Col sm={12} md={9} lg={5} className="d-flex flex-row text-right">
                 <div>
                   <h4>{ls.get("prenom") + " " + ls.get("nom")}</h4>
 
@@ -267,7 +257,7 @@ function Admin(props) {
                 )}
               </Col>
               {/*Déconnexion */}
-              <Col lg={1} className="text-right">
+              <Col sm={12} md={1} className="text-right">
                 <Link
                   to="/"
                   onClick={function () {

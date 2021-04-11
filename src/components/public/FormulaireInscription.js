@@ -106,7 +106,7 @@ function FormulaireInscription() {
     console.log("ajout réussi");
   }
   return (
-    <Form onSubmit={handleAdd} className="formInscription">
+    <Form onSubmit={handleAdd} className="formInscription mx-auto mb-5">
       {/*Utiliser isInvalid props pour afficher les erreurs*/}
       <Form.Group controlId="nomId">
         <Form.Label>Nom</Form.Label>

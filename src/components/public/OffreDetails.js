@@ -22,7 +22,7 @@ function OffreDetails() {
   useEffect(() => {
     //appelle la fonction getDemandesStage
     getDetailsOffre();
-  }, {});
+  }, objetRecu);
   //Fonction pour l'appel à l'API
 
   async function getDetailsOffre() {

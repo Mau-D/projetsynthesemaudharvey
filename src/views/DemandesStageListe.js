@@ -112,7 +112,7 @@ function DemandesStageListe(props) {
         <Col
           xs={{ span: 12, order: 2 }}
           md={{ span: 8, order: 1 }}
-          className="pr-5 text-center"
+          className="pr-3 text-center"
         >
           {props.location.search !== "" ? (
             <DemandeDetails id={donneesRecues._id}></DemandeDetails>

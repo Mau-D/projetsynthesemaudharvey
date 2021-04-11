@@ -78,7 +78,7 @@ function FormulaireConnexion() {
 
   return (
     <>
-      <Form>
+      <Form className="mx-auto mb-5">
         <Form.Group controlId="nom">
           <Form.Label>Nom</Form.Label>
           <Form.Control type="text" placeholder="Nom" />

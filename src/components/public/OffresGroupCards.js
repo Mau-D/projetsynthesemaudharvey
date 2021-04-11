@@ -53,14 +53,15 @@ function OffresGroupCards() {
 
         {donneesRecues
           .filter((donnee) => donnee.vedette && donnee.verifie && donnee.actif)
-          .map((item) => (
+          .map((item, key) => (
             <Col xs={12} md={6} lg={4} className="mt-2">
               <OffreCarte
                 id={item._id}
-                key={"keyOffre" + item._id}
+                key={key}
                 titre={item.titre}
                 entreprise={item.entreprise}
                 description={item.description}
+                dateParution={item.dateParution}
               ></OffreCarte>
             </Col>
           ))}

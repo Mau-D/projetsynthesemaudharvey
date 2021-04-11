@@ -128,8 +128,8 @@ function APropos() {
         </Col>
       </Row> */}
       {/* Pied de page*/}
-      <Row className="p-5">
-        <Col lg={12} className="p-5">
+      <Row className="my-auto mx-auto">
+        <Col xs={12} className="p-0">
           <PiedDePage></PiedDePage>
         </Col>
       </Row>

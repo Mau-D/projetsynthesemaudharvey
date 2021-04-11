@@ -13,7 +13,7 @@ function ValidationCarteDemande(props) {
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getEtudiant();
-  }, objetEtudiant);
+  }, []);
   //Fonction pour l'appel à l'API
   async function getEtudiant() {
     //Variables pour les données de l'étudiant qui fait la demande
@@ -44,7 +44,6 @@ function ValidationCarteDemande(props) {
   }
 
   //Fonction pour accepter la validation, changer le paramètre valide et actif à true
-  //Changer la date de parution à celle d'aujourd'hui = moment de la validation
   async function accepterValidation() {
     console.log("je valide");
     try {
@@ -115,7 +114,6 @@ function ValidationCarteDemande(props) {
     }
   }
   //Fonction pour refuser la validation, changer le paramètre valide et actif à false et supprime à true
-  //Changer la date de parution à celle d'aujourd'hui = moment de la validation
   async function refuserValidation() {
     console.log("je refuse");
     try {
@@ -152,7 +150,7 @@ function ValidationCarteDemande(props) {
             etudiant: props.etudiant,
             actif: false,
             valide: false,
-            supprime: true,
+            supprime: false,
             vedette: props.vedette,
           }),
         }
