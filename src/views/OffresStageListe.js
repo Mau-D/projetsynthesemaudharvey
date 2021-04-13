@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import Moment from "moment";
+import "moment/locale/fr";
 
 import EnTete from "../components/public/EnTete";
-import LiensEmploiListe from "../components/public/LiensEmploiListe";
+//import LiensEmploiListe from "../components/public/LiensEmploiListe";
 import OffreCarte from "../components/public/OffreCarte";
 import DemandesGroupCards from "../components/public/DemandesGroupCards";
 import PiedDePage from "../components/public/PiedDePage";
@@ -17,8 +18,7 @@ function OffresStageListe(props) {
   const [donneesRecues, setDonneesRecues] = useState([]);
   //Variable d'état pour charger toutes la liste des demandes de stage
   const [chargertout, setChargertout] = useState(false);
-  //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
-  let location = useLocation();
+
   useEffect(() => {
     //appelle la fonction getOffresStage pour l'appel à l'API
     getOffresStage();
@@ -36,12 +36,13 @@ function OffresStageListe(props) {
           .filter((donnee) => donnee.actif && donnee.verifie)
           .map((item) => (
             <OffreCarte
-              date={item.dateParution}
               id={item._id}
-              key={"ToutListe" + item._id}
               titre={item.titre}
-              formation={item.programmeSuivi}
-              description={item.descriptionPosteRecherche}
+              entreprise={item.entreprise}
+              ville={item.ville}
+              description={item.description}
+              dateParution={formatDate(item.dateParution)}
+              infos={item.informationsSupplementaires}
             ></OffreCarte>
           ))
       : donneesRecues
@@ -49,12 +50,13 @@ function OffresStageListe(props) {
           .map((item, i) =>
             i < 4 ? (
               <OffreCarte
-                date={item.dateParution}
                 id={item._id}
-                key={"keyListe" + item._id}
                 titre={item.titre}
-                formation={item.programmeSuivi}
-                description={item.descriptionPosteRecherche}
+                entreprise={item.entreprise}
+                ville={item.ville}
+                description={item.description}
+                dateParution={formatDate(item.dateParution)}
+                infos={item.informationsSupplementaires}
               ></OffreCarte>
             ) : null
           );
@@ -75,8 +77,12 @@ function OffresStageListe(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
-    console.log(location.pathname);
+  }
+  //Fonction pour appliquer la langue et le format de la date
+  function formatDate(d) {
+    var dateMoment = Moment(d);
+    dateMoment.locale("fr");
+    return dateMoment.format("Do MMMM YYYY");
   }
   return (
     <Container fluid className="h-100">

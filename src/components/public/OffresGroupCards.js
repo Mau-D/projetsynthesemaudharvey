@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import BoutonListe from "../boutons/BoutonListe";
 import { Container, Row, Col } from "react-bootstrap";
+import Moment from "moment";
+import "moment/locale/fr";
 
 import OffreCarte from "./OffreCarte";
+import BoutonListe from "../boutons/BoutonListe";
 
 // Hook pour l'affichage des Offres de stage en vedette
 function OffresGroupCards() {
@@ -32,7 +34,12 @@ function OffresGroupCards() {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
+  }
+  //Fonction pour appliquer la langue et le format de la date
+  function formatDate(d) {
+    var dateMoment = Moment(d);
+    dateMoment.locale("fr");
+    return dateMoment.format("Do MMMM YYYY");
   }
   return (
     <Container fluid className="m-4">
@@ -53,15 +60,22 @@ function OffresGroupCards() {
 
         {donneesRecues
           .filter((donnee) => donnee.vedette && donnee.verifie && donnee.actif)
-          .map((item, key) => (
-            <Col xs={12} md={6} lg={4} className="mt-2">
+          .map((item) => (
+            <Col
+              xs={12}
+              md={6}
+              lg={4}
+              className="mt-2"
+              key={"Offrekey" + item._id}
+            >
               <OffreCarte
                 id={item._id}
-                key={key}
                 titre={item.titre}
                 entreprise={item.entreprise}
+                ville={item.ville}
                 description={item.description}
-                dateParution={item.dateParution}
+                dateParution={formatDate(item.dateParution)}
+                infos={item.informationsSupplementaires}
               ></OffreCarte>
             </Col>
           ))}

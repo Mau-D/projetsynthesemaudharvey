@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Moment from "moment";
 import "moment/locale/fr";
 import { Container, Row, Col, Image, ListGroup } from "react-bootstrap";
+
 import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 // Hook pour les informations d'une demande de stage en détails
 function DemandeDetails() {
@@ -16,22 +17,20 @@ function DemandeDetails() {
   useEffect(() => {
     //appelle la fonction getDemandesStage
     getDetailsDemande();
-  }, objetRecu);
+  }, []);
 
   //Fonction pour récupérer l'id
   function getId() {
     //Variable pour récupérer l'id dans l'url, avec la propriété search
     var PropsSearch = location.search; //ex.:?id=60577b93a453cb7841a5ed40
     var stringId = PropsSearch.replace("?id=", "");
-    console.log("PropsSearch" + PropsSearch);
-    console.log("stringId" + stringId);
+
     return stringId;
   }
   //Fonction pour l'appel à l'API
 
   async function getDetailsDemande() {
     var idChoosen = getId();
-    console.log("search props" + location.search);
     try {
       const response = await fetch(
         process.env.REACT_APP_API +
@@ -71,7 +70,7 @@ function DemandeDetails() {
             src="https://upload.wikimedia.org/wikipedia/fr/d/dd/C%C3%A9gep_Trois-Rivi%C3%A8res_Logo.jpg"
           />
           <h5>Formation:</h5>
-          <p>AEC en Développement Web</p>
+          <p>{objetRecu.programmeSuivi}</p>
         </Col>
         {/*Détails formation */}
         <Col xs={12} lg={9}>

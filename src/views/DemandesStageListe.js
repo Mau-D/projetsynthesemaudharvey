@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import Moment from "moment";
+import "moment/locale/fr";
 
 import EnTete from "../components/public/EnTete";
-import LiensEmploiListe from "../components/public/LiensEmploiListe";
+//import LiensEmploiListe from "../components/public/LiensEmploiListe";
 import DemandeCarte from "../components/public/DemandeCarte";
 import DemandeDetails from "../components/public/DemandeDetails";
 import OffresGroupCards from "../components/public/OffresGroupCards";
@@ -15,15 +16,11 @@ import SecteursActivite from "../components/public/SecteursActivite";
 
 // Hook pour les demandes de stage, liste des candidats
 function DemandesStageListe(props) {
-  //Pour la recherche par secteur d'activité
-  const [idSecteur, setIdSecteur] = useState("");
   //Constante pour les données reçues par l'API
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
   const [donneesRecues, setDonneesRecues] = useState([]);
   //Variable d'état pour charger toutes la liste des demandes de stage
   const [chargertout, setChargertout] = useState(false);
-  //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
-  let location = useLocation();
 
   //Utiliser useEffect, exécute quelquechose après chaque affichage
   //Remplace la combinaison de componentDidMount, componentDidUpdate, et componentWillUnmount.
@@ -31,12 +28,6 @@ function DemandesStageListe(props) {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getDemandesStage();
   }, []);
-  //Fonction pour la recherche par secteur
-  //useEffect(() => {
-  //  function handleSecteur(status) {
-  //    setIdSecteur(status.idSecteur);
-  // }
-  //}, "");
 
   //Fonction pour l'affichage des demandes
   function affichageDemandes() {
@@ -53,6 +44,7 @@ function DemandesStageListe(props) {
             <DemandeCarte
               id={item._id}
               key={"ToutListe" + item._id}
+              dateParution={formatDate(item.dateParution)}
               titre={item.titre}
               ville={item.ville}
               formation={item.programmeSuivi}
@@ -66,6 +58,7 @@ function DemandesStageListe(props) {
               <DemandeCarte
                 id={item._id}
                 key={"keyListe" + item._id}
+                dateParution={formatDate(item.dateParution)}
                 titre={item.titre}
                 ville={item.ville}
                 formation={item.programmeSuivi}
@@ -90,8 +83,12 @@ function DemandesStageListe(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
-    console.log(location.pathname);
+  }
+  //Fonction pour appliquer la langue et le format de la date
+  function formatDate(d) {
+    var dateMoment = Moment(d);
+    dateMoment.locale("fr");
+    return dateMoment.format("Do MMMM YYYY");
   }
   return (
     <Container fluid className="h-100">
@@ -135,7 +132,6 @@ function DemandesStageListe(props) {
         {/* Liste des secteurs d'activités */}
         <Col xs={{ span: 12, order: 1 }} md={{ spna: 4, order: 2 }}>
           <SecteursActivite></SecteursActivite>
-          <h1>{idSecteur}</h1>
         </Col>
       </Row>
       {/* Publication d'offres de stage */}

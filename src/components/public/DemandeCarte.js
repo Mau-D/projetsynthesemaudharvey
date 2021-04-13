@@ -6,22 +6,21 @@ import BoutonContactCandidat from "../boutons/BoutonContactCandidat";
 
 // Hook pour les cards des demandes de stage
 function DemandeCarte(props) {
-  console.log(props.dateParution);
   return (
     <Card className="w-100 text-left mb-1 pb-2" style={{ width: "25rem" }}>
-      <Container fluid className="h-100">
+      <Container fluid className="h-100 hauteurViewport">
         <Row>
           <Col sm={12}>
             <Card.Body>
               <Row>
-                <Col xs={8}>
+                <Col xs={10}>
                   <p>{props.dateParution}</p>
                   <Card.Title>{props.titre}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {props.ville}
                   </Card.Subtitle>
                 </Col>
-                <Col xs={4}>
+                <Col xs={2} className="p-0">
                   <Card.Img src="https://upload.wikimedia.org/wikipedia/fr/d/dd/C%C3%A9gep_Trois-Rivi%C3%A8res_Logo.jpg" />
                 </Col>
               </Row>
@@ -36,7 +35,7 @@ function DemandeCarte(props) {
         </Row>
       </Container>
       {/*Lien en incluant l'id de la carte sélectionnée pour afficher les détails */}
-      <div className=" align-items-end">
+      <div className="align-items-end basCard">
         {" "}
         <Link to={"/demandesstage/?id=" + props.id}>Détails</Link>
         <BoutonContactCandidat

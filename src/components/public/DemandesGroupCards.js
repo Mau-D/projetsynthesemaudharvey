@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Moment from "moment";
 import "moment/locale/fr";
+
 import DemandeCarte from "./DemandeCarte";
 import BoutonListe from "../boutons/BoutonListe";
 
@@ -33,11 +34,9 @@ function DemandesGroupCards() {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
   }
   //Fonction pour appliquer la langue et le format de la date
   function formatDate(d) {
-    console.log("donnesDAteCarte=" + d);
     var dateMoment = Moment(d);
     dateMoment.locale("fr");
     return dateMoment.format("Do MMMM YYYY");
@@ -66,15 +65,20 @@ function DemandesGroupCards() {
               !donnee.supprime
           )
           .map((item, key) => (
-            <Col xs={12} md={6} lg={4} className="mt-2">
+            <Col
+              xs={12}
+              md={6}
+              lg={4}
+              className="mt-2"
+              key={"Demandekey" + item._id}
+            >
               <DemandeCarte
-                key={key}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}
                 formation={item.programmeSuivi}
                 description={item.description}
-                dateParution={formatDate(item.dateDebut)}
+                dateParution={formatDate(item.dateParution)}
               ></DemandeCarte>
             </Col>
           ))}

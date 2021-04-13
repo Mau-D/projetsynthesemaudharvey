@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
 import { Nav, Navbar } from "react-bootstrap";
 import { logout } from "../../utils/index";
-import { useLocation } from "react-router-dom";
 
 import BoutonInscription from "../boutons/BoutonInscription";
-import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
+//import RechercheTrouverVotreStage from "./RechercheTrouverVotreStage";
 import BoutonListe from "../boutons/BoutonListe";
 
 import logo from "../../img/logo.svg";
@@ -16,12 +15,13 @@ import { BsBoxArrowRight } from "react-icons/bs";
 // Hook pour la bannière
 function EnTete(props) {
   const [formulaire, setFormulaire] = useState("");
-  let location = useLocation(); /*variable de la page où je me trouve */
+
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
   useEffect(() => {
-    setFormulaire(props.formulaire);
-  });
+    var form = props.formulaire;
+    setFormulaire(form);
+  }, [props.formulaire]);
   return (
     <>
       {/* Menu avec logo et bouton, navbar collapsible */}

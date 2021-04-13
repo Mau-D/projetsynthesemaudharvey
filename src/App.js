@@ -20,8 +20,6 @@ import FormEditDemande from "./components/admin/FormEditDemande";
 import FormAjoutDemande from "./components/admin/FormAjoutDemande";
 
 function App() {
-  var ls = require("local-storage");
-
   return (
     <>
       <ToastContainer

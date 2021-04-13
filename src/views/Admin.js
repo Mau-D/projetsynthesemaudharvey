@@ -57,6 +57,8 @@ function Admin(props) {
         return "entreprise";
       case "111":
         return "étudiant";
+      default:
+        return "";
     }
   }
   //Fonction pour afficher le contenu principal
@@ -67,7 +69,8 @@ function Admin(props) {
       case "111":
         //Changer pour afficher la liste de l'étudiant connecté ajouter un lien pour son profil
         return renderSwitchEtudiant();
-      //Ajouter pour les offres des entreprises
+      default:
+        return "";
     }
   }
   //fonction pour afficher soit le profil de l'étudiant soit ses demandes de stage
@@ -124,6 +127,13 @@ function Admin(props) {
             <Col xs={12} md={6} lg={3}>
               <BoutonAjoutOffre></BoutonAjoutOffre>
             </Col>
+          </>
+        );
+      default:
+        return (
+          <>
+            <Col xs={12} md={6} lg={3}></Col>
+            <Col xs={12} md={6} lg={3}></Col>
           </>
         );
     }
@@ -219,7 +229,7 @@ function Admin(props) {
                 </div>
                 {/*DropDown, liste des demandes et profil */}
 
-                {searchString == 111 || searchString == 333 ? (
+                {searchString === 111 || searchString === 333 ? (
                   <div className="my-auto mx-1">
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic" variant="light">

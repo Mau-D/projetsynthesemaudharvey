@@ -7,7 +7,7 @@ function SecteursActivite(props) {
   //Variable pour le tableau de secteurs d'activité dans la collection secteursActivites
   const [donneesRecues, setDonneesRecues] = useState([]);
   //Valeur du secteur pour la recherche
-  const [secteurId, setSecteurId] = useState("");
+  //const [secteurId, setSecteurId] = useState("");
   //const rechercheId = useSecteurRecherche(secteurId);
   // console.log("props du secteur de Recherche " + secteurId);
   useEffect(() => {
@@ -31,7 +31,6 @@ function SecteursActivite(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log("secteurs" + donneesRecues);
   }
   return (
     <div className="details fondBleu">
@@ -42,13 +41,12 @@ function SecteursActivite(props) {
             <tr key={item.nom}>
               <td></td>
               <td className="w-100 text-light">
-                <a
-                  className="text-light"
-                  href="#"
-                  onClick={() => setSecteurId(item.nom)}
+                <p
+                  className="text-light curseur"
+                  //onClick={() => setSecteurId(item.nom)}
                 >
                   {item.nom}
-                </a>
+                </p>
               </td>
             </tr>
           ))}

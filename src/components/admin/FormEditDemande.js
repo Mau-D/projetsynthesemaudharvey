@@ -18,15 +18,17 @@ function FormEditDemande() {
   //useEffect, Obtenir les demandes de stage et la liste des secteurs d'activité
   useEffect(() => {
     getDemande();
-  }, {});
+  }, []);
   useEffect(() => {
     getSecteurs();
   }, []);
   useEffect(() => {
-    setAutresFormationsEdit(objetDemande.autresFormations);
-    setCompetences(objetDemande.competences);
+    var formations = objetDemande.autresFormations;
+    var competences = objetDemande.competences;
+    setAutresFormationsEdit(formations);
+    setCompetences(competences);
     setChange(false);
-  });
+  }, []);
   //On récupère les infos de la bd de la demande sélectionnée
   async function getDemande() {
     //Variable pour les données de la demande sélectionnée

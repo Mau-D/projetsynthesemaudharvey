@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { FaUserGraduate } from "react-icons/fa";
@@ -34,13 +33,6 @@ function ValidationCarteDemande(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(
-      "url" +
-        process.env.REACT_APP_API +
-        process.env.REACT_APP_UTILISATEURS +
-        "/" +
-        props.etudiant
-    );
   }
 
   //Fonction pour accepter la validation, changer le paramètre valide et actif à true

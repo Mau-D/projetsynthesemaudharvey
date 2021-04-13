@@ -17,12 +17,12 @@ function AccesCompte() {
   let location = useLocation(); /*variable de la page où je me trouve */
   console.log("accesCompte= " + location.pathname);
   useEffect(() => {
-    if (location.pathname == "/accescompte/connexion") {
+    if (location.pathname === "/accescompte/connexion") {
       setFormulaire("connexion");
-    } else if (location.pathname == "/accescompte/inscription") {
+    } else if (location.pathname === "/accescompte/inscription") {
       setFormulaire("inscription");
     }
-  });
+  }, [setFormulaire, location.pathname]);
 
   return (
     <Container fluid className="h-100">
@@ -33,7 +33,7 @@ function AccesCompte() {
             fluid
             className="h-100 d-flex flex-column justify-content-between bannierePropos"
           >
-            {formulaire == "connexion" ? (
+            {formulaire === "connexion" ? (
               <EnTete
                 titre="Accéder à votre compte"
                 formulaire={formulaire}
@@ -47,7 +47,7 @@ function AccesCompte() {
       {/*Formulaire*/}
       <Row className="mx-auto">
         <Col xs={{ span: 6, offset: 2 }}>
-          {formulaire == "connexion" ? (
+          {formulaire === "connexion" ? (
             <FormulaireConnexion />
           ) : (
             <FormulaireInscription />

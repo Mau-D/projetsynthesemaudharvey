@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import ValidationCarteOffre from "./ValidationCarteOffre";
@@ -8,8 +8,6 @@ import ValidationCarteDemande from "./ValidationCarteDemande";
 
 // Hook pour la section de la validation des demandes et offres de la page d'administration
 function Validation() {
-  //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
-  let location = useLocation();
   //Variable pour les données des demandes
   const [donneesRecues, setDonneesRecues] = useState([]);
   useEffect(() => {
@@ -32,7 +30,6 @@ function Validation() {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(donneesRecues);
   }
 
   return (

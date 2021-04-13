@@ -3,7 +3,6 @@ import { Container, Row, Col, Button, Table } from "react-bootstrap";
 
 import { BsArrow90DegRight } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
-import { TiDelete } from "react-icons/ti";
 import { FaUserGraduate } from "react-icons/fa";
 
 // Hook pour la fiche détaillée du candidat avec le lien profil ou pour les entreprises
@@ -36,8 +35,6 @@ function DetailsUtilisateur(props) {
       //On gère l'erreurdsas
       console.log(error);
     }
-    console.log(donneesRecues);
-    console.log("utilisateur" + props.user);
   }
   return (
     <Container fluid className="h-100 adminDetails">

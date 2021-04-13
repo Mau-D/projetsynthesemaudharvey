@@ -34,7 +34,6 @@ function FormulaireConnexion() {
       //On gère l'erreurdsas
       console.log(error);
     }
-    console.log(donneesRecues);
   }
 
   function authentification() {
@@ -50,9 +49,7 @@ function FormulaireConnexion() {
     //réinitialise
     var utilisateurExistant = false;
     // Boucle pour vérifier que l'utilisateur existe
-    donneesRecues.map((item, i) => {
-      console.log(i + ls.get("nom"));
-      console.log(i + item.nom);
+    donneesRecues.map((item) => {
       //L'utilisateur possède les valeurs entrées en input du formulaire
       if (
         ls.get("nom") === item.nom &&

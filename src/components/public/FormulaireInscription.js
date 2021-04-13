@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-// Hook pour le bouton Trouvez votre stage
+// Hook pour le formulaire d'inscription d'un nouvel utilisateur
 function FormulaireInscription() {
   //Variable pour la validation du formulaire
   const [errors, setErrors] = useState({});
   //Variable pour la valeur du statut de l'utilisateur false=entreprise et true=étudiant
   const [statut, setStatut] = useState(null);
+  //Variable pour vérifier le format des entrées du courriel et du numéro de téléphone
   const [validEmail, setValidEmail] = useState(null);
+  const [validTelephone, setValidTelephone] = useState(null);
 
   //Fonction pour vérifier si le formulaire est valide
   function formulaireEstValide(
@@ -36,7 +38,7 @@ function FormulaireInscription() {
     if (!confirmationPassword)
       _errors.confirmationPassword =
         "La confirmation du mot de passe est obligatoire";
-    if (password != confirmationPassword)
+    if (password !== confirmationPassword)
       _errors.samePassword =
         "La confirmation du mot de passe est différent du mot de passe";
     if (niveau == null)
@@ -49,10 +51,13 @@ function FormulaireInscription() {
     if (!region) _errors.region = "La région est obligatoire";
     if (!telephone)
       _errors.telephone = "Le numéro de téléphone est obligatoire";
-
+    if (!validTelephone) {
+      _errors.checkTelephone =
+        "Le format du numéro de téléphone n'est pas valide. Utiliser le format ((888)123-4567)";
+    }
     setErrors(_errors);
     console.log(errors.checkEmail);
-    //Retourne true si la longueur de l'objet contenat les erreurs = 0
+    //Retourne true si la longueur de l'objet contenant les erreurs = 0
     return Object.keys(_errors).length === 0;
   }
   //Fonction pour vérifier le format du courriel retourne true si le format est correct
@@ -60,6 +65,12 @@ function FormulaireInscription() {
     const re = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
     const reValid = re.test(email);
     setValidEmail(reValid);
+  }
+  //Fonction pour vérifier le format du numéro de téléphone retourne true si le format est correct
+  function checkTelephone(tel) {
+    const re = /^[+]*[(][0-9]{3}[)][0-9]{3}-[0-9]{4}/;
+    const reValid = re.test(tel);
+    setValidTelephone(reValid);
   }
   //Fonction qui récupère les valeurs entrées dans les input
   function handleAdd(event) {
@@ -105,6 +116,16 @@ function FormulaireInscription() {
   function addUtilisateur() {
     console.log("ajout réussi");
   }
+  //Fonction pour vérifier le format(Ajouter car la validation n'était pas fait au premier submit)
+  function formatEmail() {
+    const email = document.getElementById("emailId").value;
+    checkEmail(email);
+  }
+  //Fonction pour vérifier le format(Ajouter car la validation n'était pas fait au premier submit)
+  function formatTelephone() {
+    const tel = document.getElementById("telephoneId").value;
+    checkTelephone(tel);
+  }
   return (
     <Form onSubmit={handleAdd} className="formInscription mx-auto mb-5">
       {/*Utiliser isInvalid props pour afficher les erreurs*/}
@@ -128,9 +149,11 @@ function FormulaireInscription() {
       </Form.Group>
       <Form.Group controlId="emailId">
         <Form.Label>Email address</Form.Label>
+        {/*type="text", pour ne pas avoir la validation du navigateur */}
         <Form.Control
-          type="email"
+          type="text"
           placeholder="name@example.com"
+          onBlur={formatEmail}
           isInvalid={!!errors.email || !!errors.checkEmail}
         />
         <Form.Control.Feedback type="invalid">
@@ -215,9 +238,16 @@ function FormulaireInscription() {
       </Form.Group>
       <Form.Group controlId="telephoneId">
         <Form.Label>Téléphone</Form.Label>
-        <Form.Control type="text" isInvalid={!!errors.telephone} />
+        <Form.Control
+          type="text"
+          onBlur={formatTelephone}
+          isInvalid={!!errors.telephone || !!errors.checkTelephone}
+        />
         <Form.Control.Feedback type="invalid">
           {errors.telephone}
+        </Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {errors.checkTelephone}
         </Form.Control.Feedback>
       </Form.Group>
       {/*Le site web n'est pas obligatoire */}

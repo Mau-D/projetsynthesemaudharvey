@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useLocation, Link } from "react-router-dom";
 
 import { FaUserGraduate } from "react-icons/fa";
@@ -18,7 +18,7 @@ function DemandeStageCarte(props) {
   useEffect(() => {
     //appelle la fonction getEtudiant pour l'appel à l'API, obtenir les informations de l'utilisateur
     getEtudiant();
-  }, {});
+  }, []);
   //Fonction pour l'appel à l'API
   async function getEtudiant() {
     //Variables pour les données de l'étudiant qui fait la demande
@@ -39,13 +39,6 @@ function DemandeStageCarte(props) {
       //On gère l'erreur
       console.log(error);
     }
-    console.log(
-      "url" +
-        process.env.REACT_APP_API +
-        process.env.REACT_APP_UTILISATEURS +
-        "/" +
-        props.etudiant
-    );
   }
 
   return (

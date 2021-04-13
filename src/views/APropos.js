@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import EnTete from "../components/public/EnTete";
-import LiensEmploiListe from "../components/public/LiensEmploiListe";
+//import LiensEmploiListe from "../components/public/LiensEmploiListe";
 import PiedDePage from "../components/public/PiedDePage";
 import ImageTexte from "../components/public/ImageTexte";
 
