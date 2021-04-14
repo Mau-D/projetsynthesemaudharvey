@@ -35,8 +35,7 @@ function DemandesStage(props) {
     }
   }
   function formatDate(d) {
-    console.log("donnesDAteCarte=" + d);
-    var dateMoment = Moment(d);
+    var dateMoment = Moment(d).add(1, "days");
     dateMoment.locale("fr");
     return dateMoment.format("Do MMMM YYYY");
   }
@@ -52,11 +51,10 @@ function DemandesStage(props) {
       {/*affichage dynamique */}
       {/*Affiche seulement les demandes de l'étudiant*/}
       <Row>
-        {donneesRecues.map((item, key) =>
+        {donneesRecues.map((item) =>
           item.etudiant === ls.get("id") ? (
-            <Col xs={12}>
+            <Col xs={12} key={"demandeAdmin" + item._id}>
               <DemandeStageCarte
-                key={key}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}
@@ -73,9 +71,8 @@ function DemandesStage(props) {
         {/*Affiche toutes les demandes pour un administrateur connecté*/}
         {donneesRecues.map((item) =>
           props.acces === "999" ? (
-            <Col xs={12}>
+            <Col xs={12} key={"keyCardDemandeAdmin" + item._id}>
               <DemandeStageCarte
-                key={"keyCardDemandeAdmin" + item._id}
                 id={item._id}
                 titre={item.titre}
                 ville={item.ville}

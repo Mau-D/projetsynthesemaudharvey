@@ -30,8 +30,8 @@ function BoutonRemoveDemande(props) {
     }
   }
   return (
-    <Button size="md" onClick={removeDemande}>
-      <TiDelete />
+    <Button size="md" onClick={removeDemande} variant="light" className="px-1">
+      <TiDelete className="rouge" />
       Supprimer
     </Button>
   );

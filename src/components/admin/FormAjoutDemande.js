@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import Moment from "moment";
+
+import logoNoir from "../../img/logoNoir.svg";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -147,11 +149,10 @@ function FormAjoutDemande(props) {
 
   //Fonction pour le changement du secteur d'activité
   function handleChangeSecteur(e) {
-    console.log("Secteur Selected!!");
     setSecteurChoisi(e.target.value);
   }
 
-  //Fonctions lors d'un changement dans les autres formations
+  //Fonction lors d'un changement dans les autres formations
   //Si la valeur du checked est true ajouter la valeur au tableau, sinon effacer à partir de l'index
   function handleChangeFormations(i) {
     let tabFormations = autresFormationsAdd;
@@ -169,10 +170,8 @@ function FormAjoutDemande(props) {
     setChange(true);
   }
 
-  console.log("dateDebut " + dateDebutAdd);
   //Fonction pour ajouter une formation supplémentaire
   function handleClickAjoutFormation() {
-    console.log("fonction ajout formation" + autresFormationsAdd);
     let tabformations = autresFormationsAdd;
     let formationAjoutee = document.getElementById("formationAddId").value;
     tabformations.push(formationAjoutee);
@@ -181,7 +180,6 @@ function FormAjoutDemande(props) {
   }
   //Fonction pour ajouter une compétence supplémentaire
   function handleClickAjoutCompetence() {
-    console.log("fonction ajout formation" + competences);
     let tabcompetences = competences;
     let competenceAjoutee = document.getElementById("competenceAddId").value;
     tabcompetences.push(competenceAjoutee);
@@ -189,9 +187,11 @@ function FormAjoutDemande(props) {
     setChange(true);
   }
 
-  console.log("type de stage" + typeStage);
   return (
     <Container fluid id="formAdd">
+      <Link to="/">
+        <img src={logoNoir} alt="logo" className="w-50 mb-5 logo" />
+      </Link>
       <Container>
         <Row>
           <Col xs={12}>
@@ -363,6 +363,17 @@ function FormAjoutDemande(props) {
             >
               Ajouter
             </Button>
+            <Link
+              className="btn btn-primary"
+              to={
+                "/admin/" +
+                ls.get("nom") +
+                "?niveau=" +
+                ls.get("niveau").toString()
+              }
+            >
+              Annuler
+            </Link>
           </Col>
         </Row>
       </Container>

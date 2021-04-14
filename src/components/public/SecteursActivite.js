@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-//import useSecteurRecherche from "../../hooksperso/useSecteurRecherche";
+import { useSecteurRecherche } from "../../hooksperso/useSecteurRecherche";
 
 // Hook pour le bouton Trouvez votre stagiaire
 function SecteursActivite(props) {
   //Variable pour le tableau de secteurs d'activité dans la collection secteursActivites
   const [donneesRecues, setDonneesRecues] = useState([]);
-  //Valeur du secteur pour la recherche
-  //const [secteurId, setSecteurId] = useState("");
-  //const rechercheId = useSecteurRecherche(secteurId);
-  // console.log("props du secteur de Recherche " + secteurId);
+
   useEffect(() => {
     //appelle la fonction getDemandesStage pour l'appel à l'API
     getSecteurs();
@@ -32,6 +29,7 @@ function SecteursActivite(props) {
       console.log(error);
     }
   }
+
   return (
     <div className="details fondBleu">
       <h4 className="text-light text-center">Secteurs d'activité </h4>
@@ -41,12 +39,7 @@ function SecteursActivite(props) {
             <tr key={item.nom}>
               <td></td>
               <td className="w-100 text-light">
-                <p
-                  className="text-light curseur"
-                  //onClick={() => setSecteurId(item.nom)}
-                >
-                  {item.nom}
-                </p>
+                <p className="text-light curseur">{item.nom}</p>
               </td>
             </tr>
           ))}

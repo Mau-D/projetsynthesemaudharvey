@@ -1,22 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
 import { IoMdAdd } from "react-icons/io";
 
 // Hook pour le bouton pour ajouter une offre de stage dans l'administration
 function BoutonAjoutOffre() {
-  console.log("formulaire d'ajout");
-  //Déclare une variable pour le local storage
-  var ls = require("local-storage");
   return (
-    <Link
-      to={
-        "ajout/" + ls.get("nom").toString() + "?id=" + ls.get("id").toString()
-      }
-      className="btn btn-light ajoutDemande p-2"
-    >
+    <Button className="btn btn-light ajoutDemande p-2">
       <IoMdAdd /> Ajouter une offre de stage
-    </Link>
+    </Button>
   );
 }
 

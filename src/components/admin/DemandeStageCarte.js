@@ -12,7 +12,6 @@ function DemandeStageCarte(props) {
   var ls = require("local-storage");
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
-  console.log("location" + location.pathname);
   //L'utilisation du useState, fera de nouveau le rendu à chaque fois qu'elle est modifiée
   const [objetEtudiant, setObjetEtudiant] = useState({});
   useEffect(() => {
@@ -42,16 +41,18 @@ function DemandeStageCarte(props) {
   }
 
   return (
-    <Container fluid>
-      <Row className="my-2">
-        <Col xs={12} md={6}>
+    <Container fluid className="validationDemande my-3">
+      <Row className="my-2 bordureBleu p-2">
+        <Col xs={12} md={6} className="souligne">
           <h3>
             <FaUserGraduate className="mx-2" />
             <strong>{props.titre}</strong>
           </h3>
         </Col>
         <Col xs={12} md={6}>
-          <p className="text-right d-inline">Publié le: {props.dateParution}</p>
+          <p className="text-right d-inline mb-1">
+            Publié le: {props.dateParution}
+          </p>
         </Col>
       </Row>
       <Row className="my-2">
@@ -92,12 +93,12 @@ function DemandeStageCarte(props) {
         <Col xs={12} className="p-0">
           <div className="w-100 d-flex flex-row justify-content-between">
             <div>{/*Bouton */}</div>
-            <div className="text-right d-inline">
+            <div className="text-right d-inline mr-1">
               <Link
                 to={"edition/" + ls.get("nom").toString() + "?id=" + props.id}
-                className="btn btn-primary"
+                className="btn btn-light"
               >
-                <BsPencilSquare />
+                <BsPencilSquare className="mx-1 vert" />
                 Modifier
               </Link>
               <BoutonRemoveDemande demandeID={props.id}></BoutonRemoveDemande>

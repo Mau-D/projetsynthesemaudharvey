@@ -29,20 +29,13 @@ import DemandeDetails from "../components/public/DemandeDetails";
 function Admin(props) {
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
-  //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
-  let location = useLocation();
 
   //Variable pour récupérer le code du niveau d'accès
   const searchString = props.location.search.substring(
     8,
     props.location.search.length
   );
-  // const searchStringDetails = props.location.search.substring(
-  //   4,
-  //   props.location.search.length
-  // );
 
-  console.log("récupération du code = " + searchString);
   //Variable pour afficher les différentes sections de l'administrateur avec le menu de gauche
 
   const [adminSection, setAdminSection] = useState([]);
@@ -86,7 +79,6 @@ function Admin(props) {
   }
   //Fonction pour afficher le contenu principal
   function renderSwitchAdmin() {
-    console.log(adminSection);
     switch (adminSection) {
       case "validation":
         return <Validation />;
@@ -96,6 +88,8 @@ function Admin(props) {
         return <CandidatsListe />;
       case "details":
         return <DemandeDetails />;
+      //case "entreprise":
+      //  return <OffresStage acces={searchString}/>;
       case "profil":
         return <DetailsUtilisateur user={ls.get("id")} acces={searchString} />;
       //Ajouter pour les offres des entreprises
@@ -138,8 +132,7 @@ function Admin(props) {
         );
     }
   }
-  console.log("search" + location.search);
-  console.log("path" + location.pathname);
+
   return (
     <Container fluid className="h-100">
       <Row>
@@ -159,6 +152,7 @@ function Admin(props) {
                   <AiFillHome /> Accueil
                 </Nav.Link>
                 <Nav.Link
+                  disabled
                   className="text-light"
                   onClick={() => setAdminSection("offres")}
                 >
@@ -177,6 +171,7 @@ function Admin(props) {
                   <FaUserGraduate /> Candidats
                 </Nav.Link>
                 <Nav.Link
+                  disabled
                   className="text-light mb-5"
                   onClick={() => setAdminSection("entreprises")}
                 >
@@ -229,7 +224,7 @@ function Admin(props) {
                 </div>
                 {/*DropDown, liste des demandes et profil */}
 
-                {searchString === 111 || searchString === 333 ? (
+                {searchString === "111" || searchString === "333" ? (
                   <div className="my-auto mx-1">
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic" variant="light">

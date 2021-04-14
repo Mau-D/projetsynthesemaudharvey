@@ -12,7 +12,7 @@ import PiedDePage from "../components/public/PiedDePage";
 import PublicationDemandeStage from "../components/public/PublicationDemandeStage";
 import PublicationOffreStage from "../components/public/PublicationOffreStage";
 import SecteursActivite from "../components/public/SecteursActivite";
-//import useSecteurRecherche from "../../src/hooksperso/useSecteurRecherche";
+import useSecteurRecherche from "../../src/hooksperso/useSecteurRecherche";
 
 // Hook pour les demandes de stage, liste des candidats
 function DemandesStageListe(props) {

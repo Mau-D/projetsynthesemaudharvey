@@ -89,7 +89,7 @@ function FormulaireConnexion() {
           <Form.Control type="password" placeholder="Mot de Passe" />
         </Form.Group>
         <Button variant="btn btn-primary" onClick={() => authentification()}>
-          Submit
+          Connexion
         </Button>
       </Form>
 

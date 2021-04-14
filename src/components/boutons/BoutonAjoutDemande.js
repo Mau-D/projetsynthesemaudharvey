@@ -5,7 +5,6 @@ import { IoMdAdd } from "react-icons/io";
 
 // Hook pour le bouton pour ajouter une demande de stage dans l'administration
 function BoutonAjoutDemande() {
-  console.log("formulaire d'ajout");
   //Déclare une variable pour le local storage
   var ls = require("local-storage");
   return (

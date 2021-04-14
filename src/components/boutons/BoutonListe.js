@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function BoutonListe(props) {
   return (
     <>
-      <Link exact to={props.lien} size="md" className={props.classStyle}>
+      <Link to={props.lien} size="md" className={props.classStyle}>
         {props.texte}
       </Link>
     </>

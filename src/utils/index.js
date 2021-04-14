@@ -1,3 +1,4 @@
+//Pour la gestion du localStorage, connexion et déconnexion d'un utilisateur
 const TOKEN_KEY = "jwt";
 
 export const login = () => {

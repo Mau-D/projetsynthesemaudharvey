@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+//Fonction pour la recherche par secteur
 
-function useSecteurRecherche(id) {
-  const [idSecteur, setIdSecteur] = useState("allo");
-
-  //Fonction pour la recherche par secteur
-  setIdSecteur(id);
-  return idSecteur;
+export function useSecteurRecherche(s) {
+  const [secteurNom, setSecteurNom] = useState("");
+  useEffect(() => {
+    setSecteurNom(s);
+  }, []);
+  console.log("hookPerso" + secteurNom);
+  return secteurNom;
 }
-export default useSecteurRecherche;

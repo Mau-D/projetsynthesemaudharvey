@@ -53,8 +53,7 @@ function DemandeDetails() {
   }
   //Fonction pour appliquer la langue et le format de la date
   function formatDate(d) {
-    console.log("donnesDAte=" + objetRecu.dateDebut);
-    var dateMoment = Moment(d);
+    var dateMoment = Moment(d).add(1, "days");
     dateMoment.locale("fr");
     return dateMoment.format("Do MMMM YYYY");
   }

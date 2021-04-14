@@ -37,7 +37,7 @@ function DemandesGroupCards() {
   }
   //Fonction pour appliquer la langue et le format de la date
   function formatDate(d) {
-    var dateMoment = Moment(d);
+    var dateMoment = Moment(d).add(1, "days");
     dateMoment.locale("fr");
     return dateMoment.format("Do MMMM YYYY");
   }

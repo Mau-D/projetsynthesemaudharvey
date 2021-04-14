@@ -1,55 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import Moment from "moment";
 
+import logoNoir from "../../img/logoNoir.svg";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale, setDefaultLocale } from "react-datepicker";
+import { registerLocale } from "react-datepicker";
 import fr from "date-fns/locale/fr-CA";
 registerLocale("fr", fr);
 /*Fonction pour l'édition d'une demande de stage*/
-function FormEditDemande() {
+function FormEditDemande(props) {
+  //Déclare une variable pour le local storage
+  var ls = require("local-storage");
   //Variable pour connaître la page où je me trouve, pour aller chercher des informations dans l'url
   let location = useLocation();
   //Variable pour récupérer l'id dans l'url, avec la propriété search
   var stringId = location.search.replace("?id=", "");
-  //useEffect, Obtenir les demandes de stage et la liste des secteurs d'activité
-  useEffect(() => {
-    getDemande();
-  }, []);
-  useEffect(() => {
-    getSecteurs();
-  }, []);
-  useEffect(() => {
-    var formations = objetDemande.autresFormations;
-    var competences = objetDemande.competences;
-    setAutresFormationsEdit(formations);
-    setCompetences(competences);
-    setChange(false);
-  }, []);
-  //On récupère les infos de la bd de la demande sélectionnée
-  async function getDemande() {
-    //Variable pour les données de la demande sélectionnée
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API +
-          process.env.REACT_APP_DEMANDES +
-          "/" +
-          stringId
-      );
-      const reponseDeApi = await response.json();
-      setObjetDemande(reponseDeApi);
-      if (!response.ok) {
-        //Permet d'attraper l'erreur 500 et l'erreur 400
-        throw Error(response.statusText);
-      }
-    } catch (error) {
-      //On gère l'erreur
-      console.log(error);
-    }
-  }
+  //Variables pour les informations du formulaire
+  let [secteurs, setSecteurs] = useState([]);
+  let [secteurChoisi, setSecteurChoisi] = useState("");
+  let [dateDebutEdit, setDateDebutEdit] = useState(new Date());
+  let [dateFinEdit, setDateFinEdit] = useState(new Date());
+  let [change, setChange] = useState(false);
+
+  let [autresFormationsEdit, setAutresFormationsEdit] = useState([]);
+  let [competences, setCompetences] = useState([]);
   //Variable des informations de la demande sélectionnée
   const [objetDemande, setObjetDemande] = useState({
     titre: "",
@@ -73,17 +51,43 @@ function FormEditDemande() {
     supprime: null,
     vedette: null,
   });
+  //useEffect, Obtenir les demandes de stage et la liste des secteurs d'activité
+  useEffect(() => {
+    getDemande();
+  }, []);
+  useEffect(() => {
+    getSecteurs();
+  }, []);
+  useEffect(() => {
+    setAutresFormationsEdit(objetDemande.autresFormations);
+    setCompetences(objetDemande.competences);
+    setChange(false);
+  }, [objetDemande]);
 
-  //Variables pour les informations du formulaire
-  let [secteurs, setSecteurs] = useState([]);
-  let [secteurChoisi, setSecteurChoisi] = useState("");
-  let [dateDebutEdit, setDateDebutEdit] = useState(new Date());
-  let [dateFinEdit, setDateFinEdit] = useState(new Date());
-  let [change, setChange] = useState(false);
+  //On récupère les infos de la bd de la demande sélectionnée
+  async function getDemande() {
+    //Variable pour les données de la demande sélectionnée
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API +
+          process.env.REACT_APP_DEMANDES +
+          "/" +
+          stringId
+      );
+      const reponseDeApi = await response.json();
+      setObjetDemande(reponseDeApi);
 
-  let [autresFormationsEdit, setAutresFormationsEdit] = useState([]);
-  let [competences, setCompetences] = useState([]);
-  let [typeStage, setTypeStage] = useState("");
+      setDateDebutEdit(Moment(reponseDeApi.dateDebut).add(1, "days"));
+      setDateFinEdit(Moment(reponseDeApi.dateFin).add(1, "days"));
+      if (!response.ok) {
+        //Permet d'attraper l'erreur 500 et l'erreur 400
+        throw Error(response.statusText);
+      }
+    } catch (error) {
+      //On gère l'erreur
+      console.log(error);
+    }
+  }
 
   //On récupère les infos de la bd de la liste des secteurs d'activité
   async function getSecteurs() {
@@ -134,8 +138,8 @@ function FormEditDemande() {
             titre: titre,
             secteurActivite: secteurChoisi,
             ville: ville,
-            dateDebut: dateDebutEdit,
-            dateFin: dateFinEdit,
+            dateDebut: Moment(dateDebutEdit).add(-1, "days"),
+            dateFin: Moment(dateFinEdit).add(-1, "days"),
             duree: duree,
             description: description,
             nbHeuresSemaine: nbHeuresSemaine,
@@ -157,9 +161,9 @@ function FormEditDemande() {
       );
       if (response.ok) {
         //const jsonResponse = await response.json();
-        // props.history.push(
-        //   "/trip/" + donneesRecues.nom + "?id=" + donneesRecues._id
-        //  ); //Retour à la page d'accueil
+        props.history.push(
+          "/admin/" + ls.get("nom") + "?niveau=" + ls.get("niveau")
+        ); //Retour à la page d'accueil
 
         return response;
       }
@@ -200,7 +204,6 @@ function FormEditDemande() {
 
   //Fonction pour le changement du secteur d'activité
   function handleChangeSecteur(e) {
-    console.log("Secteur Selected!!");
     setSecteurChoisi(e.target.value);
   }
 
@@ -210,7 +213,7 @@ function FormEditDemande() {
     let tabFormations = autresFormationsEdit;
     tabFormations.splice(i, 1);
     setAutresFormationsEdit(tabFormations);
-    setChange(true);
+    change ? setChange(false) : setChange(true);
   }
   //Fonctions lors d'un changement dans les autres formations
   //Si la valeur du checked est true ajouter la valeur au tableau, sinon effacer à partir de l'index
@@ -219,32 +222,33 @@ function FormEditDemande() {
     let tabCompetences = competences;
     tabCompetences.splice(i, 1);
     setCompetences(tabCompetences);
-    setChange(true);
+    change ? setChange(false) : setChange(true);
   }
 
-  console.log("dateDebut " + dateDebutEdit);
   //Fonction pour ajouter une formation supplémentaire
   function handleClickAjoutFormation() {
-    console.log("fonction ajout formation" + autresFormationsEdit);
     let tabformations = autresFormationsEdit;
     let formationAjoutee = document.getElementById("formationId").value;
     tabformations.push(formationAjoutee);
     setAutresFormationsEdit(tabformations);
-    setChange(true);
+    change ? setChange(false) : setChange(true);
   }
   //Fonction pour ajouter une compétence supplémentaire
   function handleClickAjoutCompetence() {
-    console.log("fonction ajout formation" + competences);
     let tabcompetences = competences;
     let competenceAjoutee = document.getElementById("competenceId").value;
     tabcompetences.push(competenceAjoutee);
     setCompetences(tabcompetences);
-    setChange(true);
+    change ? setChange(false) : setChange(true);
   }
 
-  console.log("type de stage" + typeStage);
   return (
     <Container fluid id="formEdit">
+      <Row>
+        <Link to="/">
+          <img src={logoNoir} alt="logo" className="w-50 mb-5 logo" />
+        </Link>
+      </Row>
       <Container>
         <Row>
           <Col xs={12}>
@@ -265,7 +269,7 @@ function FormEditDemande() {
                   {secteurs.map((item) => (
                     <option
                       selected={item._id === objetDemande.secteurActivite}
-                      key={item.nom}
+                      key={"key" + item._id}
                       value={item.nom}
                     >
                       {item.nom}
@@ -277,28 +281,26 @@ function FormEditDemande() {
                 <Form.Label>Ville</Form.Label>
                 <Form.Control type="text" defaultValue={objetDemande.ville} />
               </Form.Group>
-              <p>
-                *****Il faudra ajouter la valeur par défaut des
-                datepickers*******
-              </p>
+
+              {/*****Il faudra ajouter la valeur par défaut des
+                datepickers*******/}
+
               <label className="d-block">Date du début du stage</label>
-              {/*Faire des datepickers pour les dates  selected={Moment(objetDemande.dateDebut).format("DD/MM/YYYY")}*/}
-              {/*moment().format("ddd, MMM DD YYYY, hh:mm:ss");  */}
+
               <DatePicker
                 utcOffset
                 locale="fr"
                 dateFormat="MM/dd/yyyy"
-                onChange={(evt) => setDateDebutEdit(Moment(evt).toDate())}
+                onChange={(evt) => setDateDebutEdit(Moment(evt))}
                 selected={Moment(dateDebutEdit).toDate()}
               />
               <label className="d-block">Date de fin du stage</label>
-              {/*Faire des datepickers pour les dates  selected={Moment(objetDemande.dateDebut).format("DD/MM/YYYY")}*/}
-              {/*moment().format("ddd, MMM DD YYYY, hh:mm:ss");  */}
+
               <DatePicker
                 utcOffset
                 locale="fr"
                 dateFormat="MM/dd/yyyy"
-                onChange={(evt) => setDateFinEdit(Moment(evt).toDate())}
+                onChange={(evt) => setDateFinEdit(Moment(evt))}
                 selected={Moment(dateFinEdit).toDate()}
               />
               <Form.Group>
@@ -348,9 +350,6 @@ function FormEditDemande() {
               {/*Les autres formations et les compétences sont affichées avec des checkbox*/}
               <h3>Formations supplémentaires</h3>
               {autresFormationsEdit.map((item, i) => {
-                console.log("item" + item);
-                console.log("À l'affichage" + autresFormationsEdit);
-
                 return (
                   <div>
                     <input
@@ -381,7 +380,7 @@ function FormEditDemande() {
                         type="checkbox"
                         value={item}
                         checked
-                        onClick={() => handleChangeCompetences(i)}
+                        onChange={() => handleChangeCompetences(i)}
                       />
                       <label for={item} className="ml-2">
                         {item}
@@ -449,6 +448,17 @@ function FormEditDemande() {
             >
               Enregistrer
             </Button>
+            <Link
+              className="btn btn-primary"
+              to={
+                "/admin/" +
+                ls.get("nom") +
+                "?niveau=" +
+                ls.get("niveau").toString()
+              }
+            >
+              Annuler
+            </Link>
           </Col>
         </Row>
       </Container>
